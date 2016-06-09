@@ -70,8 +70,10 @@
         - Composition
   - Evaluation
   - Discussion
-  - Conclusion & Future work
+  - Conclusion \& Future work
 
+
+Image moments~\cite{flusser09moments} provide a practical and useful way to describe image objects. In our case, images containing flattened tunnels are further characterized by 10 different image moments to condense the information.
 %-------------------------------------------------------------------------
 
 %\bibliographystyle{eg-alpha}
