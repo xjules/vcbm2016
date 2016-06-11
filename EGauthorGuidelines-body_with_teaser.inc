@@ -3,19 +3,18 @@
 % D.Fellner, v1.17, Sep 23, 2010
 
 
-\title[EG \LaTeX\ Author Guidelines]%
-      {\LaTeX\ Author Guidelines for EUROGRAPHICS Proceedings Manuscripts}
+\title[Unrolling and Interactive Exploration of Protein Tunnels and their Dynamics]%
+      {Unrolling and Interactive Exploration of Protein Tunnels and their Dynamics}
 
 % for anonymous conference submission please enter your SUBMISSION ID
 % instead of the author's name (and leave the affiliation blank) !!
-\author[D. Fellner \& S. Behnke]
-       {D.\,W. Fellner\thanks{Chairman Eurographics Publications Board}$^{1,2}$
-        and S. Behnke$^{2}$
+\author[Koles\'{a}r et al.]
+       {TODO$^{1}$ and TODO$^{2}$
 %        S. Spencer$^2$\thanks{Chairman Siggraph Publications Board}
         \\
 % For Computer Graphics Forum: Please use the abbreviation of your first name.
-         $^1$TU Darmstadt \& Fraunhofer IGD, Germany\\
-         $^2$Institut f{\"u}r ComputerGraphik \& Wissensvisualisierung, TU Graz, Austria
+         $^1$University of Bergen, Norway\\
+         $^2$Masaryk University, Brno, Czech Republic
 %        $^2$ Another Department to illustrate the use in papers from authors
 %             with different affiliations
        }
@@ -34,9 +33,9 @@
 \begin{document}
 
 \teaser{
- \includegraphics[width=\linewidth]{eg_new}
+ \includegraphics[width=\linewidth]{img/teaser.png}
  \centering
-  \caption{New EG Logo}
+  \caption{TODO change image}
 \label{fig:teaser}
 }
 
@@ -58,6 +57,25 @@
 
 %-------------------------------------------------------------------------
 \section{Introduction}
+Studying molecular structures and their reactivity plays a crucial role in many research disciplines, including drug design, agriculture, cosmetics, industry, and others.
+The product of such a reaction can form a basis of new chemical matters, including medication.
+The reactivity of a molecule is highly influenced by the presence of a void space inside its structure. 
+More densely packed molecules, i.e., those not having too much empty space between atoms, are hardly accessible by small ligands aiming to react deeply inside the molecule. 
+Therefore, by exploring the amount and properties of void space inside molecules, we are able to assess the possibility of a ligand with specific properties to enter these molecules.
+The void space can be categorized according to different criteria, the most common approach takes into account the accessibility of the void space form the molecular surface.
+Then we can distinguish between inner closed cavities and paths.
+The closed cavities are inaccessible from the surface and are buried in the molecular structure.
+The accessible paths can be further divided to those which connect a specific site (so called active site) inside the molecule with its surface and those traversing the whole molecule.
+The first type of paths is denoted as tunnels and the second as channels or pores.
+In our research we are interested mainly in tunnels in protein molecules because they enable to transport small ligands to the protein active site where a mutual chemical reaction can occur. 
+This process is crucial namely in drug design and protein engineering.
+From the latter field also comes our conducted user study which we present at the end of the paper.
+In our research we are focusing namely on protein structures, however, the proposed method is applicable to any kind of molecule containing tunnels.
+
+
+Molecular dynamics (cite dynasome)
+
+
  - Introduction
   - Related Work
      - Flattening techniques
