@@ -140,15 +140,28 @@ The disadvantage of these solutions is that they mostly omit the mutual spatial 
 \subsection{Flattening techniques}
 \subsection{Comparative Visualization}
 \section{Flattening Based Exploration}
+\begin{figure*}[htb]
+\includegraphics[width=0.8\linewidth]{img/processing_pipeline.jpg}
+\centering
+\caption{{\color{red}TODO: change image}}
+\label{fig:processing_pipeline}
+\end{figure*}
 Main focus of our work is to allow exploration of molecular tunnels in molecular dynamics simulation.
 In there tunnel develops over time and changes its shape.
 Raw data from such a simulation is the set of 3D objects representing the tunnel shape over time.
 There is no trivial direct way of how to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities.
 Main problems are the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
 Moreover there is always a limit of how many 3D objects users can explore at the same time in one window.
-\subsection{Flattening}
 To overcome the problem of tunnel self-occlusion we are transforming a 3D object to 2D representation by flattening.
 Moreover the spatially reduced flattened tunnels speeds up the exploration of the similarities, or dissimilarities.
+However molecular dynamics consists of thousands time steps.
+Comparative visualization of the shape of all the tunnels, flattened or not, is therefore challenging.
+As a descriptor for the tunnel we are employing image momentum for the unfolded tunnels.
+Image momentum is well known descriptor for image analysis and classification.
+To bring the tunnels closer to user, we have employed a PCA for dimension reduction.
+With PCA we can show the tunnels similarities/dissimilarities as a distance between two points in 2D domain.
+Having multiple view, with interaction allows to explore the space of tunnels in 2D as a scatter-plot and at the same time to compare spatial characteristics of the unfolded tunnels.
+\subsection{Flattening}
 For each tunnel we have its shape as a triangle mesh, centerline as a graph of connected points, and information about tunnel hydrophobicity, charge, and hydrogen bond stored for each vertex of the triangle mesh.
 Moreover, we have a set of characteristics, that are of utmost importance to explore.
 In our case we want to clearly communicate three features.
@@ -157,15 +170,62 @@ First one is the positioning, and distribution of amino acids, which creates the
 Second is the spatial information of the tunnel length, and its thickness development.
 Third feature is the notion of shape. 
 Meaning that user should be able to detect {\color{red}{"bulky"}} areas.
+
+\begin{figure}[htb]
+\includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
+\centering
+\caption{{\color{red}TODO: change image}}
+\label{fig:processing_pipeline}
+\end{figure}
+
 The general idea of our flattening method is the parametrization.
 Given the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$ the surface $M$ is given by
 \begin{equation}
-M(t, a) = \mathbf{c}(t) + s\mathbf{v}\times\mathbf{c}(t) with t \in [t_0, t_1] and s \in [0, 360]
+M(t, a) = \mathbf{c}(t) + s\mathbf{v}\times\mathbf{c}(t) \quad t \in [t_0, t_1], \quad a \in [0, 360]
 \end{equation}
-In other words, our method is based on the slicing of the tunnel by the plane perpendicular to centerline tangent at position $\mathbf{c}(t)$, and sampling the slice by the rays coming from the {\color{red}{continue}}.
-The key point it the centerline, which is alway inside the tunnel, and which don't have high curvature.
-\subsection{Comparative Visualization}
+In other words, our method is based on the slicing of the tunnel by the plane perpendicular to centerline tangent at position $\mathbf{c}(t)$, and sampling the slice by the rays coming from the $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $s$.
+
+The key point is the centerline.
+Our assumption, based on the empirical knowledge is, that the centerline is alway inside the tunnel and that the centerline do not have high curvature.
+Which means that two neighboring planes do not cross each other.
+
+Cutting vector is semantically defined as a border point between two stable amino acids in first several slices.
+This allows us to create one of the directions for the shared comparative visualization, as the neighboring amino-acids are stable during all the simulation of the dynamics.
+For our current needs this setting of cutting vector is enough. However one might come up with more semantical cut, which would follow the borders between the neighboring amino acids.
+
+Having a tangent in centerline and global slicing vector can introduce rotation artifact of the cut. 
+We have a adopted a computation of rotation minimized frame \cite{Wang2008RotMinim}.
+To overcome this problem for each cutting plane along the centerline is the cutting vector projected to the plane.
+
+With settled the cutting plane, and cutting vector for each plane, we have a starting point, which is smooth, and follows the centerline on the surface of the tunnel. 
+Cuts along the centerline are uniformly sampled.
+It is possible, that between 2 cuts some information is lost, for example a small connecting cavity.
+However this structure is too small to have any influence on the lipid, and therefore it is desired to have this feature abstracted out.
+
+As mentioned earlier, each slice is additionally sampled.
+Sampling is done by the ray coming from the centerline and increasingly rotated around the slice normal.
+At each sample we now have a value, and we have a slice line length between two samples $D_t(a_i, a_{i+1})$.
+Unfolding is defined as
+\begin{equation}
+A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}))
+\end{equation} 
+
+With our unfolding method we have in 2D encoded values from the tunnel surface.
+Moreover, the size of the tunnel over the centerline is accurately preserved, as well as the size of the amino acids from the surface and their respective neighborhood.
+
+Connecting the same angle samples together we get a shape description, which communicates the changes of the tunnel shape, for example at the place where the lines are dense the tunnel is thinner.
+On the other hand more scattered lines says, that the tunnel is broader.
+
 \subsection{Image Moment}
+Image moments~\cite{Flusser09Moments} provide a practical and useful way to describe image objects. Each image $I(x,y)$ is described by the set of moments
+\begin{equation}
+M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
+\end{equation} 
+In our case, images containing flattened tunnels are further characterized by 10 different image centralized moments to condense the information.
+\begin{equation}
+\mu_{pq} = \sum_{m}^{p}\sum_{n}^{q}{p \choose m}{q \choose n}\left(-{M_{10} \over M_{00}}\right)^{(p-m)}\left(-{M_{01} \over M_{00}}\right)^{(q-n)}
+\end{equation} 
+
 \subsection{PCA}
 \subsubsection{Clustering}
 \subsubsection{Exploration}
@@ -173,8 +233,6 @@ The key point it the centerline, which is alway inside the tunnel, and which don
 \section{Discussion}
 \section{Conclusion \& Future work}
 
-
-Image moments~\cite{Flusser09Moments} provide a practical and useful way to describe image objects. In our case, images containing flattened tunnels are further characterized by 10 different image moments to condense the information.
 %-------------------------------------------------------------------------
 
 %\bibliographystyle{eg-alpha}
