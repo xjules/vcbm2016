@@ -76,19 +76,19 @@ In our research we are focusing namely on protein structures, however, the propo
 Molecular dynamics (cite dynasome)
 
 
- - Introduction
-  - Related Work
-     - Flattening techniques
-     - Comparative visualization
-  - Method
-     - Flattening
-     - Comparative visualization
-        - Image moment
-        - Clustering
-        - Composition
-  - Evaluation
-  - Discussion
-  - Conclusion \& Future work
+\section{Introduction}
+\section{Related Work}
+\subsection{Flattening techniques}
+\subsection{Comparative visualization}
+\section{Method}
+\subsection{Flattening}
+\subsection{Comparative visualization}
+\subsection{Image moment}
+\subsubsection{Clustering}
+\subsubsection{Composition}
+\section{Evaluation}
+\section{Discussion}
+\section{Conclusion \& Future work}
 
 
 Image moments~\cite{flusser09moments} provide a practical and useful way to describe image objects. In our case, images containing flattened tunnels are further characterized by 10 different image moments to condense the information.
