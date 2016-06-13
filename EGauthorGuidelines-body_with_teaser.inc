@@ -116,12 +116,36 @@ Later we mention techniques, which have been proposed for 3D data projections an
 
 \subsection{Flattening techniques}
 \subsection{Comparative Visualization}
-\section{Method}
+\section{Flattening Based Exploration}
+Main focus of our work is to allow exploration of molecular tunnels in molecular dynamics simulation.
+In there tunnel develops over time and changes its shape.
+Raw data from such a simulation is the set of 3D objects representing the tunnel shape over time.
+There is no trivial direct way of how to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities.
+Main problems are the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
+Moreover there is always a limit of how many 3D objects users can explore at the same time in one window.
 \subsection{Flattening}
+To overcome the problem of tunnel self-occlusion we are transforming a 3D object to 2D representation by flattening.
+Moreover the spatially reduced flattened tunnels speeds up the exploration of the similarities, or dissimilarities.
+For each tunnel we have its shape as a triangle mesh, centerline as a graph of connected points, and information about tunnel hydrophobicity, charge, and hydrogen bond stored for each vertex of the triangle mesh.
+Moreover, we have a set of characteristics, that are of utmost importance to explore.
+In our case we want to clearly communicate three features.
+Going from the most to the least important.
+First one is the positioning, and distribution of amino acids, which creates the tunnel.
+Second is the spatial information of the tunnel length, and its thickness development.
+Third feature is the notion of shape. 
+Meaning that user should be able to detect {\color{red}{"bulky"}} areas.
+The general idea of our flattening method is the parametrization.
+Given the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$ the surface $M$ is given by
+\begin{equation}
+M(t, a) = \mathbf{c}(t) + s\mathbf{v}\times\mathbf{c}(t) with t \in [t_0, t_1] and s \in [0, 360]
+\end{equation}
+In other words, our method is based on the slicing of the tunnel by the plane perpendicular to centerline tangent at position $\mathbf{c}(t)$, and sampling the slice by the rays coming from the {\color{red}{continue}}.
+The key point it the centerline, which is alway inside the tunnel, and which don't have high curvature.
 \subsection{Comparative Visualization}
 \subsection{Image Moment}
+\subsection{PCA}
 \subsubsection{Clustering}
-\subsubsection{Composition}
+\subsubsection{Exploration}
 \section{Evaluation}
 \section{Discussion}
 \section{Conclusion \& Future work}
