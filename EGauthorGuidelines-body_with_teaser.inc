@@ -3,8 +3,8 @@
 % D.Fellner, v1.17, Sep 23, 2010
 
 
-\title[Unrolling and Interactive Exploration of Protein Tunnels and their Dynamics]%
-      {Unrolling and Interactive Exploration of Protein Tunnels and their Dynamics}
+\title[Unfolding and Interactive Exploration of Protein Tunnels and their Dynamics]%
+      {Unfolding and Interactive Exploration of Protein Tunnels and their Dynamics}
 
 % for anonymous conference submission please enter your SUBMISSION ID
 % instead of the author's name (and leave the affiliation blank) !!
@@ -49,8 +49,16 @@
 \maketitle
 
 \begin{abstract}
-   TODO
-   (see http://www.acm.org/class/1998/).
+The presence of tunnels in protein structures substantially influences their reactivity with other molecules.
+Therefore, studying their properties and changes over time has been in the scope of biochemists for decades.
+In this paper we introduce a novel approach to the comparative visualization and exploration of ensembles of tunnels
+We aim to overcome the occlusion problems of traditional tunnel representations and to quickly navigate the user through the input dataset and help to identify the possibly interesting tunnels.
+First, we unfold the input tunnels to a 2D representation enabling to observe the mutual position of amino acids forming the tunnel surface and the amount of surface they influence.
+These 2D images are subsequently compared using the image moment method commonly used in image processing.
+This way we are able to detect similarities and outliers in the dataset which are visualized as clusters in a scatterplot graph.
+The same coloring scheme is used in the linked bar chart enabling to detect the position of the cluster members over time.
+These views help to select a subset of possibly interesting tunnels which can be further explored in detail using the 2D unfolded view and traditional 3D representation.
+The usability of our approach is demonstrated on case studies conducted by the domain experts.
 
 \begin{classification} % according to http://www.acm.org/class/1998/
 \CCScat{Computer Graphics}{I.3.3}{Picture/Image Generation}{Line and curve generation}
@@ -68,56 +76,84 @@ Studying molecular structures and their reactivity plays a crucial role in many 
 The product of such a reaction can form a basis of new chemical matters, including medication.
 The reactivity of a molecule is highly influenced by the presence of a void space inside its structure. 
 More densely packed molecules, i.e., those not having too much empty space between atoms, are hardly accessible by small ligands aiming to react deeply inside the molecule. 
-Therefore, by exploring the amount and properties of void space inside molecules, we are able to assess the possibility of a ligand with specific properties to enter these molecules.
+Therefore, by exploring the amount and properties of void space inside molecules we are able to assess the possibility of a ligand with specific properties to enter these molecules.
 The void space can be categorized according to different criteria, the most common approach takes into account the accessibility of the void space form the molecular surface.
 Then we can distinguish between inner closed cavities and paths.
 The closed cavities are inaccessible from the surface and are buried in the molecular structure.
 The accessible paths can be further divided to those which connect a specific site (so called active site) inside the molecule with its surface and those traversing the whole molecule.
 The first type of paths is denoted as tunnels and the second as channels or pores.
-In our research we are interested mainly in tunnels in protein molecules because they enable to transport small ligands to the protein active site where a mutual chemical reaction can occur. 
+In our research we are interested mainly in tunnels in protein molecules because they enable to transport small ligands to the protein active site where a mutual chemical reaction can occur.  
 This process is crucial namely in drug design and protein engineering.
 From the latter field also comes our conducted user study which we present at the end of the paper.
 In our research we are focusing namely on protein structures, however, the proposed method is applicable to any kind of molecule containing tunnels.
 
+Molecules are not static structures, their atoms are in permanent movement.
+This has also the impact on the void space, when detected tunnels can become wider or narrower or can even disappear. 
+Recently it was revealed that the function of proteins is determined not only by their constitution but also their molecular dynamics~\cite{dynasome}. 
+Therefore, from the biochemical point of view studying protein tunnels in one static time step is not too relevant because a given tunnel can be opened only for a fraction of time.
+Biochemists are rather interested in the stability and changes of tunnel shape over time.
+This exploration process has to be supported by special visualization techniques.
 
-Molecular dynamics (cite dynasome)
+The majority of existing tunnel representations aim to visualize the 3D surface depicting the tunnel shape. 
+However, such representations fail in cases when it is required to compare more tunnels at once.
+This can happen namely in situations when we want to explore:
+\begin{itemize}
+\item changes of a tunnel in molecular dynamics
+\item several mutations of amino acids around a given tunnel
+\end{itemize}
 
-\section{Related Work}
-
-The approach proposed in this paper was designed for comparison and visual exploration of multiple protein tunnels.
-The majority of existing representations aim to visualize the 3D overview of the protein tunnel shape. 
-Such realistic spatial representations, however, fail exactly in cases when it is required to compare large number of protein tunnels or evaluate the development of single tunnel over longer period of time.
-The problem is that these methods do not provide fast and intuitive way to explore the protein tunnels and their surrounding mainly due to the occlusion (see Figure~\ref{fig:tunnel_with_aa}).
+When performing these tasks using traditional 3D visualization, the first situation uses the animation of tunnel movement and the second situation superposes the tunnel under different mutations.
+Both cases suffer from several drawbacks. 
+When dealing with large molecular dynamics simulations consisting of hundreds of thousands of time steps, the animation of this movement is very hard to explore.
+The user is overwhelmed by the movements and the differences in the tunnel shape can be easily overlooked.
+Moreover, using the 3D tunnel representation only a portion of the tunnel surface is visible from the viewpoint.
+When aiming to explore a tunnel influenced by several mutations of its surrounding amino acids, the user wants to observe and evaluate the impact of these mutations on the tunnel surface. Using superposition of the mutated tunnels we suffer from visual clutter caused by surface overlaps (see Figure~\ref{fig:tunnels} left).
+These overlaps can be removed by using juxtaposing the tunnels (see Figure~\ref{fig:tunnels} right).
+But in such a case it is hard to perceive the differences between these tunnels, namely for those in further mutual distance.
 
 \begin{figure}[htb]
- \includegraphics[width=\linewidth]{img/tunnel_with_aa.png}
+ \includegraphics[width=\linewidth]{img/tunnels.png}
  \centering
-  \caption{{\color{red}TODO: change image, \ie use real surface representation}}
-\label{fig:tunnel_with_aa}
+  \caption{Left: superposed representation of five conformations of a tunnel differing by one mutated amino acid. Right: juxtaposed view of these conformations.}
+\label{fig:tunnels}
 \end{figure}
 
-This problem was already partially addressed in other domains, for instance, in the filed of medical visualization.
-Here the methods based on 3D data projections and reformations are frequently used in order to reveal various anatomical {\color{red}features}.
-Nevertheless, due to the nature of the data, these methods mostly focus on the exploration rather then comparison.
+Moreover, the proper visualization of surface itself is not sufficient for exploration and complete understanding of differences between protein tunnels. 
+Another essential information is about the amino acids forming the tunnel boundary, namely their biochemical properties and the extent of influence of the tunnel.
+Possible solution is to map this information onto the tunnel surface.
+But because of the problems with the 3D tunnel visualization mentioned above, it is hard to compare and explore these properties as well.
+
+In this paper we are aiming to solve these problems by introducing a novel technique for intuitive comparison and exploration of ensembles of protein tunnels.
+It consists of several linked views enabling to:
+\begin{itemize}
+\item get the overview of all tunnels in the input ensemble and spot possibly interesting tunnels 
+\item localize these tunnels in time
+\item visualize selected tunnels using 2D unfolded view and compare their amino acid constitution and influence
+\item combine the unfolded view with the traditional 3D view to see the original shape 
+\end{itemize}
+
+The benefit of our approach is demonstrated on two case studies conducted by the biochemists.
+
+
+\section{Related Work}
+The problem of visual exploration of spatial structures of tubular shape has been already partially addressed in other domains as well, e.g., in medical visualization.
+Here the methods based on 3D data projections and reformations are frequently used in order to reveal various anatomical features.
+Nevertheless, due to the nature of the data, these methods mostly focus on the exploration rather than comparison.
 On the other hand, the comparative visualization in connection with surface reformation was applied many times when studding the flow dynamics.
 
-Unfortunately, the proper visualization of surface itself is not enough when comparing the protein tunnels. 
-Even though the tunnel shape is important~{\color{red}{\cite{XYZ}}}, the essential information here is the conformation of surrounding amino acids and their biochemical properties~{\color{red}{\cite{XYZ}}}. 
-Therefore, the biochemist tend to use highly abstract representations for protein tunnel comparison even if these methods do not provide any information about the tunnel shape {\color{red}whatsoever}.
-
-This paper is describing a new design which is connecting space reformation with abstract amino acid representation in order to fill the mentioned gap in the area of biology visualization.
-Hence, in the following sections we touch upon all the aforementioned related work in more details. 
-Firstly we provide the reader with overview of the related work regarding the protein void detection and their visualization. 
-Later we mention techniques, which have been proposed for 3D data projections and reformation in medical visualization, flow dynamics and other fields.
+In the following sections we touch upon related existing approaches in more detail. 
+First we provide the reader with an overview of the related work regarding the protein void detection and their visualization. 
+Then we mention techniques which have been proposed for 3D data projections and reformation in medical visualization, flow dynamics, and other fields.
 
 \subsection{Protein Void Detection and Analysis}
-The early approaches for protein tunnel detection were grid-based~\cite{Petrek2006Caver, Ho2008Hollow, Voss20103V}. 
-For instance, in the first mentioned paper~\cite{Petrek2006Caver} authors proposed to enclose the protein into a uniform grid.
-The value of the each voxel is computed based on the amount of surrounding empty space.
-The Dijkstra algorithm in used afterwards in order to find the set of widest empty paths (tunnels) leading from the active site to the protein surface.
+The earliest approaches for protein tunnel detection were based on grids~\cite{Petrek2006Caver, Ho2008Hollow, Voss20103V}. 
+For instance, Petrek et al.~\cite{Petrek2006Caver} proposed to enclose the protein into a uniform grid.
+The value of each grid cell corresponds to the distance of this cell to the nearest atom.
+Then the Dijkstra algorithm is used in order to find the set of tunnels consisting of cells with the largest distance to the surrounding atoms.
 
-Even thought these techniques allow to describe void of nearly any shape, the precision and performance of the grid-based methods highly depends on the grid resolution. 
+Even though these techniques allow to describe the void space of nearly any shape, the precision and performance of the grid-based methods highly depends on the grid resolution. 
 These drawbacks were later overcome by Voronoi diagram-based methods \cite{Medek2007Voronoi, Petrek2007MOLE, Yaffe2008MolAxis, Lindow2011Voronoi, Chovancova2012Caver3}.
+-----------------------------------
 These methods are similar to the previous approach but they first compute a Voronoi diagram of the protein and use Dijkstra algorithm on top it. 
 
 Such approach enables to save a huge amount of resources, however, the resulting tunnel is usually represented by a set of spheres following the set of Voronoi edges. 
