@@ -111,6 +111,29 @@ Firstly we provide the reader with overview of the related work regarding the pr
 Later we mention techniques, which have been proposed for 3D data projections and reformation in medical visualization, flow dynamics and other fields.
 
 \subsection{Protein Void Detection and Analysis}
+The early approaches for protein tunnel detection were grid-based~\cite{Petrek2006Caver, Ho2008Hollow, Voss20103V}. 
+For instance, in the first mentioned paper~\cite{Petrek2006Caver} authors proposed to enclose the protein into a uniform grid.
+The value of the each voxel is computed based on the amount of surrounding empty space.
+The Dijkstra algorithm in used afterwards in order to find the set of widest empty paths (tunnels) leading from the active site to the protein surface.
+
+Even thought these techniques allow to describe void of nearly any shape, the precision and performance of the grid-based methods highly depends on the grid resolution. 
+These drawbacks were later overcome by Voronoi diagram-based methods \cite{Medek2007Voronoi, Petrek2007MOLE, Yaffe2008MolAxis, Lindow2011Voronoi, Chovancova2012Caver3}.
+These methods are similar to the previous approach but they first compute a Voronoi diagram of the protein and use Dijkstra algorithm on top it. 
+
+Such approach enables to save a huge amount of resources, however, the resulting tunnel is usually represented by a set of spheres following the set of Voronoi edges. 
+However, the cross-sections of the protein tunnels are rather non-circular and hence the sphere representation may lead to misinterpretation of the analyzed tunnel.
+Therefore recently some alternative methods combining the two aforementioned techniques appeared~\cite{Jurcik2015Visibility}.
+
+Nowadays, the biochemists are more and more focusing on the analysis of simulations of molecular dynamics rather than on static molecules, as
+these techniques yield more biochemically relevant results.
+In order to analyze tunnels inside such dynamic environment it is necessary to correctly register and follow them over time. 
+There are tools capable of such clustering, for instance, MOLE~2.0~\cite{Sehnal2013Mole2} or CAVER~3.0~\cite{Chovancova2012Caver3}. Additionally, other methods such as~\cite{Parulek2013CavityAnalysis,Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface} were presented in order to enable extractions of dynamic cavities in real-time.
+
+Finally, as already mentioned for the analysis of the protein tunnels the physio-chemical properties of amino acids in the vicinity of the tunnel are equally important as geometrical aspects. 
+There are several methods focusing on the evaluation of the protein tunnel surroundings over time~\cite{Byska2015MoleCollar, Byska2015AnimoAminoMiner}.
+The disadvantage of these solutions is that they mostly omit the mutual spatial orientation of the extracted amino acids in order to reasonable visualize the huge amount of data over time.
+
+
 \subsection{Projections and Reformation Methods}
 \subsection{Comparative Visualization}
 
@@ -127,7 +150,7 @@ Later we mention techniques, which have been proposed for 3D data projections an
 \section{Conclusion \& Future work}
 
 
-Image moments~\cite{flusser09moments} provide a practical and useful way to describe image objects. In our case, images containing flattened tunnels are further characterized by 10 different image moments to condense the information.
+Image moments~\cite{Flusser09Moments} provide a practical and useful way to describe image objects. In our case, images containing flattened tunnels are further characterized by 10 different image moments to condense the information.
 %-------------------------------------------------------------------------
 
 %\bibliographystyle{eg-alpha}
