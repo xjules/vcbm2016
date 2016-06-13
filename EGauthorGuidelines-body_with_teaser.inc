@@ -108,7 +108,7 @@ Therefore, the biochemist tend to use highly abstract representations for protei
 This paper is describing a new design which is connecting space reformation with abstract amino acid representation in order to fill the mentioned gap in the area of biology visualization.
 Hence, in the following sections we touch upon all the aforementioned related work in more details. 
 Firstly we provide the reader with overview of the related work regarding the protein void detection and their visualization. 
-Later we mention techniques, which have been proposed for 3D data projections and reformation in medical visualization, flow dynamics and other field.
+Later we mention techniques, which have been proposed for 3D data projections and reformation in medical visualization, flow dynamics and other fields.
 
 \subsection{Protein Void Detection and Analysis}
 \subsection{Projections and Reformation Methods}
