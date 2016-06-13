@@ -30,6 +30,13 @@
 
 
 %-------------------------------------------------------------------------
+% Packages
+\usepackage[textsize=small,colorinlistoftodos]{todonotes}
+% Defines usefull commands.
+\newcommand{\ie}{i.e.,~}
+\newcommand{\eg}{e.g.,~}
+
+
 \begin{document}
 
 \teaser{
@@ -75,15 +82,44 @@ In our research we are focusing namely on protein structures, however, the propo
 
 Molecular dynamics (cite dynasome)
 
-
-\section{Introduction}
 \section{Related Work}
+
+The approach proposed in this paper was designed for comparison and visual exploration of multiple protein tunnels.
+The majority of existing representations aim to visualize the 3D overview of the protein tunnel shape. 
+Such realistic spatial representations, however, fail exactly in cases when it is required to compare large number of protein tunnels or evaluate the development of single tunnel over longer period of time.
+The problem is that these methods do not provide fast and intuitive way to explore the protein tunnels and their surrounding mainly due to the occlusion (see Figure~\ref{fig:tunnel_with_aa}).
+
+\begin{figure}[htb]
+ \includegraphics[width=\linewidth]{img/tunnel_with_aa.png}
+ \centering
+  \caption{{\color{red}TODO: change image, \ie use real surface representation}}
+\label{fig:tunnel_with_aa}
+\end{figure}
+
+This problem was already partially addressed in other domains, for instance, in the filed of medical visualization.
+Here the methods based on 3D data projections and reformations are frequently used in order to reveal various anatomical {\color{red}features}.
+Nevertheless, due to the nature of the data, these methods mostly focus on the exploration rather then comparison.
+On the other hand, the comparative visualization in connection with surface reformation was applied many times when studding the flow dynamics.
+
+Unfortunately, the proper visualization of surface itself is not enough when comparing the protein tunnels. 
+Even though the tunnel shape is important~{\color{red}{\cite{XYZ}}}, the essential information here is the conformation of surrounding amino acids and their biochemical properties~{\color{red}{\cite{XYZ}}}. 
+Therefore, the biochemist tend to use highly abstract representations for protein tunnel comparison even if these methods do not provide any information about the tunnel shape {\color{red}whatsoever}.
+
+This paper is describing a new design which is connecting space reformation with abstract amino acid representation in order to fill the mentioned gap in the area of biology visualization.
+Hence, in the following sections we touch upon all the aforementioned related work in more details. 
+Firstly we provide the reader with overview of the related work regarding the protein void detection and their visualization. 
+Later we mention techniques, which have been proposed for 3D data projections and reformation in medical visualization, flow dynamics and other field.
+
+\subsection{Protein Void Detection and Analysis}
+\subsection{Projections and Reformation Methods}
+\subsection{Comparative Visualization}
+
 \subsection{Flattening techniques}
-\subsection{Comparative visualization}
+\subsection{Comparative Visualization}
 \section{Method}
 \subsection{Flattening}
-\subsection{Comparative visualization}
-\subsection{Image moment}
+\subsection{Comparative Visualization}
+\subsection{Image Moment}
 \subsubsection{Clustering}
 \subsubsection{Composition}
 \section{Evaluation}
