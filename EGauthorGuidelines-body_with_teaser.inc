@@ -263,6 +263,11 @@ In our case, images containing flattened tunnels are further characterized by 10
 \begin{equation}
 \mu_{pq} = \sum_{m}^{p}\sum_{n}^{q}{p \choose m}{q \choose n}\left(-{M_{10} \over M_{00}}\right)^{(p-m)}\left(-{M_{01} \over M_{00}}\right)^{(q-n)}
 \end{equation} 
+This way we are able to specify each tunnel as a vector of values.
+\begin{equation}
+im(tun) = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
+\end{equation} 
+Now we are able to set up a tunnels matrix, whose rows consists of the centralized image momentum vectors, and whose columns are the type of momentum value.
 Centralized moments are invariant to translation.
 In our case this is a valuable feature, as some amino acid areas might me moved by the change of the length of the centerline.
 There exist various versions of image momentum, which would bring invariance to different properties such as rotation, scale, translation.
