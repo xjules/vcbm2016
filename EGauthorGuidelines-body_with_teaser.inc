@@ -42,7 +42,7 @@
 \teaser{
  \includegraphics[width=\linewidth]{img/teaser.png}
  \centering
-  \caption{TODO change image}
+  \caption{Our proposed approach enabling to explore an ensemble of protein tunnels. It consists of three main parts -- scatterplot and bar chart representation of different tunnel properties on the bottom and the unfolded view of selected tunnels on the top. }
 \label{fig:teaser}
 }
 
@@ -108,8 +108,9 @@ When dealing with large molecular dynamics simulations consisting of hundreds of
 The user is overwhelmed by the movements and the differences in the tunnel shape can be easily overlooked.
 Moreover, using the 3D tunnel representation only a portion of the tunnel surface is visible from the viewpoint.
 When aiming to explore a tunnel influenced by several mutations of its surrounding amino acids, the user wants to observe and evaluate the impact of these mutations on the tunnel surface. Using superposition of the mutated tunnels we suffer from visual clutter caused by surface overlaps (see Figure~\ref{fig:tunnels} left).
-These overlaps can be removed by using juxtaposing \todo{usING justoposING...sounds little bit strange to me} the tunnels (see Figure~\ref{fig:tunnels} right).
-But in such a case it is hard to perceive the differences between these tunnels, namely for those in further mutual distance. \todo{I am not sure this is wise claim, since we actually use juxtaposition for flattened tunnels anyway}
+These overlaps can be removed by using juxtaposition of the tunnel representations (see Figure~\ref{fig:tunnels} right).
+But such a case is applicable only on a small set of objects because it can be hard to perceive the differences between them, namely for those in further mutual distance. 
+This problem is even stressed when using the 3D tunnel representation.
 
 \begin{figure}[htb]
  \includegraphics[width=\linewidth]{img/tunnels.png}
@@ -153,21 +154,22 @@ Then the Dijkstra algorithm is used in order to find the set of tunnels consisti
 
 Even though these techniques allow to describe the void space of nearly any shape, the precision and performance of the grid-based methods highly depends on the grid resolution. 
 These drawbacks were later overcome by Voronoi diagram-based methods \cite{Medek2007Voronoi, Petrek2007MOLE, Yaffe2008MolAxis, Lindow2011Voronoi, Chovancova2012Caver3}.
------------------------------------
-These methods are similar to the previous approach but they first compute a Voronoi diagram of the protein and use Dijkstra algorithm on top it. 
+These methods first compute a Voronoi diagram of the protein atoms and use the Dijkstra algorithm on top of it. 
+Such an approach enables to save a huge amount of resources.
+The resulting tunnel is then represented by a set of spheres positioned onto the Voronoi edges forming the tunnel centerline.
+But the tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
+Therefore, this traditional spherical representation may lead to misinterpretation of the analyzed tunnel.
+As a consequence some alternative methods combining the grid and Voronoi-based techniques appeared~\cite{Jurcik2015Visibility}.
+These approaches detect the tunnel centerline using the Voronoi diagram and then rasterize the space around the centerline to obtain more precise representation of the tunnel surface.
 
-Such approach enables to save a huge amount of resources, however, the resulting tunnel is usually represented by a set of spheres following the set of Voronoi edges. 
-However, the cross-sections of the protein tunnels are rather non-circular and hence the sphere representation may lead to misinterpretation of the analyzed tunnel.
-Therefore recently some alternative methods combining the two aforementioned techniques appeared~\cite{Jurcik2015Visibility}.
+As already mentioned, the biochemists are more and more focusing on the analysis of simulations of molecular dynamics rather than on static molecules, as these techniques yield more biochemically relevant results.
+In order to analyze tunnels inside such a dynamic environment it is necessary to correctly track them over time. 
+There are tools capable of such tracking, for instance, CAVER~3.0~\cite{Chovancova2012Caver3}. 
+{\color{red}Additionally, other methods such as~\cite{Parulek2013CavityAnalysis,Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface} were presented in order to enable extractions of dynamic cavities in real-time.}
 
-Nowadays, the biochemists are more and more focusing on the analysis of simulations of molecular dynamics rather than on static molecules, as
-these techniques yield more biochemically relevant results.
-In order to analyze tunnels inside such dynamic environment it is necessary to correctly register and follow them over time. 
-There are tools capable of such clustering, for instance, MOLE~2.0~\cite{Sehnal2013Mole2} or CAVER~3.0~\cite{Chovancova2012Caver3}. Additionally, other methods such as~\cite{Parulek2013CavityAnalysis,Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface} were presented in order to enable extractions of dynamic cavities in real-time.
-
-Finally, as already mentioned for the analysis of the protein tunnels the physio-chemical properties of amino acids in the vicinity of the tunnel are equally important as geometrical aspects. 
+Finally, as already mentioned for the analysis of the protein tunnels the physico-chemical properties of amino acids in the vicinity of the tunnel are equally important as its geometrical aspects. 
 There are several methods focusing on the evaluation of the protein tunnel surroundings over time~\cite{Byska2015MoleCollar, Byska2015AnimoAminoMiner}.
-The disadvantage of these solutions is that they mostly omit the mutual spatial orientation of the extracted amino acids in order to reasonable visualize the huge amount of data over time.
+{\color{red}The disadvantage of these solutions is that they mostly omit the mutual spatial orientation of the extracted amino acids in order to visualize huge amount of data over time.}
 
 
 \subsection{Projections and Reformation Methods}
@@ -291,11 +293,25 @@ In our case, images containing flattened tunnels are further characterized by 10
 \begin{equation}
 \mu_{pq} = \sum_{m}^{p}\sum_{n}^{q}{p \choose m}{q \choose n}\left(-{M_{10} \over M_{00}}\right)^{(p-m)}\left(-{M_{01} \over M_{00}}\right)^{(q-n)}
 \end{equation} 
-
+Centralized moments are invariant to translation.
+In our case this is a valuable feature, as some amino acid areas might me moved by the change of the length of the centerline.
+There exist various versions of image momentum, which would bring invariance to different properties such as rotation, scale, translation.
 \subsection{PCA}
 \subsubsection{Clustering}
 \subsubsection{Exploration}
 \section{Evaluation}
+To demonstrate the usability of our approach we conducted two case studies following the research of our cooperating researchers from the field of protein engineering. 
+The first study deals with exploration of simulations of molecular dynamics and the second study focuses on scrutinizing the tunnel shape modified by mutations of a selected tunnel-lining amino acid.
+
+\subsubsection{Exploration of Molecular Dynamics}
+
+\subsubsection{Exploration of Tunnel Mutations}
+One of the research topics conducted by the cooperation group of protein engineers is dealing with engineering protein stability and resistance to organic cosolvents~~\cite{Koudelakova2013StabilityAndResistance}.
+This is reached by mutating the amino acids around the main tunnel of the DhaA haloalkane dehalogenase protein molecule. 
+The paper first presents the confirmation of importance of the amino acids surrounding the tunnel by presenting the results of several mutations of amino acids on different places in the molecule.
+It was revealed that by mutating only the amino acids in the close vicinity of the main tunnel the researchers were able to change the stability and resistance of the protein substantially.
+
+
 \section{Discussion}
 \section{Conclusion \& Future work}
 
