@@ -272,6 +272,18 @@ There exist various versions of image momentum, which would bring invariance to 
 \subsubsection{Clustering}
 \subsubsection{Exploration}
 \section{Evaluation}
+To demonstrate the usability of our approach we conducted two case studies following the research of our cooperating researchers from the field of protein engineering. 
+The first study deals with exploration of simulations of molecular dynamics and the second study focuses on scrutinizing the tunnel shape modified by mutations of a selected tunnel-lining amino acid.
+
+\subsubsection{Exploration of Molecular Dynamics}
+
+\subsubsection{Exploration of Tunnel Mutations}
+One of the research topics conducted by the cooperation group of protein engineers is dealing with engineering protein stability and resistance to organic cosolvents~~\cite{Koudelakova2013StabilityAndResistance}.
+This is reached by mutating the amino acids around the main tunnel of the DhaA haloalkane dehalogenase protein molecule. 
+The paper first presents the confirmation of importance of the amino acids surrounding the tunnel by presenting the results of several mutations of amino acids on different places in the molecule.
+It was revealed that by mutating only the amino acids in the close vicinity of the main tunnel the researchers were able to change the stability and resistance of the protein substantially.
+
+
 \section{Discussion}
 \section{Conclusion \& Future work}
 
