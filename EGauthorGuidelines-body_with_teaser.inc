@@ -42,7 +42,7 @@
 \teaser{
  \includegraphics[width=\linewidth]{img/teaser.png}
  \centering
-  \caption{TODO change image}
+  \caption{Our proposed approach enabling to explore an ensemble of protein tunnels. It consists of three main parts -- scatterplot and bar chart representation of different tunnel properties on the bottom and the unfolded view of selected tunnels on the top. }
 \label{fig:teaser}
 }
 
