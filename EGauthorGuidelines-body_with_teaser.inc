@@ -263,7 +263,9 @@ In our case, images containing flattened tunnels are further characterized by 10
 \begin{equation}
 \mu_{pq} = \sum_{m}^{p}\sum_{n}^{q}{p \choose m}{q \choose n}\left(-{M_{10} \over M_{00}}\right)^{(p-m)}\left(-{M_{01} \over M_{00}}\right)^{(q-n)}
 \end{equation} 
-
+Centralized moments are invariant to translation.
+In our case this is a valuable feature, as some amino acid areas might me moved by the change of the length of the centerline.
+There exist various versions of image momentum, which would bring invariance to different properties such as rotation, scale, translation.
 \subsection{PCA}
 \subsubsection{Clustering}
 \subsubsection{Exploration}
