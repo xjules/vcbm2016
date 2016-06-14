@@ -171,7 +171,35 @@ The disadvantage of these solutions is that they mostly omit the mutual spatial 
 
 
 \subsection{Projections and Reformation Methods}
+The core idea of our technique for comparative visualization of protein tunnels is based on unfolding 3D tunnel surface in to 2D in order to prevent occlusion problems.
+The similar approach is commonly used in other domains as well.
 
+For example Kretschmer et al.\cite{Kretschmer2014AnatomyDriveReformation} presented method for reformation of volumetric data driven by particular geometry -- in this case an anatomy of a specific patient.
+This method is an extenstion of the previous work of Liu et al.~\cite{Liu2008LocalGlobalMeshParametrization} for volumetric data. 
+Unfortunately, since both methods are relatively general, they also produce an inevitable distortion in the distance. 
+This is unsatisfactory when comparing protein tunnels since here the main focus is placed on tunnel length, bottleneck \todo{define bottleneck? or it has be done in intro?}whereabouts, and overall surface shape.
+
+In order to minimize the distortion as much as possible we can exploit the unique tubular shape of protein tunnels.
+The similar approach was used, for instace, by Gurijala et al.~\cite{Gurijala2013Colon}.
+They presented a method that produces a rectangular flattening of the colon model.
+This method handles very well a topological noise and preserves the colon wall shape, which allows to easily observe the polyps (abnormal growth of tissue) inside the colon. 
+The proposed normalized rectangle view, however, does not depict the radius of colon.
+Although, this can be omit in this particular use case, it is essential when designing a comparative visualization of protein tunnels.
+
+Another example of surface reformation of the tubular structures is vessel visualization.
+The Curved Planar Reformation (CPR)~\cite{Kanitsar2002CPR} is wide know technique commonly used for diagnosis vascular diseases of peripheral arteries with single dominant direction.
+In order to investigate the vessels with arbitrary orientation, Mistelbauer et al.~\cite{Mistelbauer2012CP} proposed Centerline Reformations (CR).
+The CR is an extension of CPR method but it uses a wavefront propagation of vessel centerline for automatic setting of the vector of interest.
+{\color{red} Nevertheless, there is a trade-off between the visibility
+of the vessels and the displayed size of the surrounding tissue.} \todo{copy-pasted + is it really drawback in comparison to our approach?}
+In order solve this, another variant of the CPR method was proposed by Auzinger et al.~\cite{Auzinger2013Vessel}. 
+This method avoids the visibility issues of CPR and CR caused by the projection by computing the vessel lumen (empty space inside of a vessel) fully in 3D. 
+This is done by finding a cut through the vessel and surrounding tissue orthogonal to vessel centerline and view direction.
+The view-dependency would, however, cause some issues in our case, since we are aiming for comparative visualization and hence we need to find the same cut for each tunnel in order to obtain a common space.
+Moreover, the proposed cutaway discards part of the vessel surface while we want to communicate the shape and biochemical properties of the whole protein tunnel.
+
+{\color{red}When speaking about vessels it is only natural to mention also a related work regarding the comparative visualization used when exploring the flow dynamics....TBA}\todo{toto asi neni nejlepsi formulace} 
+  
 
 \subsection{Comparative Visualization}
 
