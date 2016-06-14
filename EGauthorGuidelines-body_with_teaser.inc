@@ -228,10 +228,9 @@ To visualize and analyze results of the computed descriptors we employ PCA for d
 With PCA we can show the tunnels similarities/dissimilarities as a distance between two points in 2D domain.
 Having multiple view, with interaction allows to explore the space of tunnels in 2D as a scatter-plot and at the same time to compare spatial characteristics of the unfolded tunnels.
 \subsection{Flattening}
-For each tunnel we have its shape as a triangle mesh, centerline as a graph of connected points, and information about tunnel hydrophobicity, charge, and hydrogen bond stored for each vertex of the triangle mesh.
+Each tunnel is defined by its shape as a triangle mesh, a centerline as a graph of connected points, and information about tunnel hydrophobicity, charge, and hydrogen bond stored for each vertex of the triangle mesh.
 Moreover, we have a set of characteristics, that are of utmost importance to explore.
-In our case we want to clearly communicate three features.
-Going from the most to the least important.
+In our case we want to clearly communicate three features ordered from the most to the least important.
 First one is the positioning, and distribution of amino acids, which creates the tunnel.
 Second is the spatial information of the tunnel length, and its thickness development.
 Third feature is the notion of shape. 
