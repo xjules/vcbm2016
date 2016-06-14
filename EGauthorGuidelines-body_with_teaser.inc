@@ -284,20 +284,78 @@ Moreover, the size of the tunnel over the centerline is accurately preserved, as
 Connecting the same angle samples together we get a shape description, which communicates the changes of the tunnel shape, for example at the place where the lines are dense the tunnel is thinner.
 On the other hand more scattered lines says, that the tunnel is broader.
 
+Constructed unfolded tunnel gives us clear picture of its shape, and content.
+Just for the demonstration part we have also prepared a small utility (see Figure~\ref{fig:flatteningUtility}) to show the spatial connection between the representations.
+The utility is quite useful to get a good grasp of the tunnel properties, to evaluate the correctness of the unfolding process, and to demonstrate the ability of the representation to show important features.
+
+Real usefulness of the unfolded tunnel representation is in the comparative visualization.
+Juxtapositioned, or superpositioned, unfolded tunnels give an overview of the tunnel behavior over time, or spatial, and content-wise, differences between the different tunnels.
+
+For some smaller number of tunnels simple composition of comparative visualization is enough.
+However in usual output of the molecular dynamics one can have hundreds of interesting time frames.
+As tunnel develops over time, together with the whole molecule, it changes its shape and content.
+Tunnel can develop similar properties over time.
+For the similarity/dissimilarity measure of the tunnels one needs to have a proper descriptor of the single instance.
+Since unfolded representation holds all the relevant information, and is in 2D, we found it useful to use image moment as a descriptor.
+
 \subsection{Image Moment}
 Image moments~\cite{Flusser09Moments} provide a practical and useful way to describe image objects. Each image $I(x,y)$ is described by the set of moments
 \begin{equation}
 M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
 \end{equation} 
+There exist various versions of image momentum, which would bring invariance to different properties such as rotation, scale, translation.
+For example, centralized moments are invariant to translation.
+This is a valuable feature, as some amino acid areas might me moved by the change of the length of the centerline.
 In our case, images containing flattened tunnels are further characterized by 10 different image centralized moments to condense the information.
 \begin{equation}
 \mu_{pq} = \sum_{m}^{p}\sum_{n}^{q}{p \choose m}{q \choose n}\left(-{M_{10} \over M_{00}}\right)^{(p-m)}\left(-{M_{01} \over M_{00}}\right)^{(q-n)}
 \end{equation} 
-Centralized moments are invariant to translation.
-In our case this is a valuable feature, as some amino acid areas might me moved by the change of the length of the centerline.
-There exist various versions of image momentum, which would bring invariance to different properties such as rotation, scale, translation.
-\subsection{PCA}
-\subsubsection{Clustering}
+This way we are able to specify each tunnel as a vector of values.
+\begin{equation}
+I_m(tun) = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
+\end{equation} 
+Image momentum holds a property, that similar images have a close values.
+An in opposite, more different images have a more distant values, transforming similarity between the images to distance between the vectors.
+With build up database of tunnel vectors, we can use the standard tools of information visualization to get an idea of the distances between the tunnels.
+
+\subsection{Similarity Overview}
+We are able to set up an $m$-by-$n$ tunnels matrix $IM$, whose rows, $m$, consists of the centralized image momentum vectors
+\begin{equation}
+IM = 
+\begin{pmatrix}
+I_m(tun_1) \\
+I_m(tun_2) \\
+\vdots    \\
+I_m(tun_m) 
+\end{pmatrix}
+\end{equation} 
+
+For examples of tunnel dynamics matrix $IM$ will have hundreds of rows and it will be challenging to explore the raw matrix to see which tunnels are close to each other and which not.
+
+To make the ensemble more understandable we have decided to transform $IM$ to point set representation in 2D, where each point would depict one tunnel.
+Another important requirement is that the distance between the tunnels in matrix must be truthfully transformed into distances between points.
+
+Firstly, the matrix dimension needs to be reduced.
+In our project we have adopted a simple solution of principal component analysis (PCA).
+
+PCA is a statistical tool that transforms a set of observations, in our case set of image moments vectors, to the set of linearly uncorrelated variables. 
+Each of the resulting components are orthogonal to each other, and the number of components is lower than the number of the original variables.
+Moreover the components are ordered by the variance value.
+Meaning that the first component has the largest possible variance, and each succeeding component have lower variance.
+In our overview, we are showing the first two PCA components for the tunnel, which are encoded in the coordinates.
+First component value encodes x coordinate, and second encodes y coordinate (see Figure~\ref{fig:tunnelsPCA}).
+
+a little bit more
+
+Other dimension reduction things
+
+Clustering
+
+K-means
+
+Other clustering things
+
+Invariance of the method
 \subsubsection{Exploration}
 \section{Evaluation}
 To demonstrate the usability of our approach we conducted two case studies following the research of our cooperating researchers from the field of protein engineering. 
