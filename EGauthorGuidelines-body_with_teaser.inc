@@ -108,8 +108,8 @@ When dealing with large molecular dynamics simulations consisting of hundreds of
 The user is overwhelmed by the movements and the differences in the tunnel shape can be easily overlooked.
 Moreover, using the 3D tunnel representation only a portion of the tunnel surface is visible from the viewpoint.
 When aiming to explore a tunnel influenced by several mutations of its surrounding amino acids, the user wants to observe and evaluate the impact of these mutations on the tunnel surface. Using superposition of the mutated tunnels we suffer from visual clutter caused by surface overlaps (see Figure~\ref{fig:tunnels} left).
-These overlaps can be removed by using juxtaposing the tunnels (see Figure~\ref{fig:tunnels} right).
-But in such a case it is hard to perceive the differences between these tunnels, namely for those in further mutual distance.
+These overlaps can be removed by using juxtaposing \todo{usING justoposING...sounds little bit strange to me} the tunnels (see Figure~\ref{fig:tunnels} right).
+But in such a case it is hard to perceive the differences between these tunnels, namely for those in further mutual distance. \todo{I am not sure this is wise claim, since we actually use juxtaposition for flattened tunnels anyway}
 
 \begin{figure}[htb]
  \includegraphics[width=\linewidth]{img/tunnels.png}
@@ -171,6 +171,8 @@ The disadvantage of these solutions is that they mostly omit the mutual spatial 
 
 
 \subsection{Projections and Reformation Methods}
+
+
 \subsection{Comparative Visualization}
 
 \subsection{Flattening techniques}
