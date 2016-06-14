@@ -214,19 +214,17 @@ Moreover, the proposed cutaway discards part of the vessel surface while we want
 \caption{{\color{red}TODO: change image}}
 \label{fig:processing_pipeline}
 \end{figure*}
-Main focus of our work is to allow exploration of molecular tunnels in molecular dynamics simulation.
-In there tunnel develops over time and changes its shape.
-Raw data from such a simulation is the set of 3D objects representing the tunnel shape over time.
-There is no trivial direct way of how to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities.
-Main problems are the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
+One of the main goals of our work is to allow exploration of molecular tunnels in molecular dynamics simulation.
+Over the course of simulations, a tunnel develops while its shape can change dramatically.
+From the raw simulation data we derive tunnels as a set of 3D objects representing the tunnel shape over time.
+In general, there is no trivial or a direct way to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities. There are several issues preventing direct comparison of such structures, e.g., 
+the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
 Moreover there is always a limit of how many 3D objects users can explore at the same time in one window.
-To overcome the problem of tunnel self-occlusion we are transforming a 3D object to 2D representation by flattening.
-Moreover the spatially reduced flattened tunnels speeds up the exploration of the similarities, or dissimilarities.
+To overcome the problem of tunnel self-occlusion we transform a 3D object to 2D representation by flattening.
+Here the spatially reduced flattened tunnels ease and speed up the exploration of the similarities, or dissimilarities.
 However molecular dynamics consists of thousands time steps.
-Comparative visualization of the shape of all the tunnels, flattened or not, is therefore challenging.
-As a descriptor for the tunnel we are employing image momentum for the unfolded tunnels.
-Image momentum is well known descriptor for image analysis and classification.
-To bring the tunnels closer to user, we have employed a PCA for dimension reduction.
+Therefore, comparative visualization of shapes of all the tunnels, both 2D and 3D versions, is challenging. To further simplify the process of comparing the tunnel structure, we employ a set of descriptors based on image moments. These are applied on acquired images of unfolded tunnels. Image momentum is well known descriptor for image analysis and classification.
+To visualize and analyze results of the computed descriptors we employ PCA for dimension reduction.
 With PCA we can show the tunnels similarities/dissimilarities as a distance between two points in 2D domain.
 Having multiple view, with interaction allows to explore the space of tunnels in 2D as a scatter-plot and at the same time to compare spatial characteristics of the unfolded tunnels.
 \subsection{Flattening}
