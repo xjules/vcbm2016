@@ -165,11 +165,22 @@ These approaches detect the tunnel centerline using the Voronoi diagram and then
 As already mentioned, the biochemists are more and more focusing on the analysis of simulations of molecular dynamics rather than on static molecules, as these techniques yield more biochemically relevant results.
 In order to analyze tunnels inside such a dynamic environment it is necessary to correctly track them over time. 
 There are tools capable of such tracking, for instance, CAVER~3.0~\cite{Chovancova2012Caver3}. 
-{\color{red}Additionally, other methods such as~\cite{Parulek2013CavityAnalysis,Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface} were presented in order to enable extractions of dynamic cavities in real-time.}
+%{\color{red}Moreover, this does not apply only to detection of protein tunnels but other protein voids as well.}
+{\color{red}Nevertheless, nowadays the needs of biochemist extend beyond a simple detection of the protein voids.
+Recently the focus shifted more in the direction of interactive exploration of obtained data. 
+As the example we can mention following methods~\cite{Parulek2013CavityAnalysis,Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface} which focuses on interactive exploration of the protein cavities in real time.} \todo{Should I describe all the methods in detail - do we have space?}
 
 Finally, as already mentioned for the analysis of the protein tunnels the physico-chemical properties of amino acids in the vicinity of the tunnel are equally important as its geometrical aspects. 
-There are several methods focusing on the evaluation of the protein tunnel surroundings over time~\cite{Byska2015MoleCollar, Byska2015AnimoAminoMiner}.
-{\color{red}The disadvantage of these solutions is that they mostly omit the mutual spatial orientation of the extracted amino acids in order to visualize huge amount of data over time.}
+{\color{red} 
+Recently two techniqes, MoleCollar~\cite{Byska2015MoleCollar} and AnimoAminoMiner~\cite{Byska2015AnimoAminoMiner}, focusing on the investigation of the evolution of protein tunnel and its surroundings over time appeared.
+The MoleCollar uses multiple contours plotted over each other in order to communicate the changes in shape of a selected part of the tunnel (\eg its bottleneck). 
+The contour representation is enhanced by another bar-like visualization of nearby amino acids and their biochemical proprieties.
+The AnimoAminoMiner is based on similar concept but it provides more general overview of the whole tunnel and its surroundings.
+Here the shape of the tunnel is communicated using set of curves representing the width of the tunnel in respect to its length.
+Bellow this view is again bar-like visualization representing the areas influenced by give amino acids.
+The MoleCollar and AnimiAminoMiner techniques immediately convey information about the stability of both geometrical and physical properties of the observed tunnel.
+However, since both techniques are using high abstraction in order to depict the evolution of protein tunnel including the nearby amino acids in single figure, they omit the mutual spatial orientation of the extracted amino acids.
+}\todo{Stoji to za houby, ale nejak nevim jak jinak :D}
 
 
 \subsection{Projections, Reformations and Comparative Visualization Methods}
