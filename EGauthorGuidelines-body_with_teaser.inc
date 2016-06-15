@@ -226,7 +226,7 @@ In both cases it means that the at least some essential information about protei
 
 \section{Flattening Based Exploration}
 \begin{figure*}[htb]
-\includegraphics[width=0.8\linewidth]{img/processing_pipeline.jpg}
+\includegraphics[width=\linewidth]{img/processing_pipeline.jpg}
 \centering
 \caption{Processing pipeline.
 Each tunnel is unfolded, described with image moment, and processed to 2D point of similarity overview.
@@ -269,11 +269,8 @@ By straightening the cuts, and putting them on each other we are unfolding the t
 \end{figure}
 
 The general idea of our flattening method is the parametrization.
-Given the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$ the surface $M$ is given by
-\begin{equation}
-M(t, a) = \mathbf{c}(t) + s\mathbf{v}\times\mathbf{c}(t) \quad t \in [t_0, t_1], \quad a \in [0, 360]
-\end{equation}
-In other words, our method is based on the slicing of the tunnel by the plane perpendicular to centerline tangent at position $\mathbf{c}(t)$, and sampling the slice by the rays coming from the $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $s$.
+For each tunnel, we have the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$.
+Our method is based on the slicing of the tunnel by the plane perpendicular to centerline tangent at position $\mathbf{c}(t)$, and sampling the slice by the rays coming from the $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $s$.
 
 The key point is the centerline.
 Our assumption, based on the empirical knowledge is, that the centerline is alway inside the tunnel and that the centerline do not have high curvature.
@@ -297,7 +294,7 @@ Sampling is done by the ray coming from the centerline and increasingly rotated 
 At each sample we now have a value, and we have a slice line length between two samples $D_t(a_i, a_{i+1})$.
 Unfolding is defined as
 \begin{equation}
-A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}))
+A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1}))
 \end{equation} 
 
 With our unfolding method we have in 2D encoded values from the tunnel surface.
@@ -494,10 +491,23 @@ This is reached by mutating the amino acids around the main tunnel of the DhaA h
 The paper first presents the confirmation of importance of the amino acids surrounding the tunnel by presenting the results of several mutations of amino acids on different places in the molecule.
 It was revealed that by mutating only the amino acids in the close vicinity of the main tunnel the researchers were able to change the stability and resistance of the protein substantially.
 
-
-\section{Discussion}
 \section{Conclusion \& Future work}
-In this paper we have ...
+We have presented a novel method to explore the shape and the content of the molecular tunnels.
+Our approach consists of transforming 3D shape to more readable 2D unfolded representation, using image moment as a descriptor for each tunnel, and providing multiple views on the tunnel data to promote exploration.
+The resulting system can interactively show the overall development of the tunnel centerline, the tunnel similarity and dissimilarity, and the shape and content od the selected set of tunnels.
+
+We demonstrated the use cases of the method in two real world examples from the field of biochemistry.
+Moreover we have shown, that our method can be used on the temporal data, and on the data with the tunnel mutations.
+
+Our method has several ways of future work, in aspects of the unfolding process, generating tunnels similarity measure, and final visualization of the dataset.
+Regarding unfolding we have discussed a possibility to have a more intelligent cutting mechanism. More specifically semantically driven cut, that would follow the borders of the amino acids in tunnel.
+For the similarity overview, it is worth wile to try combination of image momentum, reduction, and clustering, that is invariant to amino acids color permutation, rotation, and scale.
+Invariant method would allow to compare even between two different setting of two different data sets.
+Lastly there are some new ideas of the final visualization composition.
+Firstly, to incorporate the unfolded overview for the whole cluster.
+We mean here to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
+
+Going a little bit from the tunnels to the whole molecule, our collaborators have suggested that the whole molecule flattening would be beneficial to visualize and explore in the similar manner.
 
 %-------------------------------------------------------------------------
 
