@@ -354,7 +354,7 @@ In our overview, we are showing the first two PCA components for the tunnel, whi
 As a result, we are able to remove the noise from the data, while making use of fewer quantities.
 First component value encodes x coordinate, and second encodes y coordinate (see Figure~\ref{fig:tunnelsPCA}).
 
-Even thou we have used PCA for dimension reduction, there are alternative approaches, for example Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA} or others.
+Even though we have used PCA for dimension reduction, there are alternative approaches, for example Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA} or others.
 Important property of the approach is the ability to reduce the 10 digits tunnel descriptor to 2D point coordinates and visualize statistical results for the whole matrix.
 Visualizing statistical results can help identify clusters and outliers as well as analyze deviation, distribution and correlation.
 
