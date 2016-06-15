@@ -354,14 +354,41 @@ Natural image statistics were deeply analyzed by Fang et al.~\cite{Fang2013Natur
 Our 2D overview is just a simple demonstration, however more complex visualization method can be used, for example Combined design~\cite{Fang2013NaturalImageStatistics} to show the parameters of PCA and Gabor descriptors at the same time.
 This is one of the possible future directions of the method.
 
-Clustering
+\subsubsection{Clustering}
+Having visual of similarity is a useful tool for the navigation through possible tunnel arrangements.
+With points populated 2D space it is easy to see where points are more densely populated (clusters) and which points are more away from others(outliers).
+However for successful connection with other views, one needs a proper color depiction of clusters and outliers.
+Clustering allows us to make groups of points to determine patterns in the overview.
+Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
+Moreover clustering close points to one group in our case means grouping similar tunnels together.
+A general open question for clustering is the number of groups usually needs to be know beforehand.
+For a user without a knowledge of his data, this might be difficult.
+Moreover clustering is a group of different algorithms with the common task.
+In general we can say, that there is no objectively "correct" clustering algorithm.
+We have experimented with centroid-based clustering, k-means.
 
-K-means
+The output of the centroid-based clustering is the set of clusters represented by a central vector, which may not necessarily be a member of the data set.
+In k-means clustering, the number of clusters is fixed to k, and needs to be specified in advance, which is considered to be one of the main drawback of this algorithm.
 
-Other clustering things
+K-means is an optimization problem, that reduces distances of the data from the nearest cluster center, which is not a problem in our solution.
+In our case, we want to show an unfold representative from each cluster.
+As this representation requires available space in window, the number of unfolded tunnels is limited.
+We have empirically found out, that showing 5 tunnels at the same time is the limit, which also gives us the limit for k-means clustering.
+K-means were chosen for its simplicity, and for its conceptual closeness to nearest neighbor classification.
+However, well known problem is with the borders of clusters, because the algorithm is optimizing cluster centers, not cluster borders, and we envision another direction of our future work in experimenting with other families of cluster algorithm such as hierarchical clustering, density clustering and other methods from machine learning.
+
+Important to note is the definition of the distance for clustering algorithm. 
+Euclidean distance is easy to imagine and to work with.
+However it is hard to see if it is applicable on the points from the image momentum descriptor.
+More appropriate might be Mahanalobis distance.
+The Mahalanobis distance is a measure of the distance between a point and a distribution.
+Mahalanobis distance is unitless and scale-invariant, and takes into account the correlations of the data set.
 
 Invariance of the method
-\subsubsection{Exploration}
+image momentum invariance
+
+\subsection{Exploration}
+introduce different views
 brushing
 connection between 2D and 3D
 \section{Evaluation}
