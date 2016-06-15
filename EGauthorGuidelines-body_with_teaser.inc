@@ -219,7 +219,9 @@ In both cases it means that the at leas some essential information about protein
 \begin{figure*}[htb]
 \includegraphics[width=0.8\linewidth]{img/processing_pipeline.jpg}
 \centering
-\caption{{\color{red}TODO: change image}}
+\caption{Processing pipeline.
+Each tunnel is unfolded, described with image moment, and processed to 2D point of similarity overview.
+At the end the tunnels are shown in multiple views. }
 \label{fig:processing_pipeline}
 \end{figure*}
 One of the main goals of our work is to allow exploration of molecular tunnels in molecular dynamics simulation.
@@ -250,7 +252,10 @@ Meaning that user should be able to detect {\color{red}{"bulky"}} areas.
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
 \centering
-\caption{{\color{red}TODO: change image}}
+\caption{
+We cut tunnel along the centerline.
+Each slice is additionally sampled around the centerline point.
+By straightening the cuts, and putting them on each other we are unfolding the tunnel.}
 \label{fig:processing_pipeline}
 \end{figure}
 
@@ -295,7 +300,9 @@ On the other hand more scattered lines says, that the tunnel is broader.
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/debugger.png}
 \centering
-\caption{{\color{red}TODO: change image}}
+\caption{
+Small utility showing a connection between tunnel 3D shape, its unfolded representation, and tunnel slicing.
+}
 \label{fig:flatteningUtility}
 \end{figure}
 
@@ -402,7 +409,10 @@ Mahalanobis distance is unitless and scale-invariant, and takes into account the
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/invariance.png}
 \centering
-\caption{{\color{red}TODO: change image}}
+\caption{
+Tunnels similarity overview for four different ways of generating image momentum: standard(upper-left), with amino acids coloring permutation(upper-right), rotated(lower-left), and with normalized size of the centerline(lower-right).
+Points are colored by the detected clusters.
+}
 \label{fig:invariance}
 \end{figure}
 
@@ -423,7 +433,12 @@ This is due to requirement of employing comparative visualization as a part of t
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/app_views.png}
 \centering
-\caption{{\color{red}TODO: change image}}
+\caption{
+Three basic views.
+In the upper part is tunnels unfolding view, for comparative visualization of the tunnels content.
+In the bottom is box plot showing the lengths od the tunnels centerline.
+In the bottom right is the similarity overview, showing the clusters, and tunnels neighbors.
+}
 \label{fig:appviews}
 \end{figure}
 
@@ -473,6 +488,7 @@ It was revealed that by mutating only the amino acids in the close vicinity of t
 
 \section{Discussion}
 \section{Conclusion \& Future work}
+In this paper we have ...
 
 %-------------------------------------------------------------------------
 
