@@ -217,13 +217,16 @@ Moreover, the proposed cutaway discards part of the vessel surface while we want
 One of the main goals of our work is to allow exploration of molecular tunnels in molecular dynamics simulation.
 Over the course of simulations, a tunnel develops while its shape can change dramatically.
 From the raw simulation data we derive tunnels as a set of 3D objects representing the tunnel shape over time.
-In general, there is no trivial or a direct way to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities. There are several issues preventing direct comparison of such structures, e.g., 
-the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
+In general, there is no trivial or a direct way to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities.
+There are several issues preventing direct comparison of such structures, e.g., the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
 Moreover there is always a limit of how many 3D objects users can explore at the same time in one window.
 To overcome the problem of tunnel self-occlusion we transform a 3D object to 2D representation by flattening.
 Here the spatially reduced flattened tunnels ease and speed up the exploration of the similarities, or dissimilarities.
 However molecular dynamics consists of thousands time steps.
-Therefore, comparative visualization of shapes of all the tunnels, both 2D and 3D versions, is challenging. To further simplify the process of comparing the tunnel structure, we employ a set of descriptors based on image moments. These are applied on acquired images of unfolded tunnels. Image momentum is well known descriptor for image analysis and classification.
+Therefore, comparative visualization of shapes of all the tunnels, both 2D and 3D versions, is challenging.
+To further simplify the process of comparing the tunnel structure, we employ a set of descriptors based on image moments.
+These are applied on acquired images of unfolded tunnels.
+Image momentum is well known descriptor for image analysis and classification.
 To visualize and analyze results of the computed descriptors we employ PCA for dimension reduction.
 With PCA we can show the tunnels similarities/dissimilarities as a distance between two points in 2D domain.
 Having multiple view, with interaction allows to explore the space of tunnels in 2D as a scatter-plot and at the same time to compare spatial characteristics of the unfolded tunnels.
@@ -340,11 +343,16 @@ Each of the resulting components are orthogonal to each other, and the number of
 Moreover the components are ordered by the variance value.
 Meaning that the first component has the largest possible variance, and each succeeding component have lower variance.
 In our overview, we are showing the first two PCA components for the tunnel, which are encoded in the coordinates.
+As a result, we are able to remove the noise from the data, while making use of fewer quantities.
 First component value encodes x coordinate, and second encodes y coordinate (see Figure~\ref{fig:tunnelsPCA}).
 
-a little bit more
+Even thou we have used PCA for dimension reduction, there are alternative approaches, for example Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA} or others.
+Important property of the approach is the ability to reduce the 10 digits tunnel descriptor to 2D point coordinates and visualize statistical results for the whole matrix.
+Visualizing statistical results can help identify clusters and outliers as well as analyze deviation, distribution and correlation.
 
-Other dimension reduction things
+Natural image statistics were deeply analyzed by Fang et al.~\cite{Fang2013NaturalImageStatistics}, where the authors have designed new visualizations for image statistics.
+Our 2D overview is just a simple demonstration, however more complex visualization method can be used, for example Combined design~\cite{Fang2013NaturalImageStatistics} to show the parameters of PCA and Gabor descriptors at the same time.
+This is one of the possible future directions of the method.
 
 Clustering
 
@@ -354,6 +362,8 @@ Other clustering things
 
 Invariance of the method
 \subsubsection{Exploration}
+brushing
+connection between 2D and 3D
 \section{Evaluation}
 To demonstrate the usability of our approach we conducted two case studies following the research of our cooperating researchers from the field of protein engineering. 
 The first study deals with exploration of simulations of molecular dynamics and the second study focuses on scrutinizing the tunnel shape modified by mutations of a selected tunnel-lining amino acid.
