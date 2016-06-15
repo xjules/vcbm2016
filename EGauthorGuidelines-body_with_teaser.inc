@@ -485,10 +485,26 @@ This is reached by mutating the amino acids around the main tunnel of the DhaA h
 The paper first presents the confirmation of importance of the amino acids surrounding the tunnel by presenting the results of several mutations of amino acids on different places in the molecule.
 It was revealed that by mutating only the amino acids in the close vicinity of the main tunnel the researchers were able to change the stability and resistance of the protein substantially.
 
-
 \section{Discussion}
+Let us discuss a little bit about this.
+
 \section{Conclusion \& Future work}
-In this paper we have ...
+We have presented a novel method to explore the shape and the content of the molecular tunnels.
+Our approach consists of transforming 3D shape to more readable 2D unfolded representation, using image moment as a descriptor for each tunnel, and providing multiple views on the tunnel data to promote exploration.
+The resulting system can interactively show the overall development of the tunnel centerline, the tunnel similarity and dissimilarity, and the shape and content od the selected set of tunnels.
+
+We demonstrated the use cases of the method in two real world examples from the field of biochemistry.
+Moreover we have shown, that our method can be used on the temporal data, and on the data with the tunnel mutations.
+
+Our method has several ways of future work, in aspects of the unfolding process, generating tunnels similarity measure, and final visualization of the dataset.
+Regarding unfolding we have discussed a possibility to have a more intelligent cutting mechanism. More specifically semantically driven cut, that would follow the borders of the amino acids in tunnel.
+For the similarity overview, it is worth wile to try combination of image momentum, reduction, and clustering, that is invariant to amino acids color permutation, rotation, and scale.
+Invariant method would allow to compare even between two different setting of two different data sets.
+Lastly there are some new ideas of the final visualization composition.
+Firstly, to incorporate the unfolded overview for the whole cluster.
+We mean here to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
+
+Going a little bit from the tunnels to the whole molecule, our collaborators have suggested that the whole molecule flattening would be beneficial to visualize and explore in the similar manner.
 
 %-------------------------------------------------------------------------
 
