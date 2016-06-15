@@ -284,6 +284,13 @@ Moreover, the size of the tunnel over the centerline is accurately preserved, as
 Connecting the same angle samples together we get a shape description, which communicates the changes of the tunnel shape, for example at the place where the lines are dense the tunnel is thinner.
 On the other hand more scattered lines says, that the tunnel is broader.
 
+\begin{figure}[htb]
+\includegraphics[width=\linewidth]{img/debugger.png}
+\centering
+\caption{{\color{red}TODO: change image}}
+\label{fig:flatteningUtility}
+\end{figure}
+
 Constructed unfolded tunnel gives us clear picture of its shape, and content.
 Just for the demonstration part we have also prepared a small utility (see Figure~\ref{fig:flatteningUtility}) to show the spatial connection between the representations.
 The utility is quite useful to get a good grasp of the tunnel properties, to evaluate the correctness of the unfolding process, and to demonstrate the ability of the representation to show important features.
@@ -384,13 +391,65 @@ More appropriate might be Mahanalobis distance.
 The Mahalanobis distance is a measure of the distance between a point and a distribution.
 Mahalanobis distance is unitless and scale-invariant, and takes into account the correlations of the data set.
 
-Invariance of the method
-image momentum invariance
+\begin{figure}[htb]
+\includegraphics[width=\linewidth]{img/invariance.png}
+\centering
+\caption{{\color{red}TODO: change image}}
+\label{fig:invariance}
+\end{figure}
+
+Image momentum descriptor, dimension reduction, and clustering should all bring the same notion of tunnels similarity/dissimilarity.
+Image moment might be seen as a problem here, as it fills the data to reduction and clustering.
+Original image moment is not invariant to translation, rotation, or scale, but there exist versions which invariant to those properties are.
+We have decided to use centralized image momentum, as it is invariant to translation.
+All the tunnels have the same rotation, and the same uniform scaling.
+Translational invariance helps us with a problem of moved amino-acids, due to change of the centerline length.
+As seen in Figure~\ref{fig:invariance}, we have tested the generation of the overview with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, tunnels colored by the different color scheme.
+We can see, that eve thou the positional distribution of the points differs, the notion of cluster and two outliers is preserved on all the different ways of generating image moment values.
+Moreover the important aspect here is, that for the overview we have a shared space, which allows us to see the neighborhood of the tunnels.
+Additionally, the space of the unfolded tunnels is shared as well.
+This is due to requirement of employing comparative visualization as a part of the exploration process.
 
 \subsection{Exploration}
-introduce different views
-brushing
-connection between 2D and 3D
+
+\begin{figure}[htb]
+\includegraphics[width=\linewidth]{img/app_views.png}
+\centering
+\caption{{\color{red}TODO: change image}}
+\label{fig:appviews}
+\end{figure}
+
+Up until now we have described a way how to build up important parts of our exploration solution.
+All of them plays crucial role in the exploration process.
+Our exploration solution consists out of couple of views (see Figure~\ref{fig:appviews}).
+First, is a view of the set of unfolded tunnels, which allows to make a comparison of spatial and structural aspect of the tunnel.
+Second is the scatter plot similarity/dissimilarity overview, which brings forth the notion of the tunnel neighborhood.
+And finally is the box plot view, where each tunnel have one box, and where the size of the box corresponds to the size of the tunnel centerline.
+
+With the unfolding tunnels view, user is able to actively compare the shape of the tunnels, where is the bottleneck, and what amino acids are in tunnel.
+Unfolded tunnels are positioned side by side, or in other words by juxtaposition composition.
+Positioning tunnels from different time frames allows user to see the behavior of the bottleneck as well as the behavior of the amino acids.
+Unfolded tunnels needs a space in a view.
+Therefore to see the tunnels in this view in full detail is only for limited number of tunnels.
+We have empirically found out, that 5 tunnels is the limit for the resolution width 1900.
+If more tunnels should be visualized, they need to be additionally downscaled, which means, that with more tunnels, more spatial details are discarded, and unfolded representation gets smaller and smaller.
+
+To show the dataset of hundreds of tunnels from the molecular dynamics simulation, it is unfeasible to use unfolding view as an overview.
+Easily shown in an example, with resolution width 1900 and more than 1900 tunnels, we would have more unfolded tunnels than available pixels.
+Therefore we have constructed a similarity overview which allows us to code one tunnel as a point.
+Having here too many tunnels is still alright, as we are here more interested in tunnels similarity/dissimilarity, shown as a groups and outliers.
+
+One last missing link is to have an ordered overview of the tunnels.
+It came naturally to us to show the tunnels as an abstracted box, which height correspond to centerline length.
+This way we have a view which allows us to have a unique, and well distinguishable, representation for each tunnel.
+
+Real power of the exploration is on the possibility of brushing between the similarity overview (scatter plot) and tunnels centerline view (box plot). 
+Selecting one point in the scatter plot shows which tunnel, at which time, is the corresponding one and shows the unfolded content of the tunnel.
+Of course, selection works even in the opposite direction, selecting a box selects a point in a similarity overview.
+
+In overall user have a power to explore the spatial, and content, aspect of the tunnels, by selecting tunnels from the box plot, and scatter plot.
+Thanks to first one it is possible to visualize the tunnel development over time, and thanks to latter it is possible to explore the similarity of the tunnel and to see the outliers.
+
 \section{Evaluation}
 To demonstrate the usability of our approach we conducted two case studies following the research of our cooperating researchers from the field of protein engineering. 
 The first study deals with exploration of simulations of molecular dynamics and the second study focuses on scrutinizing the tunnel shape modified by mutations of a selected tunnel-lining amino acid.
