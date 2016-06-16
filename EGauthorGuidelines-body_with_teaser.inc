@@ -443,6 +443,13 @@ First is a view of the set of unfolded tunnels, which allows to make a compariso
 Second is the scatterplot showing the similarity/dissimilarity overview which brings forth the notion of the differences between tunnels.
 And finally is the bar chart view where each tunnel is represented by one bar and the height of the bar corresponds to the tunnel length.
 
+\begin{figure*}[htb]
+\includegraphics[width=\linewidth]{img/5dynamics.pdf}
+\centering
+\caption{\color{red}TODO + je tam houby a ne ze neco videt}
+\label{fig:dynamic}
+\end{figure*}
+
 Using the unfolding tunnel view the user is able to intuitively compare the width of the tunnels, the position of their bottleneck, the set of tunnel-lining amino acids and their extent of influence.
 The unfolded tunnels are positioned side by side, or in other words by using the juxtaposition composition.
 Positioning tunnels from different time frames allows the user to see the behavior of the bottleneck as well as the amino acids.
@@ -450,6 +457,7 @@ It is visible that the unfolded tunnels need a space to be seen properly.
 Therefore, in order to see the tunnels in this view in full detail it is appropriate only for a limited number of tunnels.
 We have empirically found out that five tunnels is the limit for the resolution width 1900.
 If more tunnels should be visualized, they need to be additionally downscaled, which means that with more tunnels more spatial details are discarded and the visual representation has to be scaled.
+
 
 To show the dataset of hundreds of tunnels from the molecular dynamics simulation, it is unfeasible to use the unfolding view to get the overview information about tunnel changes.
 Easily shown in an example -- with the resolution width 1900 and more than 1900 tunnels we would have more unfolded tunnels than available pixels.
@@ -471,6 +479,15 @@ Thanks to the bar chart it is possible to visualize the tunnel development over 
 To demonstrate the usability of our approach we conducted two case studies following the research of our cooperating researchers from the field of protein engineering. 
 The first study deals with exploration of simulations of molecular dynamics and the second study focuses on scrutinizing the tunnel shape modified by mutations of a selected tunnel-lining amino acid.
 
+\begin{figure*}[htb]
+\includegraphics[width=\linewidth]{img/mutaceExample.png}
+\centering
+\caption{Visualization of different mutations of the amino acid with ID 176 (highlighted in green) surrounding the main tunnel in DhaA haloalkane dehalogenase. The scatterplot and bar chart show the information about all tunnels in the dataset whereas the unfolded representation shows only one selected representative of each detected cluster. The amino acid is highlighted for better comparison. {\color{red}TODO - compute it just with 3/4 clusters, find why HIS is in the same cluster as ILE, rename GRT to PHE, sort by clusters, cluster of the GLY is now faked.}
+}
+\label{fig:mutation}
+\end{figure*}
+
+
 \subsubsection{Exploration of Molecular Dynamics}
 Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is currently one of the biggest challenges.
 There are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3}) and in consequence also few approaches to their visual exploration appeared as well (e.g., \cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner,Lindow2012DynamicChannels,Lindow2013DynamicCavities}).
@@ -481,8 +498,15 @@ For a tunnel in each time step (or a selected subset if desired) we first derive
 This produces clusters of tunnels according to their similarity which are visualized using the scatterplot.
 Additionally, the coloring of individual clusters helps us to find the correspondence between the scatterplot and the bar chart representation where we can see the positions of tunnels belonging to these clusters spread over time. 
 The bar chart immediately shows the time portions in which the tunnel was stable or unstable (depending of the interest of the researcher).
-Figure {\color{red}TODO} shows the resulting representation for a sequence of {\color{red}TODO} time steps of DhaA haloalkane dehalogenase protein.
-We can clearly see that {\color{red}TODO}.
+Figure~\ref{fig:dynamic} shows the resulting representation for a sequence of more then 350 time steps of DhaA haloalkane dehalogenase protein.
+\todo[color=red!40]{Check please whether it make sense? :)}
+{\color{red}From the bar chart view we can clearly see that the tunnels shape is highly stable in the first part of the simulation while it becomes more and more unstable towards the end. 
+On the other hand, from the unfolded representation, containing by default the most representative samples of individual clusters, it is obvious that during the stable period (clusters {\color{blue}\#3} and {\color{blue}\#1}) there was almost no influence of the Tyrosine (Y:259 highlighted by red).\todo[color=blue!40]{{\color{black}clusters should be renumbered in oder to start from 1}} 
+This changes later when also the influence of neighboring amino acids such as Phenylalanine and Asparagine (F:154 and N27 respectively) is starting to change significantly.
+Moreover, using our tool, the biochemist were immediately able to spotted several outliers belonging to the cluster {\color{blue}\#2} (see vertical arrows in bottom of Figure~\ref{fig:dynamic}). 
+This cluster represents tunnels which are significantly shorter then others.
+The same cluster can be also easily identified in the similarity overview where this whole cluster is clearly separated from the rest (see white circle in Figure~\ref{fig:dynamic}).}
+
 
 By clicking on the individual bars in the bar chart the user can select a subset of tunnels to be explored in more detail.
 These selected time steps are immediately visualized using the unfolded representation and the tunnels are juxtaposed to enable the comparison of the width and constitution of the tunnel.
@@ -502,16 +526,12 @@ Then it presents the study in which the biochemists aimed to find the best possi
 The researchers revealed that the DhaA80 mutation in which the amino acid on position 176, which in the wild type form contains Cysteine, was replaced by Phenylalanine.
 This mutation closed the main tunnel which caused the increase in melting temperature of the protein by 19 degrees and the resistance to cosolvent dimethyl sulfoxide was increased 4000 times.
 This situation is clearly visible in our representation as well.
-Figure~\ref{fig:mutation} demonstrates the situation when we performed the mutation of the {\color{red}TODO}
-
-\begin{figure*}[htb]
-\includegraphics[width=\linewidth]{img/mutaceExample.png}
-\centering
-\caption{Visualization of different mutations of the amino acid with ID 176 surrounding the main tunnel in DhaA haloalkane dehalogenase. The scatterplot and bar chart show the information about all tunnels in the dataset whereas the unfolded representation shows only one selected representative of each detected cluster. The amino acid is highlighted for better comparison. 
-}
-\label{fig:mutation}
-\end{figure*}
-
+\todo[color=red!40]{Check please whether it make sense? :)}{\color{red}Figure~\ref{fig:mutation} demonstrates the situation when we performed multiple mutations of a single amino at specific position with ID 176.
+It is obvious that if the original amino acids ({\color{green}
+Figure~\ref{fig:mutation} -- ORIG}) is replaced by similar or even smaller one such as Glutamic Acid or Glycine ({\color{green}
+Figure~\ref{fig:mutation} -- GLU and GLY respectively}) the tunnel becomes wider.
+On the other hand using bigger amino acids such as Phenylalanine or Histidine ({\color{green}
+Figure~\ref{fig:mutation} -- {\color{blue}PHE} and GLY respectively}) decreases the bottleneck of the tunnel significantly. \todo[color=blue!40]{{\color{black}PHE needs to be renamed in image}}}
 In this particular case when the user is interested in a specific amino acid our tool enables to highlight it in order to even enhance the comparison.
 
 When evaluating the suitability of our approach to this type of tasks the biochemists appreciated the unfolded view much more than in the case of molecular dynamics simulations.
@@ -536,7 +556,9 @@ There were also some new ideas of the final visualization composition.
 First was to incorporate the unfolded overview for the whole cluster.
 This means to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
 
-Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
+\todo{this sounds strange}Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
+
+\todo[inline]{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
 
 %-------------------------------------------------------------------------
 
