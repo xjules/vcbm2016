@@ -458,7 +458,7 @@ And finally is the bar chart view where each tunnel is represented by one bar an
 \begin{figure*}[htb]
 \includegraphics[width=\linewidth]{img/5dynamics.pdf}
 \centering
-\caption{\color{red}TODO}
+\caption{\color{red}TODO + je tam houby a ne ze neco videt}
 \label{fig:dynamic}
 \end{figure*}
 
@@ -490,6 +490,15 @@ Thanks to the bar chart it is possible to visualize the tunnel development over 
 \section{Evaluation}
 To demonstrate the usability of our approach we conducted two case studies following the research of our cooperating researchers from the field of protein engineering. 
 The first study deals with exploration of simulations of molecular dynamics and the second study focuses on scrutinizing the tunnel shape modified by mutations of a selected tunnel-lining amino acid.
+
+\begin{figure*}[htb]
+\includegraphics[width=\linewidth]{img/mutaceExample.png}
+\centering
+\caption{Visualization of different mutations of the amino acid with ID 176 (highlighted in green) surrounding the main tunnel in DhaA haloalkane dehalogenase. The scatterplot and bar chart show the information about all tunnels in the dataset whereas the unfolded representation shows only one selected representative of each detected cluster. The amino acid is highlighted for better comparison. {\color{red}TODO - compute it just with 3/4 clusters, find why HIS is in the same cluster as ILE, rename GRT to PHE, maybe remove one of GLU/GLY?, sort by clusters, cluster of the GLY is now faked.}
+}
+\label{fig:mutation}
+\end{figure*}
+
 
 \subsubsection{Exploration of Molecular Dynamics}
 Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is currently one of the biggest challenges.
@@ -529,16 +538,13 @@ Then it presents the study in which the biochemists aimed to find the best possi
 The researchers revealed that the DhaA80 mutation in which the amino acid on position 176, which in the wild type form contains Cysteine, was replaced by Phenylalanine.
 This mutation closed the main tunnel which caused the increase in melting temperature of the protein by 19 degrees and the resistance to cosolvent dimethyl sulfoxide was increased 4000 times.
 This situation is clearly visible in our representation as well.
-Figure~\ref{fig:mutation} demonstrates the situation when we performed the mutation of the {\color{red}TODO}
-
-\begin{figure*}[htb]
-\includegraphics[width=\linewidth]{img/mutaceExample.png}
-\centering
-\caption{Visualization of different mutations of the amino acid with ID 176 surrounding the main tunnel in DhaA haloalkane dehalogenase. The scatterplot and bar chart show the information about all tunnels in the dataset whereas the unfolded representation shows only one selected representative of each detected cluster. The amino acid is highlighted for better comparison. 
+{\color{red}Figure~\ref{fig:mutation} demonstrates the situation when we performed multiple mutations of a single amino at specific position with ID 176.
+It is obvious that if the original amino acids ({\color{green}
+Figure~\ref{fig:mutation} -- ORIG}) is replaced by similar or even smaller one such as Glutamic Acid or Glycine ({\color{green}
+Figure~\ref{fig:mutation} -- GLU and GLY respectively}) the tunnel becomes wider.
+On the other hand using bigger amino acids such as Phenylalanine or Histidine ({\color{green}
+Figure~\ref{fig:mutation} -- {\color{blue}PHE} and GLY respectively}) decreases the bottleneck of the tunnel significantly. 
 }
-\label{fig:mutation}
-\end{figure*}
-
 In this particular case when the user is interested in a specific amino acid our tool enables to highlight it in order to even enhance the comparison.
 
 When evaluating the suitability of our approach to this type of tasks the biochemists appreciated the unfolded view much more than in the case of molecular dynamics simulations.
