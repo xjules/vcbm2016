@@ -568,7 +568,9 @@ There were also some new ideas of the final visualization composition.
 First was to incorporate the unfolded overview for the whole cluster.
 This means to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
 
-Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
+\todo{this sounds strange}Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
+
+\todo[inline]{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
 
 %-------------------------------------------------------------------------
 
