@@ -233,30 +233,32 @@ Each tunnel is unfolded, described with image moment, and processed to 2D point 
 At the end the tunnels are shown in multiple views. }
 \label{fig:processing_pipeline}
 \end{figure*}
-One of the main goals of our work is to allow exploration of molecular tunnels in molecular dynamics simulation.
-Over the course of simulations, a tunnel develops while its shape can change dramatically.
-From the raw simulation data we derive tunnels as a set of 3D objects representing the tunnel shape over time.
+Main goal of our work is to allow exploration of molecular tunnels in molecular dynamics simulation.
+Over the course of simulations, a tunnel develops and its shape changes dramatically.
+From the raw simulation data, we derive tunnels as a set of 3D objects representing the tunnel shape over time.
+
 In general, there is no trivial or a direct way to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities.
 There are several issues preventing direct comparison of such structures, e.g., the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
 Moreover there is always a limit of how many 3D objects users can explore at the same time in one window.
-To overcome the problem of tunnel self-occlusion we transform a 3D object to 2D representation by flattening.
-Here the spatially reduced flattened tunnels ease and speed up the exploration of the similarities, or dissimilarities.
-However molecular dynamics consists of thousands time steps.
-Therefore, comparative visualization of shapes of all the tunnels, both 2D and 3D versions, is challenging.
+To overcome the problem of tunnel self-occlusion we unfold a 3D object to 2D representation to speed up the exploration of the similarities, or dissimilarities.
+However, molecular dynamics consists of thousands time steps and comparative visualization of shapes of all the tunnels, both 2D and 3D versions, is challenging.
+
 To further simplify the process of comparing the tunnel structure, we employ a set of descriptors based on image moments.
 These are applied on acquired images of unfolded tunnels.
 Image momentum is well known descriptor for image analysis and classification.
 To visualize and analyze results of the computed descriptors we employ PCA for dimension reduction.
 With PCA we can show the tunnels similarities/dissimilarities as a distance between two points in 2D domain.
-Having multiple view, with interaction allows to explore the space of tunnels in 2D as a scatter-plot and at the same time to compare spatial characteristics of the unfolded tunnels.
-\subsection{Flattening}
-Each tunnel is defined by its shape as a triangle mesh, a centerline as a graph of connected points, and information about tunnel hydrophobicity, charge, and hydrogen bond stored for each vertex of the triangle mesh.
+
+Having multiple views, with interaction allows to explore the space of tunnels in 2D as a scatter-plot and at the same time to compare spatial characteristics of the unfolded tunnels.
+
+\subsection{Unfolding process}
+Each tunnel is defined by its shape as a triangle mesh, a centerline as a graph of connected points, and information about tunnel hydrophobicity, charge, and hydrogen bond stored for each vertex of the mesh.
 Moreover, we have a set of characteristics, that are of utmost importance to explore.
 In our case we want to clearly communicate three features ordered from the most to the least important.
 First one is the positioning, and distribution of amino acids, which creates the tunnel.
 Second is the spatial information of the tunnel length, and its thickness development.
 Third feature is the notion of shape. 
-Meaning that user should be able to detect {\color{red}{"bulky"}} areas.
+Meaning that user should be able to detect thinner and wider areas of the tunnel.
 
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
@@ -265,43 +267,38 @@ Meaning that user should be able to detect {\color{red}{"bulky"}} areas.
 We cut tunnel along the centerline.
 Each slice is additionally sampled around the centerline point.
 By straightening the cuts, and putting them on each other we are unfolding the tunnel.}
-\label{fig:processing_pipeline}
+\label{fig:unfolding}
 \end{figure}
 
-The general idea of our flattening method is the parametrization.
+The general idea of our unfolding method is the parametrization.
 For each tunnel, we have the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$.
 Our method is based on the slicing of the tunnel by the plane perpendicular to centerline tangent at position $\mathbf{c}(t)$, and sampling the slice by the rays coming from the $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $s$.
 
-The key point is the centerline.
-Our assumption, based on the empirical knowledge is, that the centerline is alway inside the tunnel and that the centerline do not have high curvature.
+Our assumption, based on the empirical knowledge is, that the centerline is alway inside the tunnel and do not have high curvature.
 Which means that two neighboring planes do not cross each other.
 
-Cutting vector is semantically defined as a border point between two stable amino acids in first several slices.
+Cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in first several slices.
 This allows us to create one of the directions for the shared comparative visualization, as the neighboring amino-acids are stable during all the simulation of the dynamics.
 For our current needs this setting of cutting vector is enough. However one might come up with more semantical cut, which would follow the borders between the neighboring amino acids.
-
 Having a tangent in centerline and global slicing vector can introduce rotation artifact of the cut. 
-We have a adopted a computation of rotation minimized frame \cite{Wang2008RotMinim}.
 To overcome this problem for each cutting plane along the centerline is the cutting vector projected to the plane.
-
-With settled the cutting plane, and cutting vector for each plane, we have a starting point, which is smooth, and follows the centerline on the surface of the tunnel. 
-Cuts along the centerline are uniformly sampled.
-It is possible, that between 2 cuts some information is lost, for example a small connecting cavity.
+ 
+Shape overlays, which is a result of the cuts, are uniformly sampled.
+It is possible, that between 2 samples some information is lost, for example a small connecting cavity.
 However this structure is too small to have any influence on the lipid, and therefore it is desired to have this feature abstracted out.
-
-As mentioned earlier, each slice is additionally sampled.
 Sampling is done by the ray coming from the centerline and increasingly rotated around the slice normal.
-At each sample we now have a value, and we have a slice line length between two samples $D_t(a_i, a_{i+1})$.
-Unfolding is defined as
+At each sample we now have a value, and we have a slice line length between two samples $D_t(a_i, a_{i+1})$(see Figure~\ref{fig:unfolding}).
+
+New coordinates are defined as
 \begin{equation}
 A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1}))
 \end{equation} 
 
 With our unfolding method we have in 2D encoded values from the tunnel surface.
-Moreover, the size of the tunnel over the centerline is accurately preserved, as well as the size of the amino acids from the surface and their respective neighborhood.
+Moreover, the size of the tunnel over the centerline is accurately preserved, as well as the size and position of the amino acids from the surface and their respective neighborhood.
 
 Connecting the same angle samples together we get a shape description, which communicates the changes of the tunnel shape, for example at the place where the lines are dense the tunnel is thinner.
-On the other hand more scattered lines says, that the tunnel is broader.
+On the other hand more scattered lines says, that the tunnel is broader (see Figure~\ref{fig:flatteningUtility}).
 
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/debugger.png}
@@ -312,18 +309,17 @@ Small utility showing a connection between tunnel 3D shape, its unfolded represe
 \label{fig:flatteningUtility}
 \end{figure}
 
-Constructed unfolded tunnel gives us clear picture of its shape, and content.
 Just for the demonstration part we have also prepared a small utility (see Figure~\ref{fig:flatteningUtility}) to show the spatial connection between the representations.
 The utility is quite useful to get a good grasp of the tunnel properties, to evaluate the correctness of the unfolding process, and to demonstrate the ability of the representation to show important features.
 
 Real usefulness of the unfolded tunnel representation is in the comparative visualization.
-Juxtapositioned, or superpositioned, unfolded tunnels give an overview of the tunnel behavior over time, or spatial, and content-wise, differences between the different tunnels.
+Juxtapositioned, or superpositioned, unfolded tunnels give an overview of the spatial, and content-wise, differences between the different tunnels.
 
 For some smaller number of tunnels simple composition of comparative visualization is enough.
-However in usual output of the molecular dynamics one can have hundreds of interesting time frames.
+However, in usual output from the molecular dynamics one can have hundreds of interesting time frames.
 As tunnel develops over time, together with the whole molecule, it changes its shape and content.
 Tunnel can develop similar properties over time.
-For the similarity/dissimilarity measure of the tunnels one needs to have a proper descriptor of the single instance.
+To show similarity/dissimilarity of the tunnels one needs to have a proper descriptor of the single instance.
 Since unfolded representation holds all the relevant information, and is in 2D, we found it useful to use image moment as a descriptor.
 
 \subsection{Image Moment}
@@ -372,7 +368,7 @@ Moreover the components are ordered by the variance value.
 Meaning that the first component has the largest possible variance, and each succeeding component have lower variance.
 In our overview, we are showing the first two PCA components for the tunnel, which are encoded in the coordinates.
 As a result, we are able to remove the noise from the data, while making use of fewer quantities.
-First component value encodes x coordinate, and second encodes y coordinate (see Figure~\ref{fig:tunnelsPCA}).
+First component value encodes x coordinate, and second encodes y coordinate (see Figure~\ref{fig:processing_pipeline}).
 
 Even though we have used PCA for dimension reduction, there are alternative approaches, for example Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA} or others.
 Important property of the approach is the ability to reduce the 10 digits tunnel descriptor to 2D point coordinates and visualize statistical results for the whole matrix.
