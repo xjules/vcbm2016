@@ -455,6 +455,13 @@ First is a view of the set of unfolded tunnels, which allows to make a compariso
 Second is the scatterplot showing the similarity/dissimilarity overview which brings forth the notion of the differences between tunnels.
 And finally is the bar chart view where each tunnel is represented by one bar and the height of the bar corresponds to the tunnel length.
 
+\begin{figure*}[htb]
+\includegraphics[width=\linewidth]{img/5dynamics.pdf}
+\centering
+\caption{\color{red}TODO}
+\label{fig:dynamic}
+\end{figure*}
+
 Using the unfolding tunnel view the user is able to intuitively compare the width of the tunnels, the position of their bottleneck, the set of tunnel-lining amino acids and their extent of influence.
 The unfolded tunnels are positioned side by side, or in other words by using the juxtaposition composition.
 Positioning tunnels from different time frames allows the user to see the behavior of the bottleneck as well as the amino acids.
@@ -462,6 +469,7 @@ It is visible that the unfolded tunnels need a space to be seen properly.
 Therefore, in order to see the tunnels in this view in full detail it is appropriate only for a limited number of tunnels.
 We have empirically found out that five tunnels is the limit for the resolution width 1900.
 If more tunnels should be visualized, they need to be additionally downscaled, which means that with more tunnels more spatial details are discarded and the visual representation has to be scaled.
+
 
 To show the dataset of hundreds of tunnels from the molecular dynamics simulation, it is unfeasible to use the unfolding view to get the overview information about tunnel changes.
 Easily shown in an example -- with the resolution width 1900 and more than 1900 tunnels we would have more unfolded tunnels than available pixels.
@@ -493,8 +501,15 @@ For a tunnel in each time step (or a selected subset if desired) we first derive
 This produces clusters of tunnels according to their similarity which are visualized using the scatterplot.
 Additionally, the coloring of individual clusters helps us to find the correspondence between the scatterplot and the bar chart representation where we can see the positions of tunnels belonging to these clusters spread over time. 
 The bar chart immediately shows the time portions in which the tunnel was stable or unstable (depending of the interest of the researcher).
-Figure {\color{red}TODO} shows the resulting representation for a sequence of {\color{red}TODO} time steps of DhaA haloalkane dehalogenase protein.
-We can clearly see that {\color{red}TODO}.
+Figure~\ref{fig:dynamic} shows the resulting representation for a sequence of more then 350 time steps of DhaA haloalkane dehalogenase protein.
+\todo[color=red!40]{Check please whether it make sense? :)}
+{\color{red}From the bar chart view we can clearly see that the tunnels shape is highly stable in the first part of the simulation while it becomes more and more unstable towards the end. 
+On the other hand, from the unfolded representation, containing by default the most representative samples of individual clusters, it is obvious that during the stable period (clusters {\color{blue}\#3} and {\color{blue}\#1}) there was almost no influence of the Tyrosine (Y:259 highlighted by red).\todo[color=blue!40]{{\color{black}clusters should be renumbered in oder to start from 1}} 
+This changes later when also the influence of neighboring amino acids such as Phenylalanine and Asparagine (F:154 and N27 respectively) is starting to change significantly.
+Moreover, using our tool, the biochemist were immediately able to spotted several outliers belonging to the cluster {\color{blue}\#2} (see vertical arrows in bottom of Figure~\ref{fig:dynamic}). 
+This cluster represents tunnels which are significantly shorter then others.
+The same cluster can be also easily identified in the similarity overview where this whole cluster is clearly separated from the rest (see white circle in Figure~\ref{fig:dynamic}).}
+
 
 By clicking on the individual bars in the bar chart the user can select a subset of tunnels to be explored in more detail.
 These selected time steps are immediately visualized using the unfolded representation and the tunnels are juxtaposed to enable the comparison of the width and constitution of the tunnel.
