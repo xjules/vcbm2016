@@ -519,7 +519,7 @@ Figure~\ref{fig:mutation} demonstrates the situation when we performed the mutat
 \begin{figure*}[htb]
 \includegraphics[width=\linewidth]{img/mutaceExample.png}
 \centering
-\caption{Five different mutations of the amino acid with ID 176 surrounding the main tunnel in DhaA haloalkane dehalogenase. The amino acid is highlighted for better comparison.
+\caption{Visualization of different mutations of the amino acid with ID 176 surrounding the main tunnel in DhaA haloalkane dehalogenase. The scatterplot and bar chart show the information about all tunnels in the dataset whereas the unfolded representation shows only one selected representative of each detected cluster. The amino acid is highlighted for better comparison. 
 }
 \label{fig:mutation}
 \end{figure*}
@@ -532,22 +532,23 @@ The biochemists confirmed that similar information is very hard to understand fr
 Therefore, they appreciated our representation and suggested its future extension by calculating and highlighting areas with the most significant changes.
 
 \section{Conclusion \& Future work}
-We have presented a novel method to explore the shape and the content of the molecular tunnels.
-Our approach consists of transforming 3D shape to more readable 2D unfolded representation, using image moment as a descriptor for each tunnel, and providing multiple views on the tunnel data to promote exploration.
-The resulting system can interactively show the overall development of the tunnel centerline, the tunnel similarity and dissimilarity, and the shape and content od the selected set of tunnels.
+We have presented a novel method to explore the shape and content of ensembles of tunnels in protein molecules.
+Our approach consists of transforming 3D shape to more readable 2D unfolded representation, using image moment as a descriptor for each tunnel, and providing multiple views on the tunnel data to promote the exploration process.
+The resulting system can interactively show the overall development of the tunnel centerline, the tunnel similarities and dissimilarities, and the shape and content of a selected set of tunnels.
 
-We demonstrated the use cases of the method in two real world examples from the field of biochemistry.
-Moreover we have shown, that our method can be used on the temporal data, and on the data with the tunnel mutations.
+We demonstrated the usage of the method in two case studies from the field of biochemistry which were also commented by the domain experts.
+This confirmed that our method can be used for the time-dependent data as well as for the datasets containing tunnel mutations.
 
-Our method has several ways of future work, in aspects of the unfolding process, generating tunnels similarity measure, and final visualization of the dataset.
-Regarding unfolding we have discussed a possibility to have a more intelligent cutting mechanism. More specifically semantically driven cut, that would follow the borders of the amino acids in tunnel.
-For the similarity overview, it is worth wile to try combination of image momentum, reduction, and clustering, that is invariant to amino acids color permutation, rotation, and scale.
-Invariant method would allow to compare even between two different setting of two different data sets.
-Lastly there are some new ideas of the final visualization composition.
-Firstly, to incorporate the unfolded overview for the whole cluster.
-We mean here to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
+After the discussions with the domain experts we also suggest several possibilities for future extensions. 
+They are related to the unfolding process, generating tunnel similarity measure, and final visualization of the dataset.
+Regarding the unfolding we discussed a possibility to have a more intelligent cutting mechanism enabling more semantically-driven cut that would follow the borders of the amino acids in the tunnel.
+For the similarity overview, it is worthwhile to try the combination of image moment, reduction, and clustering, that is invariant to amino acids color permutation, rotation, and scale.
+The invariant method would allow to compare even two different settings of two different data sets.
+There were also some new ideas of the final visualization composition.
+First was to incorporate the unfolded overview for the whole cluster.
+This means to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
 
-Going a little bit from the tunnels to the whole molecule, our collaborators have suggested that the whole molecule flattening would be beneficial to visualize and explore in the similar manner.
+Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
 
 %-------------------------------------------------------------------------
 
