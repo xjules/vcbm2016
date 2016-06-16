@@ -480,6 +480,26 @@ To demonstrate the usability of our approach we conducted two case studies follo
 The first study deals with exploration of simulations of molecular dynamics and the second study focuses on scrutinizing the tunnel shape modified by mutations of a selected tunnel-lining amino acid.
 
 \subsubsection{Exploration of Molecular Dynamics}
+Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is currently one of the biggest challenges.
+There are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3}) and in consequence also few approaches to their visual exploration appeared as well (e.g., \cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner,Lindow2012DynamicChannels,Lindow2013DynamicCavities}).
+However, these approaches suffer from problems related to 3D representation or when using a 2D view, the information about the influence of individual tunnel lining amino acids and their mutual positions is completely lost.
+Moreover, using these techniques it is hard to capture the significant changes of tunnel shape or constitution over time.
+These problems are addressed by our proposed approach.
+For a tunnel in each time step (or a selected subset if desired) we first derive the unfolded 2D representation and these images are subsequently scrutinized to reveal similarities between them. 
+This produces clusters of tunnels according to their similarity which are visualized using the scatterplot.
+Additionally, the coloring of individual clusters helps us to find the correspondence between the scatterplot and the bar chart representation where we can see the positions of tunnels belonging to these clusters spread over time. 
+The bar chart immediately shows the time portions in which the tunnel was stable or unstable (depending of the interest of the researcher).
+Figure {\color{red}TODO} shows the resulting representation for a sequence of {\color{red}TODO} time steps of DhaA haloalkane dehalogenase protein.
+We can clearly see that {\color{red}TODO}.
+
+By clicking on the individual bars in the bar chart the user can select a subset of tunnels to be explored in more detail.
+These selected time steps are immediately visualized using the unfolded representation and the tunnels are juxtaposed to enable the comparison of the width and constitution of the tunnel.
+
+The biochemists testing our approach confirmed that the first main benefit is in the navigation phase where they were able to immediately spot the time steps with significant tunnel changes which are usually the best candidates for further exploration.
+In the subsequent exploration phase using the unfolded view they appreciated the information about the area of influence of the amino acids and their mutual position. 
+Some of them were slightly confused about the fact that some amino acids are divided by the cut into two parts which makes the comparison task more complicated.
+However, this can be solved by interactive manipulation with the cut position or in the future also by introducing more sophisticated method for defining the cut.
+But in summary they confirmed that this tool has a high potential for this type of tasks.
 
 \subsubsection{Exploration of Tunnel Mutations}
 One of the research topics conducted by the cooperation group of protein engineers is dealing with engineering protein stability and resistance to organic cosolvents~~\cite{Koudelakova2013StabilityAndResistance}.
@@ -490,7 +510,14 @@ Then it presents the study in which the biochemists aimed to find the best possi
 The researchers revealed that the DhaA80 mutation in which the amino acid on position 176, which in the wild type form contains Cysteine, was replaced by Phenylalanine.
 This mutation closed the main tunnel which caused the increase in melting temperature of the protein by 19 degrees and the resistance to cosolvent dimethyl sulfoxide was increased 4000 times.
 This situation is clearly visible in our representation as well.
-TODO
+{\color{red}TODO what is visible...}
+
+In this particular case when the user is interested in a specific amino acid our tool enables to highlight it in order to even enhance the comparison (see Figure {\color{red}TODO}).
+
+When evaluating the suitability of our approach to this type of tasks the biochemists appreciated the unfolded view much more than in the case of molecular dynamics simulations.
+Here the information about the changes on the tunnel surface and its width caused by the mutations is crucial and it is clearly visible from our representation. 
+The biochemists confirmed that similar information is very hard to understand from 3D tunnel representation, namely when aiming to compare more than two or three mutated tunnels at once.
+Therefore, they appreciated our representation and suggested its future extension by calculating and highlighting areas with the most significant changes.
 
 \section{Conclusion \& Future work}
 We have presented a novel method to explore the shape and the content of the molecular tunnels.
