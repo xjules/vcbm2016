@@ -494,7 +494,7 @@ The first study deals with exploration of simulations of molecular dynamics and 
 \begin{figure*}[htb]
 \includegraphics[width=\linewidth]{img/mutaceExample.png}
 \centering
-\caption{Visualization of different mutations of the amino acid with ID 176 (highlighted in green) surrounding the main tunnel in DhaA haloalkane dehalogenase. The scatterplot and bar chart show the information about all tunnels in the dataset whereas the unfolded representation shows only one selected representative of each detected cluster. The amino acid is highlighted for better comparison. {\color{red}TODO - compute it just with 3/4 clusters, find why HIS is in the same cluster as ILE, rename GRT to PHE, maybe remove one of GLU/GLY?, sort by clusters, cluster of the GLY is now faked.}
+\caption{Visualization of different mutations of the amino acid with ID 176 (highlighted in green) surrounding the main tunnel in DhaA haloalkane dehalogenase. The scatterplot and bar chart show the information about all tunnels in the dataset whereas the unfolded representation shows only one selected representative of each detected cluster. The amino acid is highlighted for better comparison. {\color{red}TODO - compute it just with 3/4 clusters, find why HIS is in the same cluster as ILE, rename GRT to PHE, sort by clusters, cluster of the GLY is now faked.}
 }
 \label{fig:mutation}
 \end{figure*}
@@ -538,13 +538,12 @@ Then it presents the study in which the biochemists aimed to find the best possi
 The researchers revealed that the DhaA80 mutation in which the amino acid on position 176, which in the wild type form contains Cysteine, was replaced by Phenylalanine.
 This mutation closed the main tunnel which caused the increase in melting temperature of the protein by 19 degrees and the resistance to cosolvent dimethyl sulfoxide was increased 4000 times.
 This situation is clearly visible in our representation as well.
-{\color{red}Figure~\ref{fig:mutation} demonstrates the situation when we performed multiple mutations of a single amino at specific position with ID 176.
+\todo[color=red!40]{Check please whether it make sense? :)}{\color{red}Figure~\ref{fig:mutation} demonstrates the situation when we performed multiple mutations of a single amino at specific position with ID 176.
 It is obvious that if the original amino acids ({\color{green}
 Figure~\ref{fig:mutation} -- ORIG}) is replaced by similar or even smaller one such as Glutamic Acid or Glycine ({\color{green}
 Figure~\ref{fig:mutation} -- GLU and GLY respectively}) the tunnel becomes wider.
 On the other hand using bigger amino acids such as Phenylalanine or Histidine ({\color{green}
-Figure~\ref{fig:mutation} -- {\color{blue}PHE} and GLY respectively}) decreases the bottleneck of the tunnel significantly. 
-}
+Figure~\ref{fig:mutation} -- {\color{blue}PHE} and GLY respectively}) decreases the bottleneck of the tunnel significantly. \todo[color=blue!40]{{\color{black}PHE needs to be renamed in image}}}
 In this particular case when the user is interested in a specific amino acid our tool enables to highlight it in order to even enhance the comparison.
 
 When evaluating the suitability of our approach to this type of tasks the biochemists appreciated the unfolded view much more than in the case of molecular dynamics simulations.
