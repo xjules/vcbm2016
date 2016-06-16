@@ -166,66 +166,64 @@ As already mentioned, the biochemists are more and more focusing on the analysis
 In order to analyze tunnels inside such a dynamic environment it is necessary to correctly track them over time. 
 There are tools capable of such tracking, for instance, CAVER~3.0~\cite{Chovancova2012Caver3}. 
 %{\color{red}Moreover, this does not apply only to detection of protein tunnels but other protein voids as well.}
-{\color{red}Nevertheless, nowadays the needs of biochemist extend beyond a simple detection of the protein voids.
-Recently the focus shifted more in the direction of interactive exploration of obtained data. 
-As the example we can mention following methods~\cite{Parulek2013CavityAnalysis,Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface} which focuses on interactive exploration of the protein cavities in real time.} \todo{Should I describe all the methods in detail - do we have space?}
+Nevertheless, nowadays the needs of biochemists extend beyond a simple detection of the protein voids.
+Recently the focus shifted more in the direction of interactive exploration of the obtained data. 
+As an example we can mention the following methods~\cite{Parulek2013CavityAnalysis,Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface} which focus on interactive exploration of protein cavities in real time.
 
-Finally, as already mentioned for the analysis of the protein tunnels the physico-chemical properties of amino acids in the vicinity of the tunnel are equally important as its geometrical aspects. 
-{\color{red} 
-Recently two techniqes, MoleCollar~\cite{Byska2015MoleCollar} and AnimoAminoMiner~\cite{Byska2015AnimoAminoMiner}, focusing on the investigation of the evolution of protein tunnel and its surroundings over time appeared.
-The MoleCollar uses multiple contours plotted over each other in order to communicate the changes in shape of a selected part of the tunnel (\eg its bottleneck). 
-The contour representation is enhanced by another bar-like visualization of nearby amino acids and their biochemical proprieties.
-The AnimoAminoMiner is based on similar concept but it provides more general overview of the whole tunnel and its surroundings.
-Here the shape of the tunnel is communicated using set of curves representing the width of the tunnel in respect to its length.
-Bellow this view is again bar-like visualization representing the areas influenced by give amino acids.
-The MoleCollar and AnimiAminoMiner techniques immediately convey information about the stability of both geometrical and physical properties of the observed tunnel.
-However, since both techniques are using high abstraction in order to depict the evolution of protein tunnel including the nearby amino acids in single figure, they omit the mutual spatial orientation of the extracted amino acids.
-}\todo{Stoji to za houby, ale nejak nevim jak jinak :D}
-
+As already mentioned, for the analysis of protein tunnels the physico-chemical properties of amino acids in the vicinity of the tunnel are at least equally important as its geometrical aspects. 
+Therefore, recently two techniques by Byska et al.~\cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner} appeared. 
+Both of them focus on the investigation of the evolution of protein tunnel or its selected part and its surroundings over time.
+The first approach, called MoleCollar, uses multiple contours plotted over each other in order to communicate the changes in shape of a selected part of the tunnel (\eg its bottleneck which is the narrowest site). 
+The contour representation is enhanced by depicting the surrounding amino acids and their different biochemical properties.
+The second approach, called AnimoAminoMiner, is based on a similar concept but it provides more general overview of the shape of the whole tunnel and its surroundings.
+Here the shape of the tunnel is communicated using set of curves representing the width of the tunnel with respect to its length.
+This view is equipped with an abstracted 2D visualization representing the tunnel areas influenced by the surrounding amino acids.
+Both MoleCollar and AnimoAminoMiner techniques immediately convey the information about the stability of both geometric and physico-chemical properties of the observed tunnel.
+However, since both techniques are using a high level of abstraction in order to depict the evolution of protein tunnel including the nearby amino acids in a single image, they omit the mutual spatial orientation of the extracted amino acids.
 
 \subsection{Projections, Reformations and Comparative Visualization Methods}
-The core idea of our technique is based on unfolding 3D tunnel surface in to 2D image in order to prevent occlusion problems.
-Moreover, such reformation allows us to dedicate one of the dimensions to the requirements of comparative visualization. 
+The core idea of our technique is based on unfolding the 3D tunnel surface to a 2D image in order to prevent the occlusion problems.
+Moreover, such a reformation allows us to dedicate one of the dimensions to the requirements of comparative visualization. 
 The similar approach is commonly used in other domains as well.
 
-For example Kretschmer et al.\cite{Kretschmer2014AnatomyDriveReformation} adapted a variant of as-rigid-as-possible reformation proposed by Liu et al.~\cite{Liu2008LocalGlobalMeshParametrization} for medical applications. 
-The resulting method defines a reformation of volumetric data driven by particular geometry -- in this case an anatomy of a specific patient.
-Another extension of the work of Liu et al. was presented recently by Brambilla et al.~\cite{Brambilla2016ComparativeVisTimeSufaces}. 
-Brambilla et al. focus on so called time surfaces which are frequently used when investigating the fluid flows.
+For example, Kretschmer et al.\cite{Kretschmer2014AnatomyDriveReformation} adapted a variant of as-rigid-as-possible reformation proposed by Liu et al.~\cite{Liu2008LocalGlobalMeshParametrization} for medical applications. 
+The resulting method defines a reformation of volumetric data driven by particular geometry -- in this case the anatomy of a specific patient.
+Another extension of the work of Liu et al. was presented recently by Brambilla et al.~\cite{Brambilla2016ComparativeVisTimeSufaces} who focus on so called time surfaces which are frequently used for the investigation of fluid flows.
 The proposed method is using a reformed 2D space in order to observe an evolution of these complex surfaces over time.
 Unfortunately, since all these methods are relatively general, they produce an inevitable distortion in the distance. 
-This is unsatisfactory when comparing protein tunnels since here the main focus is placed on the tunnel length, bottleneck \todo{should I define bottleneck? or it has be done in intro?}whereabouts, overall surface shape and surrounding amino acids. \todo{again, should we define AA?}
+This is unsatisfactory when comparing protein tunnels since here the main focus is placed on the tunnel length, bottleneck, the overall surface shape and the surrounding amino acids. 
 
+\subsection{Flattening and Unfolding Techniques}
 In order to minimize the distortion as much as possible we can exploit the unique tubular shape of protein tunnels.
-The similar approach was used, for instace, by Gurijala et al.~\cite{Gurijala2013Colon}.
+A similar approach was used, for instance, by Gurijala et al.~\cite{Gurijala2013Colon}.
 They presented a method that produces a rectangular flattening of the colon model.
 This method handles very well a topological noise and preserves the colon wall shape, which allows to easily observe the polyps (abnormal growth of tissue) inside the colon. 
-The proposed normalized rectangle view, however, does not depict the radius of colon.
-Although, this can be omit in particular use case of colon polyp detection, it is essential when designing a comparative visualization of protein tunnels.
+The proposed normalized rectangle view, however, does not depict the radius of the colon.
+This can be omitted in this particular use case of colon polyp detection, but it is essential when designing a comparative visualization of protein tunnels.
 
-Another example of surface reformation of the tubular structures is vessel visualization.
-The Curved Planar Reformation (CPR)~\cite{Kanitsar2002CPR} is wide know technique commonly used for diagnosis vascular diseases of peripheral arteries with single dominant direction.
-In order to investigate the vessels with arbitrary orientation, Mistelbauer et al.~\cite{Mistelbauer2012CP} proposed Centerline Reformations (CR).
+Another example of surface reformation of the tubular structures comes from the field of vessel visualization.
+The Curved Planar Reformation (CPR)~\cite{Kanitsar2002CPR} is widely known technique commonly used for diagnosis of vascular diseases of peripheral arteries with single dominant direction.
+In order to investigate the vessels of an arbitrary orientation, Mistelbauer et al.~\cite{Mistelbauer2012CP} proposed so called Centerline Reformations (CR).
 The CR is an extension of CPR method but it uses a wavefront propagation of vessel centerline for automatic setting of the vector of interest.
-Nevertheless, due to the nature of this particular reformation there is a trade-off between the visibility
-of the vessels and errors when depicting the surrounding tissue as context.
+Due to the nature of this particular reformation there is a trade-off between the visibility of the vessels and errors when depicting the surrounding tissue as context.
 In order to overcome these problems, another variant of the CPR method was proposed by Auzinger et al.~\cite{Auzinger2013Vessel}. 
 This method avoids the visibility issues of CPR and CR caused by the projection by computing the vessel lumen (empty space inside of a vessel) fully in 3D. 
-This is done by finding a cut through the vessel and surrounding tissue orthogonal to vessel centerline and view direction.
+This is done by finding a cut through the vessel and surrounding tissue orthogonal to the vessel centerline and view direction.
 The view-dependency would, however, cause some issues in our case, since we are aiming for comparative visualization and hence we need to find the same cut for each tunnel in order to obtain a common space.
-Moreover, the proposed cutaway discards part of the vessel surface while we want to communicate the shape and biochemical properties of the whole protein tunnel.
+Moreover, the proposed cutaway discards a part of the vessel surface while we want to communicate the shape and biochemical properties of the whole protein tunnel.
 
-There are several other examples in the literature regarding the comparative visualization of unfolded, or abstracted, tubular structures. 
-For instance, Angelelli et al.~\cite{Angelelli2011StraighteningTubularFlow} presented method for investigation of the flow through tubular structures. Lampe at al.~\cite{Lampe2009CurveCentric} on the other hand provided a solution for a curve driven analysis of general flow.  
-Similarly to CPR, both methods are based on straitening of the volumetric data in the direction of the flow.
-Such alignment allows to employ comparative visualization (\eg juxtaposition view), because one axis becomes shared between multiple instances (in this case between various snapshots of the flow simulation over time).
-We are looking for the similar solution, but none of these methods can be unfortunately used directly.
-On one hand, the method proposed by Angelelli et al. is computing the reformation directly in 3D space and hence it suffers with the occlusion issues.
-On the other hand, while the method designed by Lampe at al. provides a great overall view to individual flow features, it does not preserve shape, nor angles of external objects.
-In both cases it means that the at leas some essential information about protein tunnel surface and surrounding amino aicds would be lost.
-
-\subsection{Flattening techniques}
 \subsection{Comparative Visualization}
+There are several other examples in the literature regarding the comparative visualization of unfolded, or abstracted, tubular structures. 
+For instance, Angelelli et al.~\cite{Angelelli2011StraighteningTubularFlow} presented a method for investigation of the flow through tubular structures. 
+Lampe at al.~\cite{Lampe2009CurveCentric} on the other hand provided a solution for a curve driven analysis of general flow.  
+Similarly to CPR, both methods are based on straightening of the volumetric data in the direction of the flow.
+Such alignment allows to employ comparative visualization (\eg juxtaposition view), because one axis becomes shared between multiple instances (in this case between various snapshots of the flow simulation over time).
+We are looking for a similar solution, but none of the mentioned methods can be used directly.
+On one hand, the method proposed by Angelelli et al. is computing the reformation directly in the 3D space and hence it suffers from the occlusion issues.
+On the other hand, while the method designed by Lampe at al. provides a great overall view of individual flow features, it does not preserve the shape nor angles of external objects.
+In both cases it means that the at least some essential information about protein tunnel surface and its surrounding amino acids would be lost.
+
+
 \section{Flattening Based Exploration}
 \begin{figure*}[htb]
 \includegraphics[width=\linewidth]{img/processing_pipeline.jpg}
@@ -482,12 +480,44 @@ To demonstrate the usability of our approach we conducted two case studies follo
 The first study deals with exploration of simulations of molecular dynamics and the second study focuses on scrutinizing the tunnel shape modified by mutations of a selected tunnel-lining amino acid.
 
 \subsubsection{Exploration of Molecular Dynamics}
+Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is currently one of the biggest challenges.
+There are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3}) and in consequence also few approaches to their visual exploration appeared as well (e.g., \cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner,Lindow2012DynamicChannels,Lindow2013DynamicCavities}).
+However, these approaches suffer from problems related to 3D representation or when using a 2D view, the information about the influence of individual tunnel lining amino acids and their mutual positions is completely lost.
+Moreover, using these techniques it is hard to capture the significant changes of tunnel shape or constitution over time.
+These problems are addressed by our proposed approach.
+For a tunnel in each time step (or a selected subset if desired) we first derive the unfolded 2D representation and these images are subsequently scrutinized to reveal similarities between them. 
+This produces clusters of tunnels according to their similarity which are visualized using the scatterplot.
+Additionally, the coloring of individual clusters helps us to find the correspondence between the scatterplot and the bar chart representation where we can see the positions of tunnels belonging to these clusters spread over time. 
+The bar chart immediately shows the time portions in which the tunnel was stable or unstable (depending of the interest of the researcher).
+Figure {\color{red}TODO} shows the resulting representation for a sequence of {\color{red}TODO} time steps of DhaA haloalkane dehalogenase protein.
+We can clearly see that {\color{red}TODO}.
+
+By clicking on the individual bars in the bar chart the user can select a subset of tunnels to be explored in more detail.
+These selected time steps are immediately visualized using the unfolded representation and the tunnels are juxtaposed to enable the comparison of the width and constitution of the tunnel.
+
+The biochemists testing our approach confirmed that the first main benefit is in the navigation phase where they were able to immediately spot the time steps with significant tunnel changes which are usually the best candidates for further exploration.
+In the subsequent exploration phase using the unfolded view they appreciated the information about the area of influence of the amino acids and their mutual position. 
+Some of them were slightly confused about the fact that some amino acids are divided by the cut into two parts which makes the comparison task more complicated.
+However, this can be solved by interactive manipulation with the cut position or in the future also by introducing more sophisticated method for defining the cut.
+But in summary they confirmed that this tool has a high potential for this type of tasks.
 
 \subsubsection{Exploration of Tunnel Mutations}
 One of the research topics conducted by the cooperation group of protein engineers is dealing with engineering protein stability and resistance to organic cosolvents~~\cite{Koudelakova2013StabilityAndResistance}.
 This is reached by mutating the amino acids around the main tunnel of the DhaA haloalkane dehalogenase protein molecule. 
 The paper first presents the confirmation of importance of the amino acids surrounding the tunnel by presenting the results of several mutations of amino acids on different places in the molecule.
 It was revealed that by mutating only the amino acids in the close vicinity of the main tunnel the researchers were able to change the stability and resistance of the protein substantially.
+Then it presents the study in which the biochemists aimed to find the best possible mutation around the main tunnel which would increase the stability of the dehalogenase and its resistance to organic cosolvents.
+The researchers revealed that the DhaA80 mutation in which the amino acid on position 176, which in the wild type form contains Cysteine, was replaced by Phenylalanine.
+This mutation closed the main tunnel which caused the increase in melting temperature of the protein by 19 degrees and the resistance to cosolvent dimethyl sulfoxide was increased 4000 times.
+This situation is clearly visible in our representation as well.
+{\color{red}TODO what is visible...}
+
+In this particular case when the user is interested in a specific amino acid our tool enables to highlight it in order to even enhance the comparison (see Figure {\color{red}TODO}).
+
+When evaluating the suitability of our approach to this type of tasks the biochemists appreciated the unfolded view much more than in the case of molecular dynamics simulations.
+Here the information about the changes on the tunnel surface and its width caused by the mutations is crucial and it is clearly visible from our representation. 
+The biochemists confirmed that similar information is very hard to understand from 3D tunnel representation, namely when aiming to compare more than two or three mutated tunnels at once.
+Therefore, they appreciated our representation and suggested its future extension by calculating and highlighting areas with the most significant changes.
 
 \section{Conclusion \& Future work}
 We have presented a novel method to explore the shape and the content of the molecular tunnels.
