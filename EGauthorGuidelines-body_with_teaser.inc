@@ -201,6 +201,15 @@ This method handles very well a topological noise and preserves the colon wall s
 The proposed normalized rectangle view, however, does not depict the radius of the colon.
 This can be omitted in this particular use case of colon polyp detection, but it is essential when designing a comparative visualization of protein tunnels.
 
+\begin{figure*}[htb]
+\includegraphics[width=\linewidth]{img/processing_pipeline.jpg}
+\centering
+\caption{Processing pipeline.
+Each tunnel is unfolded, described with image moment, and processed to 2D point of similarity overview.
+At the end the tunnels are shown in multiple views. }
+\label{fig:processing_pipeline}
+\end{figure*}
+
 Another example of surface reformation of the tubular structures comes from the field of vessel visualization.
 The Curved Planar Reformation (CPR)~\cite{Kanitsar2002CPR} is widely known technique commonly used for diagnosis of vascular diseases of peripheral arteries with single dominant direction.
 In order to investigate the vessels of an arbitrary orientation, Mistelbauer et al.~\cite{Mistelbauer2012CP} proposed so called Centerline Reformations (CR).
@@ -225,14 +234,7 @@ In both cases it means that the at least some essential information about protei
 
 
 \section{Unfolding-Based Exploration}
-\begin{figure*}[htb]
-\includegraphics[width=\linewidth]{img/processing_pipeline.jpg}
-\centering
-\caption{Processing pipeline.
-Each tunnel is unfolded, described with image moment, and processed to 2D point of similarity overview.
-At the end the tunnels are shown in multiple views. }
-\label{fig:processing_pipeline}
-\end{figure*}
+
 As already stated, the main goal of our work is to allow an interactive exploration ensembles of molecular tunnels coming from molecular dynamics simulations or protein mutations.
 In both cases a tunnel can develops and change its shape dramatically.
 From the raw simulation data, we derive tunnels as a set of 3D objects representing the tunnel shape over time.
