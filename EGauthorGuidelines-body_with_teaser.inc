@@ -204,8 +204,8 @@ This can be omitted in this particular use case of colon polyp detection, but it
 \includegraphics[width=\linewidth]{img/processing_pipeline.jpg}
 \centering
 \caption{Processing pipeline.
-Each tunnel is unfolded, described with image moment, and processed to 2D point of similarity overview.
-At the end the tunnels are shown in multiple views. }
+Each tunnel (a) is unfolded (b), described with image moment, and processed to 2D point of similarity overview (c).
+At the end the tunnels are shown in multiple views(d). }
 \label{fig:processing_pipeline}
 \end{figure*}
 
@@ -436,21 +436,9 @@ This is due to requirement of employing comparative visualization as a part of t
 
 \subsection{Exploration}
 
-\begin{figure}[htb]
-\includegraphics[width=\linewidth]{img/app_views.png}
-\centering
-\caption{
-Three basic views supported by our approach.
-In the upper part is the tunnel unfolding view serving for comparative visualization of the tunnel content.
-In the bottom is the bar chart showing the lengths of the tunnel and the spread of clusters over time.
-In the bottom right is the similarity overview scatterplot showing the clusters.
-}
-\label{fig:appviews}
-\end{figure}
-
 Until now we described individual parts of our exploration solution.
 All of them play a crucial role in the exploration process.
-Therefore, our final exploration solution consists out of these views (see Figure~\ref{fig:appviews}).
+Therefore, our final exploration solution consists out of these views (see Figure~\ref{fig:processing_pipeline}d).
 First is a view of the set of unfolded tunnels, which allows to make a comparison of spatial and structural aspects of the tunnel.
 Second is the scatterplot showing the similarity/dissimilarity overview which brings forth the notion of the differences between tunnels.
 And finally is the bar chart view where each tunnel is represented by one bar and the height of the bar corresponds to the tunnel length.
