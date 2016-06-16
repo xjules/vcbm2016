@@ -193,7 +193,6 @@ The proposed method is using a reformed 2D space in order to observe an evolutio
 Unfortunately, since all these methods are relatively general, they produce an inevitable distortion in the distance. 
 This is unsatisfactory when comparing protein tunnels since here the main focus is placed on the tunnel length, bottleneck, the overall surface shape and the surrounding amino acids. 
 
-\subsection{Flattening and Unfolding Techniques}
 In order to minimize the distortion as much as possible we can exploit the unique tubular shape of protein tunnels.
 A similar approach was used, for instance, by Gurijala et al.~\cite{Gurijala2013Colon}.
 They presented a method that produces a rectangular flattening of the colon model.
@@ -212,7 +211,6 @@ This is done by finding a cut through the vessel and surrounding tissue orthogon
 The view-dependency would, however, cause some issues in our case, since we are aiming for comparative visualization and hence we need to find the same cut for each tunnel in order to obtain a common space.
 Moreover, the proposed cutaway discards a part of the vessel surface while we want to communicate the shape and biochemical properties of the whole protein tunnel.
 
-\subsection{Comparative Visualization}
 There are several other examples in the literature regarding the comparative visualization of unfolded, or abstracted, tubular structures. 
 For instance, Angelelli et al.~\cite{Angelelli2011StraighteningTubularFlow} presented a method for investigation of the flow through tubular structures. 
 Lampe at al.~\cite{Lampe2009CurveCentric} on the other hand provided a solution for a curve driven analysis of general flow.  
