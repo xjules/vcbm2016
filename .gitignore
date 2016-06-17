@@ -1,10 +1,11 @@
 *.aux
 *.lbl
 *.log
-*.pdf
 *.gz
 *.bak
 *.bbl
 *.blg
 *.brf
 *.orig
+EGauthorGuidelines-vcbm16-sub.pdf
+EGauthorGuidelines-vcbm16-fin.pdf
