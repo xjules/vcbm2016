@@ -482,7 +482,7 @@ The first study deals with exploration of simulations of molecular dynamics and 
 \begin{figure*}[htb]
 \includegraphics[width=\linewidth]{img/mutaceExample.png}
 \centering
-\caption{Visualization of different mutations of the amino acid with ID 176 (highlighted in green) surrounding the main tunnel in DhaA haloalkane dehalogenase. The scatterplot and bar chart show the information about all tunnels in the dataset whereas the unfolded representation shows only one selected representative of each detected cluster. The amino acid is highlighted for better comparison. {\color{red}TODO - compute it just with 3/4 clusters, find why HIS is in the same cluster as ILE, rename GRT to PHE, sort by clusters, cluster of the GLY is now faked.}
+\caption{Visualization of different mutations of the amino acid with ID 176 (highlighted in green) surrounding the main tunnel in DhaA haloalkane dehalogenase. The scatterplot and bar chart show the information about all tunnels in the dataset whereas the unfolded representation shows only one selected representative of each detected cluster. The amino acid is highlighted for better comparison.
 }
 \label{fig:mutation}
 \end{figure*}
