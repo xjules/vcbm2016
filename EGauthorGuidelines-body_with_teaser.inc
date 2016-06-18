@@ -334,10 +334,10 @@ Each image $I(x,y)$ is described by the set of moments
 \begin{equation}
 M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
 \end{equation} 
-There exist various versions of image moment, which would bring invariance to different properties, such as rotation, scale, or translation.
+There exist various versions of image moments, which would bring invariance to different properties, such as rotation, scale, or translation.
 For example, centralized moments are invariant to translation.
-This is a valuable feature, as some amino acid areas might me moved by the change of the length of the centerline.
-In our case, images containing unfolded tunnels are further characterized by 10 different image-centralized moments to condense the information.
+This is a valuable property since some amino acid areas might change their longitudinal position with respect to the length of the centerline\todo[color=blue!40]{{\color{black}not sure that my update is completely correct. check please!}}.
+In our case, images containing unfolded tunnels are characterized by 10 different image-centralized moments to condense the information.
 \begin{equation}
 \mu_{pq} = \sum_{m}^{p}\sum_{n}^{q}{p \choose m}{q \choose n}\left(-{M_{10} \over M_{00}}\right)^{(p-m)}\left(-{M_{01} \over M_{00}}\right)^{(q-n)}
 \end{equation} 
@@ -345,9 +345,9 @@ This way we are able to specify each tunnel as a vector of values.
 \begin{equation}
 I_m(tun) = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
 \end{equation} 
-Image moment also holds a property that similar images have also similar values.
-In consequence, more different images have more distant values, so we can transform the similarity between images to distance between vectors.
-With the build up database of tunnel vectors, we can use the standard tools of information visualization to get the idea about the distances between tunnels.
+Image moments also maintains the property that similar images have similar values.
+In consequence, distinct images have more distant values, so we can transform the similarity between images to distance between the image moment vectors.
+Having such a database of tunnel vectors, we can use the standard tools of information visualization to get the idea about the distances between tunnels.
 
 \subsection{Similarity Overview}
 We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors.
@@ -361,22 +361,22 @@ We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist 
 %\end{pmatrix}
 %\end{equation} 
 
-When dealing with a tunnel in molecular dynamics, the matrix $IM$ will contain hundreds of rows and it will be challenging to explore the raw matrix to see which tunnels are close to each other and which not.
-To make the ensemble more understandable, we decided to transform the $IM$ matrix to point set representation in 2D, where each point represents one tunnel.
-Another important requirement is that the distance between the tunnels in matrix must be transformed into the distances between points.
+When dealing with a tunnel in molecular dynamics, the matrix $IM$ contains hundreds of rows and it is challenging to explore the raw matrix to see and understand which tunnels are close to each other and which are not.
+To make the ensemble more understandable, we project the $IM$ matrix of tunnel image moments to 2D, where each 2D point represents one tunnel.
+Here, the important requirement is that the distance between the tunnels in the matrix must be transformed into the distances between points.
 
 First, the matrix dimension needs to be reduced.
 In our project we have adopted a simple but very useful solution of principal component analysis (PCA).
 
 PCA is a statistical tool that transforms a set of observations, in our case a set of image moment vectors, to the set of linearly uncorrelated variables. 
-Each of the resulting components is orthogonal to each other and the number of components is lower than the number of the original variables.
-Moreover, the components are ordered by the variance value.
+Each of the resulting components is orthogonal to each other and the number of components is lower than the number of the original variables\todo[color=blue!40]{{\color{black}Actually the number is always the same, just that we choose those with the highest variance - needs to be rewritten!}} .
+The components are ordered by the variance value.
 Meaning that the first component has the largest possible variance and each succeeding component has a lower variance.
-In our overview, we are showing the first two PCA components for the tunnel, which are encoded in the coordinates.
+In our overview, we showcase the first two PCA components for the tunnel, which are encoded in the coordinates.
 As a result, we are able to remove the noise from the data while making the use of fewer quantities.
 The first component value encodes the $x$ coordinate, and the second encodes the $y$ coordinate (see Figure~\ref{fig:processing_pipeline}).
 
-Even though we have used PCA for dimension reduction, there are of course alternative approaches, for example Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA}, and others.
+Even though we have used PCA for dimension reduction, there are several alternative approaches, for example Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA}, and others.
 The important property of the approach is the ability to reduce the 10 digits tunnel descriptor to 2D point coordinates and to visualize the statistical results for the whole matrix.
 Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation.
 
