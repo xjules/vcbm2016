@@ -120,11 +120,11 @@ This problem is even stressed when using the 3D tunnel representation.
 \end{figure}
 
 Moreover, the proper visualization of surface itself is not sufficient for exploration and complete understanding of differences between protein tunnels. 
-Another essential information is about the amino acids forming the tunnel boundary, namely their biochemical properties and the extent of influence of the tunnel.
+Another essential information relates the amino acids forming the tunnel boundary, namely their biochemical properties and the extent of influence of the tunnel.
 Possible solution is to map this information onto the tunnel surface.
-But because of the problems with the 3D tunnel visualization mentioned above, it is hard to compare and explore these properties as well.
+Nevertheless, due to the aforementioned problems present in 3D tunnel visualization mentioned above, it is hard to compare and explore these properties as well.
 
-In this paper we are aiming to solve these problems by introducing a novel technique for intuitive comparison and exploration of ensembles of protein tunnels.
+In this paper we aim at solving these problems by introducing a novel technique for intuitive comparison and exploration of ensembles of protein tunnels.
 It consists of several linked views enabling to:
 \begin{itemize}
 \item get the overview of all tunnels in the input ensemble and spot possibly interesting tunnels 
@@ -233,10 +233,10 @@ In both cases it means that the at least some essential information about protei
 
 \section{Unfolding-Based Exploration}
 
-As already stated, the main goal of our work is to allow an interactive exploration ensembles of molecular tunnels coming from molecular dynamics simulations or protein mutations.
-In both cases a tunnel can develops and change its shape dramatically.
+As already stated, the main goal of our work is to allow an interactive exploration of molecular tunnels ensembles coming from molecular dynamics simulations or protein mutations.
+In both cases a tunnel can develop and change its shape dramatically.
 From the raw simulation data, we derive tunnels as a set of 3D objects representing the tunnel shape over time.
-In case of mutations, we obtains the set in the identical form, the only difference is that it represents tunnel in one static time step but with different mutations of its surrounding amino acids.
+In case of mutations, we obtain a set in the identical form, the only difference is that it represents tunnel in one static time step but with different mutations of its surrounding amino acids.
 
 In general, there is no trivial or a direct way to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities.
 There are several issues preventing direct comparison of such structures, e.g., the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
@@ -256,10 +256,10 @@ Having multiple views, the interaction allows to explore the space of tunnels in
 Each tunnel is defined by its shape as a triangle mesh, its centerline as a graph of connected points, and the information about hydrophobicity, charge, and hydrogen bonds of the tunnel-lining amino acids is stored for each vertex of the mesh.
 Moreover, we have a set of characteristics that are of utmost importance to explore.
 In our case we want to clearly communicate three features ordered from the most to the least important.
-The first feature is the positioning and distribution of amino acids, which form the tunnel boundary.
+The first feature is the positioning and distribution of amino acids that form the tunnel boundary.
 The second one is the spatial information about the tunnel length and its thickness development.
 The third feature is the notion of the tunnel width meaning that the user should be able to detect narrower and wider areas of the tunnel.
-Here the narrowest part of the tunnel, the bottleneck, is usually the also the most important one because it determines the size of a ligand molecule which can follow this tunnel.
+Here the narrowest part of the tunnel, the bottleneck, is usually also the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
@@ -270,20 +270,20 @@ By straightening the cuts and putting them on top of each other we unfold the tu
 \label{fig:unfolding}
 \end{figure}
 
-The general idea of our unfolding method is the parametrization.
+The general idea of our unfolding method is based on the centerline parametrization.
 For each tunnel we have the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$.
-Our method is based on slicing of the tunnel by the plane perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by the rays coming from the $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $s$.
+Our method is based on slicing the tunnel by planes perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $s$.
 
-Our assumption, based on the empirical knowledge, is that the centerline is always inside the tunnel and does not have a high curvature.
+Our assumption, based on the empirical knowledge, is that the centerline is always inside the tunnel and does not exhibit any high curvatures.
 This implies that two neighboring planes do not cross each other.
 
-The cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in first several slices.
+The cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in the first several slices.
 These stable amino acids can be found close to the tunnel end point which is deeply buried in the protein structure.
-This comes from the fact that the amino acids close to the protein surface are much more flexible than those densely packed inside.
+This is derived from the fact that the amino acids close to the protein surface are much more flexible than those densely packed inside.
 This allows us to create one of the directions for the shared comparative visualization, as the neighboring amino acids are stable during all the simulation of the dynamics.
-For our current needs this setting of the cutting vector is sufficient. 
-However, one might come up with more semantically correct cut, which would follow the borders between the neighboring amino acids.
-This approach would not suffer from artifacts such as cutting one amino acid into two parts which can happen in our solution.
+There are several other ways the cutting vector might be defined, but for our current needs this setting is sufficient. 
+For instance, one might come up with more semantically correct cut, which would follow the borders between the neighboring amino acids.
+This approach would not suffer from artifacts such as cutting one amino acid into two parts which can happen in our solution \todo[color=blue!40]{{\color{black}not sure whether we should mention also this}} .
 
 Having a tangent of the centerline and the global slicing vector can introduce a rotation artifact of the cut. 
 To overcome this problem, for each cutting plane along the centerline we project the cutting vector to the plane.
