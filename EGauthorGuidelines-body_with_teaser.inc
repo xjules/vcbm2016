@@ -446,7 +446,7 @@ And finally is the bar chart view where each tunnel is represented by one bar an
 \begin{figure*}[htb]
 \includegraphics[width=\linewidth]{img/5dynamics.pdf}
 \centering
-\caption{Visualization of sequence of 350 time steps of DhaA haloalkane dehalogenase protein. The bar chart shows the tunnel stability while scatter plot provides an information about different outliers. The unfolded representation then depicts the influence of individual amino acids.}
+\caption{Visualization of sequence of 350 time steps of DhaA haloalkane dehalogenase protein. The bar chart shows the tunnel stability while the scatterplot provides an information about different outliers. The unfolded representation then depicts the influence of individual amino acids.}
 \label{fig:dynamic}
 \end{figure*}
 
