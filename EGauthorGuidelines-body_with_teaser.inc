@@ -300,9 +300,9 @@ A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})
 \end{equation} 
 
 Thus, our unfolding method allows us to encode tunnel surface values in 2D.
-Moreover, the size of the tunnel over the centerline is preserved, as well as the size and position of the amino acids from the surface and their respective neighborhood.
+Moreover, the size of the tunnel over the centerline is preserved, as well as the size and position of the amino acids around the surface and their respective neighborhood.
 
-By connecting the same angle samples together we get a shape description which communicates the changes of the tunnel shape.
+By connecting the same angle samples together we get a shape description that communicates the changes of the tunnel shape.
 For example, at the place where the lines are dense the tunnel is narrower.
 On the other hand, more scattered lines signify that the tunnel is wider (see Figure~\ref{fig:flatteningUtility}).
 
@@ -310,23 +310,23 @@ On the other hand, more scattered lines signify that the tunnel is wider (see Fi
 \includegraphics[width=0.9\linewidth]{img/debugger.png}
 \centering
 \caption{
-Illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.
+An illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.
 }
 \label{fig:flatteningUtility}
 \end{figure}
 
-Just for the demonstration purposes we have also prepared a utility (see Figure~\ref{fig:flatteningUtility}) to show the spatial connection between the representations.
+For illustration purposes we also prepared a utility (see Figure~\ref{fig:flatteningUtility}) to show the spatial connection between the representations.
 The utility is quite useful to get a grasp of the tunnel properties, to evaluate the correctness of the unfolding process, and to demonstrate the ability of the representation to show important features.
 
-But the core benefit of the unfolded tunnel representation lies in the ability to perform a comparative visualization.
-Juxtapositioned or superpositioned unfolded tunnels give an overview of the spatial and content-wise differences between different tunnels.
+Nevertheless, the core benefit of the unfolded tunnel representation lies in the ability to perform a comparative visualization.
+Juxtapositioned or superpositioned of the unfolded tunnels give an overview of the spatial and content-wise differences between different tunnels.
 
-For a smaller number of tunnels a simple composition of comparative visualization is sufficient.
-However, in the case of analyzing molecular dynamics simulations one can obtain hundreds of interesting time frames.
+Note that in case of a smaller number of tunnels a simple composition of comparative visualization is sufficient.
+However, when analyzing molecular dynamics simulations one can obtain hundreds of time frames that are considered crucial.
 As the tunnel develops over time, together with the whole molecule, it changes its shape and content.
-Along with it, the tunnel properties are changing over time as well.
-To show the similarity/dissimilarity of tunnels one needs to have a proper descriptor of a single instance.
-Since the unfolded representation holds all the relevant information and is two-dimensional, we decided to use the image moment as a descriptor.
+Moreover, the tunnel properties change over time as well.
+To show the similarity/dissimilarity of tunnels one needs to have a suitable descriptor of a single instance.
+Since the unfolded representation contains all the relevant information in 2D, i.e. forming an image, we opted for image moments as the main set of descriptors.
 
 \subsection{Image Moment}
 Image moments~\cite{Flusser09Moments} provide a practical and useful way to describe image objects. 
