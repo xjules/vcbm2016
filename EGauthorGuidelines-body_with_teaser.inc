@@ -288,18 +288,18 @@ This approach would not suffer from artifacts such as cutting one amino acid int
 Having a tangent of the centerline and the global slicing vector can introduce a rotation artifact of the cut. 
 To overcome this problem, for each cutting plane along the centerline we project the cutting vector to the plane.
  
-Shape overlays, which are the result of the cuts, are uniformly sampled.
-It is possible that between two neighboring samples some information is lost, for example a small connecting cavity.
-However, this structure is too small to have any impact on the protein, and therefore it is desired not to take this feature into account.
+Shape overlays that are the result of the cuts are uniformly sampled.
+It is possible that between two neighboring samples some information might be lost, for example a small connecting cavity.
+However, this structure is too small to have any impact on the protein, and therefore we decided not to take this feature into account.
 The sampling is performed using the ray coming from the centerline and increasingly rotated around the slice normal.
-At each sample we now have a value and we have a slice line length between two samples $D_t(a_i, a_{i+1})$(see Figure~\ref{fig:unfolding}).
+At each sample we compute a value\todo[color=blue!40]{{\color{black}what value?}}  and a slice line length between two samples $D_t(a_i, a_{i+1})$(see Figure~\ref{fig:unfolding}).
 
-So the new coordinates are defined as
+So the new coordinates are defined as\todo[color=blue!40]{{\color{black}this equation is not clear - needs one sentence to describe what it does.}}
 \begin{equation}
-A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1}))
+A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
 \end{equation} 
 
-With our unfolding method we have in 2D the encoded values from the tunnel surface.
+Thus, our unfolding method allows us to encode tunnel surface values in 2D.
 Moreover, the size of the tunnel over the centerline is preserved, as well as the size and position of the amino acids from the surface and their respective neighborhood.
 
 By connecting the same angle samples together we get a shape description which communicates the changes of the tunnel shape.
