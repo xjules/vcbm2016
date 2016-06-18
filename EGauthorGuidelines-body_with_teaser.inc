@@ -307,7 +307,7 @@ For example, at the place where the lines are dense the tunnel is narrower.
 On the other hand, more scattered lines signify that the tunnel is wider (see Figure~\ref{fig:flatteningUtility}).
 
 \begin{figure}[htb]
-\includegraphics[width=\linewidth]{img/debugger.png}
+\includegraphics[width=0.9\linewidth]{img/debugger.png}
 \centering
 \caption{
 Illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.
@@ -350,16 +350,16 @@ In consequence, more different images have more distant values, so we can transf
 With the build up database of tunnel vectors, we can use the standard tools of information visualization to get the idea about the distances between tunnels.
 
 \subsection{Similarity Overview}
-We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors
-\begin{equation}
-IM = 
-\begin{pmatrix}
-I_m(tun_1) \\
-I_m(tun_2) \\
-\vdots    \\
-I_m(tun_m) 
-\end{pmatrix}
-\end{equation} 
+We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors.
+%\begin{equation}
+%IM = 
+%\begin{pmatrix}
+%I_m(tun_1) \\
+%I_m(tun_2) \\
+%\vdots    \\
+%I_m(tun_m) 
+%\end{pmatrix}
+%\end{equation} 
 
 When dealing with a tunnel in molecular dynamics, the matrix $IM$ will contain hundreds of rows and it will be challenging to explore the raw matrix to see which tunnels are close to each other and which not.
 To make the ensemble more understandable, we decided to transform the $IM$ matrix to point set representation in 2D, where each point represents one tunnel.
@@ -414,7 +414,7 @@ The Mahalanobis distance is a measure of the distance between a point and a dist
 The Mahalanobis distance is unitless and scale-invariant and takes into account the correlations of the data set.
 
 \begin{figure}[htb]
-\includegraphics[width=\linewidth]{img/invariance.png}
+\includegraphics[width=0.8\linewidth]{img/invariance.png}
 \centering
 \caption{
 Tunnel similarity overview for four different ways of generating image moment: standard (upper-left), with amino acids coloring permutation (upper-right), rotated (lower-left), and with normalized size of the centerline (lower-right).
@@ -554,9 +554,9 @@ There were also some new ideas of the final visualization composition.
 First was to incorporate the unfolded overview for the whole cluster.
 This means to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
 
-\todo{this sounds strange}Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
-
-\todo[inline]{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
+\todo{this sounds strange}
+%Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
+\todo{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
 
 %-------------------------------------------------------------------------
 
