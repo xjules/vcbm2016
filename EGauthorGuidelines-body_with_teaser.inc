@@ -446,11 +446,17 @@ And finally is the bar chart view where each tunnel is represented by one bar an
 \begin{figure*}[htb]
 \includegraphics[width=\linewidth]{img/5dynamics.pdf}
 \centering
-\caption{Visualization of sequence of more then 350 time steps of DhaA haloalkane dehalogenase protein. The bar chart shows the tunnel stability while scatter plot provides an information about different outliers. The unfolded representation then depicts the influence of individual amino acids.}
+\caption{Visualization of sequence of 350 time steps of DhaA haloalkane dehalogenase protein. The bar chart shows the tunnel stability while scatter plot provides an information about different outliers. The unfolded representation then depicts the influence of individual amino acids.}
 \label{fig:dynamic}
 \end{figure*}
 
 Using the unfolding tunnel view the user is able to intuitively compare the width of the tunnels, the position of their bottleneck, the set of tunnel-lining amino acids and their extent of influence.
+{\color{red}In order to communicate various physico-chemical properties of individual amino acids we use color mapping. 
+However, using this approach we are able to visualize only single property in time.
+Hence we provide also more aggregate view situated next to the unfolded tunnel image.
+This view communicates an average value for each observer physico-chemical property computed over a narrow strip of the tunnel surface.
+Such value can be seen as if it would be measured inside of the tunnel closed to its centerline.}
+
 The unfolded tunnels are positioned side by side, or in other words by using the juxtaposition composition.
 Positioning tunnels from different time frames allows the user to see the behavior of the bottleneck as well as the amino acids.
 It is visible that the unfolded tunnels need a space to be seen properly.
@@ -498,7 +504,7 @@ For a tunnel in each time step (or a selected subset if desired) we first derive
 This produces clusters of tunnels according to their similarity which are visualized using the scatterplot.
 Additionally, the coloring of individual clusters helps us to find the correspondence between the scatterplot and the bar chart representation where we can see the positions of tunnels belonging to these clusters spread over time. 
 The bar chart immediately shows the time portions in which the tunnel was stable or unstable (depending of the interest of the researcher).
-Figure~\ref{fig:dynamic} shows the resulting representation for a sequence of more then 350 time steps of DhaA haloalkane dehalogenase protein.
+Figure~\ref{fig:dynamic} shows the resulting representation for a sequence of 350 time steps of DhaA haloalkane dehalogenase protein.
 From the bar chart view we can clearly see that the tunnels shape is highly stable in the first part of the simulation while it becomes more and more unstable towards the end. 
 On the other hand, from the unfolded representation, containing by default the most representative samples of individual clusters, it is obvious that during the stable period (clusters \#3 and \#1) there was almost no influence of Tyrosine (Y:259 highlighted by red).\todo[color=blue!40]{{\color{black}clusters should be renumbered in oder to start from 1}} 
 This changes later when also the influence of the neighboring amino acids, such as Phenylalanine F154 and Asparagine N27 is starting to change significantly.
