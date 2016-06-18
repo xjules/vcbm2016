@@ -51,13 +51,13 @@
 \begin{abstract}
 The presence of tunnels in protein structures substantially influences their reactivity with other molecules.
 Therefore, studying their properties and changes over time has been in the scope of biochemists for decades.
-In this paper we introduce a novel approach to the comparative visualization and exploration of ensembles of tunnels
-We aim to overcome the occlusion problems of traditional tunnel representations and to quickly navigate the user through the input dataset and help to identify the possibly interesting tunnels.
+In this paper we introduce a novel approach for comparative visualization and exploration of ensembles of tunnels.
+Our goal is to overcome occlusion problems present in traditional tunnel representations while providing users a quick way to navigate  through the input dataset to identify potentially interesting tunnels.
 First, we unfold the input tunnels to a 2D representation enabling to observe the mutual position of amino acids forming the tunnel surface and the amount of surface they influence.
-These 2D images are subsequently compared using the image moment method commonly used in image processing.
-This way we are able to detect similarities and outliers in the dataset which are visualized as clusters in a scatterplot graph.
+These 2D images are subsequently described by image moments commonly used in image processing.
+This way we are able to detect similarities and outliers in the dataset, which are visualized as clusters in a scatterplot graph.
 The same coloring scheme is used in the linked bar chart enabling to detect the position of the cluster members over time.
-These views help to select a subset of possibly interesting tunnels which can be further explored in detail using the 2D unfolded view and traditional 3D representation.
+These views provides a way to select a subset of potentially interesting tunnels that can be further explored in detail using the 2D unfolded view and also traditional 3D representation.
 The usability of our approach is demonstrated on case studies conducted by the domain experts.
 
 \begin{classification} % according to http://www.acm.org/class/1998/
