@@ -499,14 +499,12 @@ This produces clusters of tunnels according to their similarity which are visual
 Additionally, the coloring of individual clusters helps us to find the correspondence between the scatterplot and the bar chart representation where we can see the positions of tunnels belonging to these clusters spread over time. 
 The bar chart immediately shows the time portions in which the tunnel was stable or unstable (depending of the interest of the researcher).
 Figure~\ref{fig:dynamic} shows the resulting representation for a sequence of more then 350 time steps of DhaA haloalkane dehalogenase protein.
-\todo[color=red!40]{Check please whether it make sense? :)}
-{\color{red}From the bar chart view we can clearly see that the tunnels shape is highly stable in the first part of the simulation while it becomes more and more unstable towards the end. 
-On the other hand, from the unfolded representation, containing by default the most representative samples of individual clusters, it is obvious that during the stable period (clusters {\color{blue}\#3} and {\color{blue}\#1}) there was almost no influence of the Tyrosine (Y:259 highlighted by red).\todo[color=blue!40]{{\color{black}clusters should be renumbered in oder to start from 1}} 
-This changes later when also the influence of neighboring amino acids such as Phenylalanine and Asparagine (F:154 and N27 respectively) is starting to change significantly.
-Moreover, using our tool, the biochemist were immediately able to spotted several outliers belonging to the cluster {\color{blue}\#2} (see vertical arrows in bottom of Figure~\ref{fig:dynamic}). 
+From the bar chart view we can clearly see that the tunnels shape is highly stable in the first part of the simulation while it becomes more and more unstable towards the end. 
+On the other hand, from the unfolded representation, containing by default the most representative samples of individual clusters, it is obvious that during the stable period (clusters \#3 and \#1) there was almost no influence of Tyrosine (Y:259 highlighted by red).\todo[color=blue!40]{{\color{black}clusters should be renumbered in oder to start from 1}} 
+This changes later when also the influence of the neighboring amino acids, such as Phenylalanine F154 and Asparagine N27 is starting to change significantly.
+Moreover, using our tool, the biochemists were immediately able to spot several outliers belonging to the cluster \#2 (see vertical arrows in bottom of Figure~\ref{fig:dynamic}). 
 This cluster represents tunnels which are significantly shorter then others.
-The same cluster can be also easily identified in the similarity overview where this whole cluster is clearly separated from the rest (see white circle in Figure~\ref{fig:dynamic}).}
-
+The same cluster can be also easily identified in the similarity overview where this whole cluster is clearly separated from the rest (see white circle in Figure~\ref{fig:dynamic}).
 
 By clicking on the individual bars in the bar chart the user can select a subset of tunnels to be explored in more detail.
 These selected time steps are immediately visualized using the unfolded representation and the tunnels are juxtaposed to enable the comparison of the width and constitution of the tunnel.
@@ -526,12 +524,12 @@ Then it presents the study in which the biochemists aimed to find the best possi
 The researchers revealed that the DhaA80 mutation in which the amino acid on position 176, which in the wild type form contains Cysteine, was replaced by Phenylalanine.
 This mutation closed the main tunnel which caused the increase in melting temperature of the protein by 19 degrees and the resistance to cosolvent dimethyl sulfoxide was increased 4000 times.
 This situation is clearly visible in our representation as well.
-\todo[color=red!40]{Check please whether it make sense? :)}{\color{red}Figure~\ref{fig:mutation} demonstrates the situation when we performed multiple mutations of a single amino at specific position with ID 176.
-It is obvious that if the original amino acids ({\color{green}
-Figure~\ref{fig:mutation} -- ORIG}) is replaced by similar or even smaller one such as Glutamic Acid or Glycine ({\color{green}
+Figure~\ref{fig:mutation} demonstrates the situation when we performed multiple mutations of a single amino acid in position 176 in the protein chain.
+It is obvious that if the original amino acid ({\color{green}
+Figure~\ref{fig:mutation} -- ORIG}) is replaced by similar or even a smaller one, such as Glutamic Acid or Glycine ({\color{green}
 Figure~\ref{fig:mutation} -- GLU and GLY respectively}) the tunnel becomes wider.
-On the other hand using bigger amino acids such as Phenylalanine or Histidine ({\color{green}
-Figure~\ref{fig:mutation} -- {\color{blue}PHE} and GLY respectively}) decreases the bottleneck of the tunnel significantly. \todo[color=blue!40]{{\color{black}PHE needs to be renamed in image}}}
+On the other hand, using bigger amino acids, such as Phenylalanine or Histidine ({\color{green}
+Figure~\ref{fig:mutation} -- {\color{blue}PHE} and GLY respectively}) decreases the bottleneck of the tunnel significantly. \todo[color=blue!40]{{\color{black}PHE needs to be renamed in image}}
 In this particular case when the user is interested in a specific amino acid our tool enables to highlight it in order to even enhance the comparison.
 
 When evaluating the suitability of our approach to this type of tasks the biochemists appreciated the unfolded view much more than in the case of molecular dynamics simulations.
