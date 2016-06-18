@@ -451,11 +451,10 @@ And finally is the bar chart view where each tunnel is represented by one bar an
 \end{figure*}
 
 Using the unfolding tunnel view the user is able to intuitively compare the width of the tunnels, the position of their bottleneck, the set of tunnel-lining amino acids and their extent of influence.
-{\color{red}In order to communicate various physico-chemical properties of individual amino acids we use color mapping. 
-However, using this approach we are able to visualize only single property in time.
-Hence we provide also more aggregate view situated next to the unfolded tunnel image.
-This view communicates an average value for each observer physico-chemical property computed over a narrow strip of the tunnel surface.
-Such value can be seen as if it would be measured inside of the tunnel closed to its centerline.}
+In order to communicate various physico-chemical properties of individual amino acids we use color mapping. 
+However, using this approach we are able to visualize only a single property at once.
+Hence we provide also more aggregated view situated next to the unfolded tunnel image.
+This view communicates the average value for each observed physico-chemical property computed for the tunnel-lining amino acids.
 
 The unfolded tunnels are positioned side by side, or in other words by using the juxtaposition composition.
 Positioning tunnels from different time frames allows the user to see the behavior of the bottleneck as well as the amino acids.
