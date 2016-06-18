@@ -529,7 +529,7 @@ It is obvious that if the original amino acid ({\color{green}
 Figure~\ref{fig:mutation} -- ORIG}) is replaced by similar or even a smaller one, such as Glutamic Acid or Glycine ({\color{green}
 Figure~\ref{fig:mutation} -- GLU and GLY respectively}) the tunnel becomes wider.
 On the other hand, using bigger amino acids, such as Phenylalanine or Histidine ({\color{green}
-Figure~\ref{fig:mutation} -- {\color{blue}PHE} and GLY respectively}) decreases the bottleneck of the tunnel significantly. \todo[color=blue!40]{{\color{black}PHE needs to be renamed in image}}
+Figure~\ref{fig:mutation} -- PHE and GLY respectively}) decreases the bottleneck of the tunnel significantly.
 In this particular case when the user is interested in a specific amino acid our tool enables to highlight it in order to even enhance the comparison.
 
 When evaluating the suitability of our approach to this type of tasks the biochemists appreciated the unfolded view much more than in the case of molecular dynamics simulations.
