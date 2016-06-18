@@ -57,7 +57,7 @@ First, we unfold the input tunnels to a 2D representation enabling to observe th
 These 2D images are subsequently described by image moments commonly used in image processing.
 This way we are able to detect similarities and outliers in the dataset, which are visualized as clusters in a scatterplot graph.
 The same coloring scheme is used in the linked bar chart enabling to detect the position of the cluster members over time.
-These views provides a way to select a subset of potentially interesting tunnels that can be further explored in detail using the 2D unfolded view and also traditional 3D representation.
+These views provide a way to select a subset of potentially interesting tunnels that can be further explored in detail using the 2D unfolded view and also traditional 3D representation.
 The usability of our approach is demonstrated on case studies conducted by the domain experts.
 
 \begin{classification} % according to http://www.acm.org/class/1998/
@@ -105,11 +105,11 @@ This can happen namely in situations when we want to explore:
 When performing these tasks using traditional 3D visualization, the first situation uses the animation of tunnel movement and the second situation superposes the tunnel under different mutations.
 Both cases suffer from several drawbacks. 
 When dealing with large molecular dynamics simulations consisting of hundreds of thousands of time steps, the animation of this movement is very hard to explore.
-The user is overwhelmed by the movements and the differences in the tunnel shape can be easily overlooked.
+The user is overwhelmed by movements and the differences in the tunnel shape can be easily overlooked.
 Moreover, using the 3D tunnel representation only a portion of the tunnel surface is visible from the viewpoint.
 When aiming to explore a tunnel influenced by several mutations of its surrounding amino acids, the user wants to observe and evaluate the impact of these mutations on the tunnel surface. Using superposition of the mutated tunnels we suffer from visual clutter caused by surface overlaps (see Figure~\ref{fig:tunnels} left).
 These overlaps can be removed by using juxtaposition of the tunnel representations (see Figure~\ref{fig:tunnels} right).
-But such a case is applicable only on a small set of objects because it can be hard to perceive the differences between them, namely for those in further mutual distance. 
+But such a case is applicable only on a small set of objects because it can be hard to perceive the differences between them, namely for those having a further mutual distance. 
 This problem is even stressed when using the 3D tunnel representation.
 
 \begin{figure}[htb]
