@@ -280,13 +280,13 @@ The second feature is the notion of the tunnel width meaning that narrower and w
 The narrowest part of the tunnel, called bottleneck, is usually the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 The third feature is the spatial information about the tunnel length.
 
-{\color{orange} As already mentioned, in order to avoid occlusion issues we represent the tunnel as 2D image.
+As already mentioned, in order to avoid occlusion issues we represent the tunnel as a 2D image.
 The general idea of our unfolding method is based on the centerline parametrization~\cite{Kanitsar2002CPR}.
-If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$ then any point on the tunnel sufrace can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.
+If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$ then any point on the tunnel surface can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.
 %To  , we use parametrization of the tunnel surface by distance from active site $t$ and angle $a$.
 Therefore, in order to obtain the unfolded view, we firstly cut the tunnel along its centerline in uniform steps, which produces a set of contours.
-Each contour is computed as an intersection of a plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
-To avoid the unwanted cases, when the two neighboring cuts might cross, we employ simple smoothing proposed for similar purposes in MoleCollar~\cite{Byska2015MoleCollar}.
+Each contour is computed as the intersection of a plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
+To avoid unwanted cases when two neighboring cuts might cross, we employ simple smoothing proposed for similar purposes in MoleCollar~\cite{Byska2015MoleCollar}.
 In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.
 
 %The second parameter $a$, of our parametrization, samples the points on individual contours.
