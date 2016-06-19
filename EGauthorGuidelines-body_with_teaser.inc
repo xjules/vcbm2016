@@ -365,8 +365,8 @@ Illustration of the connection between tunnel 3D shape, its unfolded representat
 \label{fig:flatteningUtility}
 \end{figure}
 
-For illustration purposes we also prepared a utility (see Figure~\ref{fig:flatteningUtility}) to show the spatial connection between the representations.
-The utility is quite useful to get a grasp of the tunnel properties, to evaluate the correctness of the unfolding process, and to demonstrate the ability of the representation to show important features.
+{\color{orange}
+The unfolded view can be also linked with the tool for detailed exploration of one selected tunnel (see Figure~\ref{fig:flatteningUtility}). This highly interactive environment contains the unfolded view equipped with horizontal and vertical cutting lines. By manipulating with these lines the user can observe the slice view providing the detailed information about the shape of the tunnel in the highlighted area. These lines are also visible in the 3D view of the tunnel which can be rotated.}
 
 Nevertheless, the core benefit of the unfolded tunnel representation lies in the ability to perform a comparative visualization.
 Juxtapositioned or superpositioned of the unfolded tunnels give an overview of the spatial and content-wise differences between different tunnels.
