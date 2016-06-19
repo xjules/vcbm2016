@@ -299,7 +299,7 @@ The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such
 }
 
 {\color{orange}
-Note that having a global cutting vector $v$ can, however, introduce unwanted artifacts due to the curvature of the centerline.
+However, having a global cutting vector $v$ might introduce unwanted artifacts due to the curvature of the centerline.
 To overcome this problem, we compute the cutting vector only for the first contour at position $c(t_0)$.
 While for every other subsequent contour we simply project the previous cutting vector onto the current cutting plane.
 
