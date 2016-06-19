@@ -411,7 +411,7 @@ I_m = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu
 Having such vector for each tunnel, we can use the standard tools of information visualization to get the overview about the similarity of those tunnels.
 
 \subsection{Similarity Overview}
-We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors $I_m$ for each tunnel.
+We are able to set up a $m$-by-$n$ tunnels matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors $I_m$ for each tunnel.
 %\begin{equation}
 %IM = 
 %\begin{pmatrix}
@@ -422,13 +422,15 @@ We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist 
 %\end{pmatrix}
 %\end{equation} 
 
-When dealing with a tunnel in molecular dynamics, the matrix $IM$ contains hundreds of rows and it is challenging to explore the raw matrix to see and understand which tunnels are close to each other and which are not.
-To make the ensemble more understandable, we project the $IM$ matrix of tunnel image moments to 2D, where each 2D point represents one tunnel.
-Here, the important requirement is that the distance between the tunnels in the matrix must be transformed into the distances between points.
+When dealing with a tunnel in molecular dynamics, the matrix $IM$ contains hundreds of rows.
+% and it is challenging to explore the raw matrix to see and understand which tunnels are close to each other and which are not.
+To make such an ensemble understandable, we project the $IM$ matrix of tunnel image moments to 2D, where each point represents one tunnel.
+Here, the important requirement is that the distance between the tunnels must be preserved as much as possible.
+%in the matrix must be transformed into the distances between points.
 
-First, the matrix dimension needs to be reduced.
-There are several approaches for dimensionality reduction, such as Principal Component Analysis(PCA), Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA}, t-Distributed Stochastic Neighbor Embedding (t-SNE)~\cite{mateen2008tsne} and others.
-The important property of the approach is the ability to reduce the ten digits tunnel descriptor to 2D point coordinates and to visualize the statistical results for the whole matrix.
+First, the matrix dimension needs to be reduced. \todo{Where is the second step?}
+There are several approaches for dimensionality reduction, such as Principal Component Analysis~(PCA), Kernel Principal Component Analysis~(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis~(ICA)~\cite{Olshausen1997ICA}, t-Distributed Stochastic Neighbor Embedding~(t-SNE)~\cite{mateen2008tsne} and others.
+The important property of the approach is the ability to reduce the ten digits tunnel descriptor to point in 2D coordinates and to visualize the statistical results for the whole matrix.
 Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation. Because most of the approaches produces similar result, and for its simplicity, we have adopted PCA for dimension reduction.
 
 PCA is a statistical tool that transforms a set of observations, in our case a set of image moment vectors, to the set of linearly uncorrelated variables. 
@@ -443,9 +445,9 @@ Our 2D overview is just a simple demonstration, however, more complex visualizat
 This is one of the possible future directions of the method.
 
 \subsubsection{Clustering}
-Having the visual representation of the similarity between tunnels is a very useful tool for the navigation through possible tunnel arrangements, which was shown, and discussed in the work of van den Elzen et al.\cite{Elzen2016SnapshotsToPoints} on the example of dynamic networks.
-With points spread in the 2D space it is easy to see where the points are more densely populated (clusters) and which points are more distant from other ones (outliers).
-However, for a successful connection with other views, one needs a proper color depiction of clusters and outliers.
+Having the visual representation of the similarity between tunnels can be seen essential for visual navigation through possible tunnel arrangements, which was also shown and discussed in the work of van den Elzen et al.\cite{Elzen2016SnapshotsToPoints} on the example of dynamic networks.
+With points spread in the 2D space it is easy to spot densely populated areas (clusters), and also points being further away from the others (outliers).
+For a successful linking with other views, one needs to establish a proper color assignment of clusters and outliers.
 Here, clustering allows us to make groups of points to determine patterns in the overview.
 %Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
 %Essentially, points in a cluster determine a group of similar tunnels.
@@ -461,12 +463,12 @@ We have empirically found out that showing five tunnels at the same time is the 
 Moreover k-means was selected because of its simplicity and for its conceptual closeness to the nearest neighbor classification.
 However, a well known problem relates to the borders of clusters, since the algorithm optimizes cluster centers, not cluster borders. This represents another direction of our future work, where we will conduct experiments with other families of cluster algorithms such as hierarchical clustering, density clustering, and other methods from machine learning.
 
-Additionally, it is also important to mention the right choice of distance metric for the clustering algorithm. 
-Here, the Euclidean distance represents the natural choice, which is also very easy to work with.
-However, it is not that straightforward to see its application to the image moment descriptor as well.
-More appropriate might be to use the Mahanalobis distance.
-The Mahalanobis distance is a measure of the distance between a point and a distribution.
-The Mahalanobis distance is unitless and scale-invariant and takes into account the correlations of the data set.
+%Additionally, it is also important to mention the right choice of distance metric for the clustering algorithm. 
+%Here, the Euclidean distance represents the natural choice, which is also very easy to work with.
+%However, it is not that straightforward to see its application to the image moment descriptor as well.
+%More appropriate might be to use the Mahanalobis distance.
+%The Mahalanobis distance is a measure of the distance between a point and a distribution.
+%The Mahalanobis distance is unitless and scale-invariant and takes into account the correlations of the data set.
 
 Image moment descriptor, dimension reduction, and clustering should all bring the same notion of tunnels similarity/dissimilarity.
 The original image moment is not invariant to translation, rotation, or scale, but there exist versions in which those properties are invariant.
@@ -488,12 +490,12 @@ Points are colored according to the detected clusters.
 
 \subsection{Exploration}
 
-Until now we described individual parts of our exploration solution.
+So far we have described individual components of our technique.
 All of them play a crucial role in the exploration process.
-Therefore, our final exploration solution consists out of these views (see Figure~\ref{fig:processing_pipeline}d).
-First is a view of the set of unfolded tunnels, which allows to make a comparison of spatial and structural aspects of the tunnel.
-Second is the scatterplot showing the similarity/dissimilarity overview which brings forth the notion of the differences between tunnels.
-And finally is the bar chart view where each tunnel is represented by one bar and the height of the bar corresponds to the tunnel length.
+Therefore, our final exploration solution consists out of the following views (see Figure~\ref{fig:processing_pipeline}d).
+First, we introduce a view showing set of unfolded tunnels, which allows to make a comparison of spatial and structural aspects of the tunnel.
+Second, we exploit scatterplot showing the similarity/dissimilarity overview which brings forth the notion of the differences between tunnels.
+Finally, we employ a bar chart view where each tunnel is represented by one bar and the height of the bar corresponds to the tunnel length.
 
 \begin{figure*}[htb]
 \includegraphics[width=\linewidth]{img/5dynamics.pdf}
