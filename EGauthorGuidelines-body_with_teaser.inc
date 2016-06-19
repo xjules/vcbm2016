@@ -270,17 +270,17 @@ The individual steps of our algorithm will be described in the following section
 
 
 \subsection{Unfolding Process}
-{\color{orange}The input data consists of a triangle mesh representing tunnel shape, a graph of connected points representing tunnel centerline and information about spatial and physico-chemical properties of the tunnel-lining amino acids.} \todo{removed information that info is stored in vertices.}
+The input data consists of a triangle mesh representing tunnel shape, a graph of connected points representing tunnel centerline and information about spatial and physico-chemical properties of tunnel-lining amino acids.
 %Each tunnel is defined by its shape as a triangle mesh, its centerline as a graph of connected points, and the information about hydrophobicity, charge, and hydrogen bonds of the tunnel-lining amino acids is stored for each vertex of the mesh.
 %Moreover, we have a set of characteristics that are of utmost importance to explore.
 %In our case
 We need to clearly communicate three features ordered from the most to the least important.
-{\color{orange}First,} the position and distribution of amino acids that form the tunnel boundary.
-Second, the notion of the tunnel width meaning that narrower and wider areas of the tunnel should be communicated adequately to the user.
+First is the position and distribution of amino acids that form the tunnel boundary.
+The second feature is the notion of the tunnel width meaning that narrower and wider areas of the tunnel should be communicated adequately to the user.
 The narrowest part of the tunnel, called bottleneck, is usually the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 The third feature is the spatial information about the tunnel length.
 
-{\color{orange} As already mention, in order to avoid occlusion issues we represent the tunnel as 2D image.
+{\color{orange} As already mentioned, in order to avoid occlusion issues we represent the tunnel as 2D image.
 The general idea of our unfolding method is based on the centerline parametrization~\cite{Kanitsar2002CPR}.
 If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$ then any point on the tunnel sufrace can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.
 %To  , we use parametrization of the tunnel surface by distance from active site $t$ and angle $a$.
