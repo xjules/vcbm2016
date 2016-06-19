@@ -269,22 +269,30 @@ The individual steps of our algorithm will be described in following sections in
 }
 
 \subsection{Unfolding Process}
-Each tunnel is defined by its shape as a triangle mesh, its centerline as a graph of connected points, and the information about hydrophobicity, charge, and hydrogen bonds of the tunnel-lining amino acids is stored for each vertex of the mesh.
-Moreover, we have a set of characteristics that are of utmost importance to explore.
-In our case we want to clearly communicate three features ordered from the most to the least important.
-The first feature is the positioning and distribution of amino acids that form the tunnel boundary.
-The second one is the spatial information about the tunnel length and its thickness development.
-The third feature is the notion of the tunnel width meaning that the user should be able to detect narrower and wider areas of the tunnel.
-Here the narrowest part of the tunnel, the bottleneck, is usually also the most important one because it determines the size of a ligand molecule which can follow this tunnel.
+{\color{orange}The input data consists of a triangle mesh representing tunnel shape, a graph of connected points representing centerline and information about spatial and physico-chemical properties of the tunnel-lining amino acids.} \todo{removed information that info is stored in vertices.}
+%Each tunnel is defined by its shape as a triangle mesh, its centerline as a graph of connected points, and the information about hydrophobicity, charge, and hydrogen bonds of the tunnel-lining amino acids is stored for each vertex of the mesh.
+%Moreover, we have a set of characteristics that are of utmost importance to explore.
+%In our case
+We need to clearly communicate three features ordered from the most to the least important.
+{\color{orange}First,} the position and distribution of amino acids that form the tunnel boundary.
+Second, the notion of the tunnel width meaning that the user should be able to detect narrower and wider areas of the tunnel.
+The narrowest part of the tunnel, called bottleneck, is usually the most important one because it determines the size of a ligand molecule which can follow this tunnel.
+The third feature is the spatial information about the tunnel length.
 
-The general idea of our unfolding method is based on the centerline parametrization.
-For each tunnel we have the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$.
-Our method is based on slicing the tunnel by clip planes perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $a$.
+ 
 
-The centerline is always inside the tunnel and does not exhibit any high curvatures.
-However we are well aware, that two neighboring planes might cross.
-Therefore the normal vector if the clip plane is an average vector of directions from approximately ten neighboring points on the centerline.
-Which is sufficient enough for case of molecular tunnels \cite{Byska2015AnimoAminoMiner}.
+
+
+The general idea of our unfolding method is based on the centerline parametrization~\cite{Kanitsar2002CPR}.
+For each tunnel we have the curve $\mathbf{c}(t) : [t_0, t_1]$ {\color{orange}defining its centerline}, and the cut direction $\mathbf{v}$.
+\todo[inline, color=red!40, author=Toto je treba prepsat - zejmena ty rays jsou docela nepochopitelne]{Our method is based on slicing the tunnel by clip planes perpendicular to the centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $a$.}
+
+The centerline is always inside of the tunnel and does not exhibit high curvature.
+{\color{orange}However, in some rare occasions the two neighboring cuts might still cross.
+Therefore, we use simple smoothing technique which was proposed for MoleCollar~\cite{Byska2015MoleCollar} method. In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.}
+%Which is sufficient enough for case of molecular tunnels \cite{Byska2015AnimoAminoMiner}.
+
+------------------------
 
 The cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in the first several slices.
 These stable amino acids can be found close to the tunnel end point which is deeply buried in the protein structure.
