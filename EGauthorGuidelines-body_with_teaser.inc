@@ -269,7 +269,7 @@ The individual steps of our algorithm will be described in following sections in
 }
 
 \subsection{Unfolding Process}
-{\color{orange}The input data consists of a triangle mesh representing tunnel shape, a graph of connected points representing centerline and information about spatial and physico-chemical properties of the tunnel-lining amino acids.} \todo{removed information that info is stored in vertices.}
+{\color{orange}The input data consists of a triangle mesh representing tunnel shape, a graph of connected points representing tunnel centerline and information about spatial and physico-chemical properties of the tunnel-lining amino acids.} \todo{removed information that info is stored in vertices.}
 %Each tunnel is defined by its shape as a triangle mesh, its centerline as a graph of connected points, and the information about hydrophobicity, charge, and hydrogen bonds of the tunnel-lining amino acids is stored for each vertex of the mesh.
 %Moreover, we have a set of characteristics that are of utmost importance to explore.
 %In our case
@@ -279,44 +279,52 @@ Second, the notion of the tunnel width meaning that the user should be able to d
 The narrowest part of the tunnel, called bottleneck, is usually the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 The third feature is the spatial information about the tunnel length.
 
- 
-
-
-
+{\color{orange} As already mention, in order to avoid occlusion issues we represent the tunnel as 2D image.
 The general idea of our unfolding method is based on the centerline parametrization~\cite{Kanitsar2002CPR}.
-For each tunnel we have the curve $\mathbf{c}(t) : [t_0, t_1]$ {\color{orange}defining its centerline}, which is always inside of the tunnel and does not exhibit high curvature.
-Firstly, we cut the tunnel along the centerline in uniform steps, and is is based on the first parameter of our parametrization $t$.
-Every cut is produced by clip plane perpendicular to the centerline tangent at position $\mathbf{c}(t)$.
-{\color{orange}However, in some rare occasions the two neighboring cuts might still cross.
-Therefore, we use simple smoothing technique which was proposed for MoleCollar~\cite{Byska2015MoleCollar} method. In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.}
-%Which is sufficient enough for case of molecular tunnels \cite{Byska2015AnimoAminoMiner}.
+If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$ then any point on the tunnel sufrace can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.
+%To  , we use parametrization of the tunnel surface by distance from active site $t$ and angle $a$.
+Therefore, in order to obtain the unfolded view, we first cut the tunnel along its centerline in uniform steps which produces a set of contours.
+Each contour is computed as an intersection of plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
+To avoid the unwanted cases, when the two neighboring cuts might cross, we employ simple smoothing proposed for similar purposes in MoleCollar~\cite{Byska2015MoleCollar}.
+In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.
 
-Second parameter $a$, of our parametrization, samples the points of the cut, and strongly depends on the cutting vector $\mathbf{v}$.
-The cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in the first ten slices.
-These stable amino acids can be found close to the tunnel end point which is deeply buried in the protein structure.
-This is derived from the fact that the amino acids close to the protein surface are much more flexible than those densely packed inside.
-This allows us to create one of the directions for the shared comparative visualization, as the neighboring amino acids are stable during all the simulation of the dynamics.
+%The second parameter $a$, of our parametrization, samples the points on individual contours.
+With the second parameter $a$ we are uniformly sampling points on each contour every $10^{\circ}$ (in clock-wise fashion).
+Hence, samples at position $a=0$ and $a=36$ are the same while the value $a=18$ corresponds to the sample on the opposite site of the contour. 
+The results, however, depends on the precise location of the point at the contour from where we start sampling.
+%sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
+In our case the starting point is defined by so called cutting vector $\mathbf{v}$. 
+The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acid in the first ten slices.
+}
+
+{\color{orange}
+Note that having a global cutting vector $v$ can, however, introduce unwanted artifacts due to the curvature of the centerline.
+To overcome this problem, we compute the cutting vector only for the first contour at position $c(t_0)$.
+While for every other subsequent contour we simply project the previous cutting vector onto the current cutting plane.
+
+Another reason for computing the cutting vector only at the beginning of the tunnel is that the most stable amino acids can be found close to the {\color{orange}protein active site} while amino acids closer to the protein surface are usually much more flexible.
+This assumption also allows us to create one of the common dimension for the comparative visualization, as the amino acids used for cutting vector are going to be stable during all the times steps of the molecular simulation as well.
 There are several other ways the cutting vector might be defined, but for our current needs this setting is sufficient. 
-
-Sampled point from parameter $a$ is the result of intersection of the cut and axis, which starts at $c(t)$, and which have a direction of vector $\mathbf{v}$ rotated around cut plane normal by angle $a$.
-With parameter $a$ we are uniformly sampling points from the cut every $10^{\circ}$, 
-Therefore, with $a=0$ and $a=36$ the sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
-
-------------------------
-
+}
+%Sampled point from parameter $a$ is the result of intersection of the cut and axis, which starts at $c(t)$, and which have a direction of vector $\mathbf{v}$ rotated around cut plane normal by angle $a$.
+%With parameter $a$ we are uniformly sampling points from the cut every $10^{\circ}$, 
+%Therefore, with $a=0$ and $a=36$ the sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
 
 %For instance, one might come up with more semantically correct cut, which would follow the borders between the neighboring amino acids.
 %This approach would not suffer from artifacts such as cutting one amino acid into two parts which can happen in our solution \todo[color=blue!40]{{\color{black}not sure whether we should mention also this}} .
 
-Having a tangent of the centerline and the global slicing vector can introduce a rotation artifact of the cut. 
-To overcome this problem, for each cutting plane along the centerline we project the cutting vector to the plane.
- 
-Shape overlays that are the result of the cuts are uniformly sampled.
-It is possible that between two neighboring samples some information might be lost, for example a small connecting cavity.
-However, this structure is too small to have any impact on the protein, and therefore we decided not to take this feature into account.
-The sampling is performed using the ray coming from the centerline and increasingly rotated around the slice normal.
-At each sample we compute a distance between the sample and centerline, and a slice line length between two samples $D(a_i, a_{i+1})$, where $a_i$ and $a_{i+1}$ are two neighboring samples(see Figure~\ref{fig:unfolding}).
 
+%Shape overlays that are the result of the cuts are uniformly sampled.
+
+{\color{orange}
+In order to reconstructs the final 2D view from the computed samples we need to transfer the obtained information (including the information about closest amino acid) to the different (2D) coordinate system.
+Here we simply utilize the two described parameters $t$ and $a$.
+The parameter $t$ can be used directly since its value ranges from 0, to 1 and corresponds to the length of the centerline.
+On the other hand, if we would used parameter $a$ without any transformation we would lost the information about the tunnel width.
+Therefore, we also compute for each contour the distance $D(a_i, a_{i+1})$ between every two neighboring samples $a_i$ and $a_{i+1}$ (see Figure~\ref{fig:unfolding}).
+This distance is then used in order to properly transform the position of the sample in final 2D space.
+}
+  
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
 \centering
@@ -324,21 +332,27 @@ At each sample we compute a distance between the sample and centerline, and a sl
 We cut the tunnel along its centerline. Then for each point on the centerline we create one slice.
 By straightening the cuts and putting them on top of each other we unfold the tunnel.}
 \label{fig:unfolding}
-\end{figure}
+\end{figure}  
 
-For each sample, in every slide we compute a new coordinates.
-First coordinate is based on the parameter $t$. The value of the parameter ranges from 0, to the length of the centerline, and it is a distance along it. 
-Second coordinate system is computed from the second parameter $a$. 
-Due to fact, that parameter $a$ is sampled uniformly, and for each neighbors we store a distance $D(a_i, a_{i+1})$, we are able to compute a size of the surface slice as a sum $\sum_{l=0}^{36} D(a_l, a_{l+1})$.
-Because we are doing an unfolding, samples from the cut should be on side, and samples from the opposite direction ($180^{\circ}$ with $a=18$).
-For unfolding a tunnel to coordinates, where the first one is for the length in centerline and second for the length in the cut the coordinates would be:\begin{equation}
-(t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
-\end{equation} 
+%It is possible that between two neighboring samples some information might be lost, for example a small connecting cavity.
+%However, this structure is too small to have any impact on the protein, and therefore we decided not to take this feature into account.
+
+%The sampling is performed using the ray coming from the centerline and increasingly rotated around the slice normal.
+
+%For each sample, in every slide we compute a new coordinates.
+%First coordinate is based on the parameter $t$. The value of the parameter ranges from 0, to the length of the centerline, and it is a distance along it. 
+%Second coordinate system is computed from the second parameter $a$. 
+Due to fact, that parameter $a$ is sampled uniformly we are able to reconstruct the circumference
+of the contour as a sum $\sum_{l=0}^{36} D(a_l, a_{l+1})$.
+%Because we are doing an unfolding, samples from the cut should be on side, and samples from the opposite direction ($180^{\circ}$ with $a=18$).
+%For unfolding a tunnel to coordinates, where the first one is for the length in centerline and second for the length in the cut the coordinates would be:\begin{equation}
+%(t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
+%\end{equation} 
 
 Thus, our unfolding method allows us to encode tunnel surface values in 2D.
 Moreover, the size of the tunnel over the centerline is preserved, as well as the size and position of the amino acids around the surface and their respective neighborhood.
 
-By connecting the same angle samples together we get a shape description that communicates the changes of the tunnel shape.
+By connecting the samples {\color{orange}with the same value of the parameter $a$} together we get a shape description that communicates the changes of the tunnel shape.
 For example, at the place where the lines are dense the tunnel is narrower.
 On the other hand, more scattered lines signify that the tunnel is wider (see Figure~\ref{fig:flatteningUtility}).
 
@@ -359,8 +373,7 @@ Juxtapositioned or superpositioned of the unfolded tunnels give an overview of t
 
 Note that in case of a smaller number of tunnels a simple composition of comparative visualization is sufficient.
 However, when analyzing molecular dynamics simulations one can obtain hundreds of time frames that are considered crucial.
-As the tunnel develops over time, together with the whole molecule, it changes its shape and content.
-Moreover, the tunnel properties change over time as well.
+As the tunnel develops over time, together with the whole molecule, it changes its shape and physico-chemical properties.
 To show the similarity/dissimilarity of tunnels one needs to have a suitable descriptor of a single instance.
 Since the unfolded representation contains all the relevant information in 2D, i.e. forming an image, we opted for image moments as the main set of descriptors.
 
@@ -378,24 +391,24 @@ At the end the tunnels are shown in multiple views(d). }
 {\color{orange}
 The image moments~\cite{Flusser09Moments} provide a practical way to characterize individual tunnels since they produce the similar values for similar images and more distinct for different once.} 
 %In consequence, more distinct images have more distant values, so we can transform the similarity between images to distance between the image moment vectors.
-Each image $I(x,y)$ can be described by the set of moments.
+Each image $I(x,y)$ can be described by the set of moments:
 \begin{equation}
 M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
 \end{equation} 
 There are various versions of image moments, {\color{orange}each invariant to different properties}, such as rotation, scale, or translation.
 For example, centralized moments are invariant to translation, which is a valuable property {\color{orange}in our case} since some amino acid areas might change their longitudinal position with respect to the length of the centerline.
-Centralized image moments for an image $I(x,y)$ are defined as
+Centralized image moments for an image $I(x,y)$ are defined as:
 \begin{equation}
 \mu_{ij} = \sum_{x}\sum_{y}\left(x - {M_{10} \over M_{00}}\right)^i\left(y - {M_{01} \over M_{00}}\right)^jI(x,y)
 \end{equation} 
-This way we are able to {\color{orange}characterize} each tunnel {\color{orange}by} a vector of values with the central moments of order up to three to condense the information. \todo[color=red!40]{co tim up to three myslis?}
-In our case, for the tunnel image $I$, it would be a vector $I_m$ of ten different image-centralized moments.
+This way we are able to {\color{orange}characterize} each tunnel {\color{orange}by} a vector of values with the central moments of order up to three to condense the information.
+{\color{orange}In our case, we have empirically found that a vector $I_m$ of ten different image-centralized moments is sufficient enough to describe the differences between individual tunnels: 
+}
 \begin{equation}
 I_m = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
 \end{equation} 
 
-Having such a database of tunnel vectors, we can use the standard tools of information visualization to get the idea about the distances between tunnels.
-
+Having such vector for each tunnel, we can use the standard tools of information visualization to get the overview about the similarity of those tunnels.
 
 \subsection{Similarity Overview}
 We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors $I_m$ for each tunnel.
