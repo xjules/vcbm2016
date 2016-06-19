@@ -158,7 +158,7 @@ These drawbacks were later overcome by Voronoi diagram-based methods \cite{Medek
 These methods first compute a Voronoi diagram of the protein atoms and use the Dijkstra algorithm on top of it. 
 Such an approach enables to save a huge amount of resources.
 The resulting tunnel is then represented by a set of spheres positioned onto the Voronoi edges forming the tunnel centerline.
-But the {\color{orange}real} tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
+But the more precise tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
 Therefore, this traditional spherical representation may lead to misinterpretation of the analyzed tunnel.
 As a consequence some alternative methods combining the grid and Voronoi-based techniques appeared~\cite{Jurcik2015Visibility}.
 These approaches detect the tunnel centerline using the Voronoi diagram and then rasterize the space around the centerline to obtain more precise representation of the tunnel surface.
@@ -176,7 +176,7 @@ Moreover, by using these techniques it is hard to capture the significant change
 For the thorough analysis of protein behavior, the physico-chemical properties of amino acids in tunnel vicinity are at least equally important as the geometrical aspects. 
 Therefore, recently several techniques was proposed by Parulek et al.~\cite{Parulek2013CavityAnalysis} and by Byska et al.~\cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner}. 
 These techniques are using a high level of abstraction in order to depict the evolution of protein voids including the nearby amino acids in a single image.
-However, when using {\color{orange}the proposed} 2D views, the {\color{orange}important} information about the {\color{orange}spatial} influence of individual tunnel lining amino acids and their mutual positions {\color{orange}is partially suppressed or even} completely lost.
+However, when using their proposed 2D views, the information about the spatial influence of individual tunnel-lining amino acids and their mutual positions is hard to understand.
 This problem is addressed by our proposed approach.
 
 %There are tools capable of such tracking, for instance, CAVER~3.0~\cite{Chovancova2012Caver3}. 
@@ -241,33 +241,33 @@ In both cases it means that at least some essential information about protein tu
 \section{Unfolding-Based Exploration}
 
 As already stated, the main goal of our work is to allow an interactive exploration of molecular tunnels ensembles coming from molecular dynamics simulations or protein mutations.
-{\color{orange}In both cases a tunnel shape and physico-chemical properties can develop and change dramatically.
+In both cases a tunnel shape and physico-chemical properties can develop and change dramatically.
 
 We derive tunnels from the raw data as a set of 3D objects representing the tunnel shape.
-In general, there is no trivial or a direct way to orient the obtained set of tunnels such that user could intuitively explore similarities and dissimilarities of individual tunnels, i.e., to perform co-registration.}
-There are several issues preventing direct comparison of such structures {\color{orange}in 3D}, e.g., the self-occlusion of tunnel features, occlusion between multiple tunnels, {\color{orange}etc}.
+In general, there is no trivial or direct way to orient the obtained set of tunnels such that the user could intuitively explore similarities and dissimilarities of individual tunnels, i.e., to perform co-registration.
+There are several issues preventing direct comparison of such structures in 3D, e.g., the self-occlusion of tunnel features, occlusion between multiple tunnels, {\color{orange}etc}.
 Moreover, there is always a limit of how many 3D objects users can explore at the same time in one window.
-{\color{orange}To overcome the self-occlusion issues we unfold a 3D tunnel representation to 2D as suggested by various related work.}
+To overcome the self-occlusion issues we unfold a 3D tunnel representation to 2D as suggested by various related work.
 
-{\color{orange}As already mentioned, the molecular dynamics consists of thousands of time steps, therefore, the direct comparison of shape of all the tunnels, using either 3D or 2D representation, is challenging task.
-To tackle this problem we opt to utilize an semi-automated method for evaluation of the tunnel similarities\todo{check please!}.
-Hence, it is necessary to define a set of descriptors that would properly characterize important properties of each tunnel.
-Several shape descriptors for whole proteins or binding sites were already suggested (\eg~\cite{Weisel2007PocketPicker}) but these take into account only the shape of protein surfaces while in our case we emphasize also the physico-chemical properties of surrounding amino acids.
+As already mentioned, molecular dynamics simulations can consist of thousands of time steps.
+Therefore, the direct comparison of shape of all tunnels, using either 3D or 2D representation, is a challenging task.
+To tackle this problem we utilize a semi-automated method for evaluation of tunnel similarities.
+To do this, it is necessary to define a set of descriptors that would properly characterize the important properties of each tunnel.
+Several shape descriptors for whole proteins or binding sites were already suggested (\eg~\cite{Weisel2007PocketPicker}) but these take into account only the shape of protein surfaces while in our case we emphasize also the physico-chemical properties of tunnel-lining amino acids.
  
-Since we deal with 2D representation of tunnels as solution for occlusion issues, we decided to employ a set of descriptors based on image moments~\cite{Flusser09Moments}.
+Since we deal with 2D representation of tunnels as a solution for occlusion issues, we decided to employ a set of descriptors based on image moments~\cite{Flusser09Moments}.
 The advantage of this approach is that the image moment is a well known descriptor for image analysis and classification.
 We can easily utilize the color channel for information about amino acids and hence directly fetch it to the descriptor.
-Additionally, it provides us an explicit description of the representation that we will ultimately provide to the user.
+Additionally, it gives us an explicit description of the representation that we will ultimately provide to the user.
 
 In order to communicate the obtained results we need to employ a dimension reduction technique due to the large amount of both tunnels and possible descriptors.
-In our technique we exploit principal component analysis (PCA) due its simplicity and applicability in dimensions reduction problems in data analysis; nevertheless any other method could be applied as well naturally.
-With PCA performed we can show the tunnels in a scatterplot view, where similarities/dissimilarities can be easily noticed as a distance between two points \todo{check please!}.
+In our technique we exploit principal component analysis (PCA) due its simplicity and applicability to dimension reduction problems in data analysis; nevertheless, any other method could be applied as well.
+The results of PCA are then presented in a scatterplot view where the similarities/dissimilarities between tunnels are communicated by the distance between points.
 
-Finally, having multiple views, the interaction allows us to explore the space of all tunnels in 2D using a scatterplot and at the same time to compare spatial characteristics of the individual unfolded tunnels.
+Finally, having multiple views, the interaction allows us to explore the space of all tunnels in 2D using scatterplot and at the same time to compare spatial characteristics of the individual unfolded tunnels.
 
-The individual steps of our algorithm will be described in following sections in more details.
+The individual steps of our algorithm will be described in the following sections in more detail.
 
-}
 
 \subsection{Unfolding Process}
 {\color{orange}The input data consists of a triangle mesh representing tunnel shape, a graph of connected points representing tunnel centerline and information about spatial and physico-chemical properties of the tunnel-lining amino acids.} \todo{removed information that info is stored in vertices.}
@@ -276,7 +276,7 @@ The individual steps of our algorithm will be described in following sections in
 %In our case
 We need to clearly communicate three features ordered from the most to the least important.
 {\color{orange}First,} the position and distribution of amino acids that form the tunnel boundary.
-Second, the notion of the tunnel width meaning that narrower and wider areas of the tunnel should be communicated addequatly to the user.
+Second, the notion of the tunnel width meaning that narrower and wider areas of the tunnel should be communicated adequately to the user.
 The narrowest part of the tunnel, called bottleneck, is usually the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 The third feature is the spatial information about the tunnel length.
 
@@ -284,15 +284,15 @@ The third feature is the spatial information about the tunnel length.
 The general idea of our unfolding method is based on the centerline parametrization~\cite{Kanitsar2002CPR}.
 If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$ then any point on the tunnel sufrace can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.
 %To  , we use parametrization of the tunnel surface by distance from active site $t$ and angle $a$.
-Therefore, in order to obtain the unfolded view, we first cut the tunnel along its centerline in uniform steps which produces a set of contours.
-Each contour is computed as an intersection of plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
+Therefore, in order to obtain the unfolded view, we firstly cut the tunnel along its centerline in uniform steps, which produces a set of contours.
+Each contour is computed as an intersection of a plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
 To avoid the unwanted cases, when the two neighboring cuts might cross, we employ simple smoothing proposed for similar purposes in MoleCollar~\cite{Byska2015MoleCollar}.
 In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.
 
 %The second parameter $a$, of our parametrization, samples the points on individual contours.
-With the second parameter $a$ we are uniformly sampling points on each contour every $10^{\circ}$ (in clock-wise fashion).
+With the second parameter $a$ we uniformly sample points on each contour every $10^{\circ}$ (in clock-wise fashion).
 Hence, samples at position $a=0$ and $a=36$ are the same while the value $a=18$ corresponds to the sample on the opposite site of the contour. 
-The results, however, depends on the precise location of the point at the contour from where we start sampling.
+However, the results depend on the precise location of the point at the contour from where we start sampling.
 %sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
 In our case the starting point is defined by so called cutting vector $\mathbf{v}$. 
 The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acid in the first ten slices.
