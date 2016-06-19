@@ -387,27 +387,26 @@ At the end the tunnels are shown in multiple views(d). }
 
 \subsection{Image Moment}
 %After unfolding phase, described in previous section, we have 2D representation for each tunnel.
-{\color{orange}
-The image moments~\cite{Flusser09Moments} provide a practical way to characterize individual tunnels since the acquired values capture well similarities and dissimilarities between tunnel images, i.e., they produce the similar values for similar images and more distinct for different once.} 
+Image moments~\cite{Flusser09Moments} provide a practical way to characterize individual tunnels since the acquired values capture the similarities and dissimilarities between tunnel images, i.e., they produce the similar values for similar images and more distinct for different ones.
 %In consequence, more distinct images have more distant values, so we can transform the similarity between images to distance between the image moment vectors.
 Each image $I(x,y)$ can be described by the set of moments:
 \begin{equation}
 M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
 \end{equation} 
-There are various versions of image moments, {\color{orange}each invariant to different trasformation}, such as rotation, scale, or translation.
-For example, centralized moments are invariant to translation, which is a valuable property {\color{orange}in our case} since some amino acid areas might change their longitudinal position with respect to the length of the centerline.
+There are various versions of image moments, each of them is invariant to different transformation, such as rotation, scale, or translation.
+For example, centralized moments are invariant to translation, which is a valuable property in our case since some amino acid areas might change their longitudinal position with respect to the length of the centerline.
 Centralized image moments for an image $I(x,y)$ are defined as:
 \begin{equation}
 \mu_{ij} = \sum_{x}\sum_{y}\left(x - {M_{10} \over M_{00}}\right)^i\left(y - {M_{01} \over M_{00}}\right)^jI(x,y)
 \end{equation} 
-This way we are able to {\color{orange}characterize} each tunnel {\color{orange}by} a vector of values with the central moments of order up to three to condense the information.
-{\color{orange}By several empirical tests of different combinations of image moments, we opted for the following set, $I_m$ of 10 image moments that was found sufficient enough to describe the differences between individual tunnels: 
-}
+This way we are able to characterize each tunnel by the vector of values with the central moments of order up to three to condense the information.
+After several empirical tests with different combinations of image moments we opted for the following set $I_m$ of 10 image moments that was found to be sufficient enough to describe the differences between individual tunnels: 
+
 \begin{equation}
 I_m = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
 \end{equation} 
 
-Having such vector for each tunnel, we can use the standard tools of information visualization to get the overview about the similarity of those tunnels.
+Having such a vector for each tunnel, we can use the standard tools of information visualization to get the overview about the similarity of those tunnels.
 
 \subsection{Similarity Overview}
 We are able to set up a $m$-by-$n$ tunnels matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors $I_m$ for each tunnel.
