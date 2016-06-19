@@ -245,7 +245,7 @@ In both cases a tunnel shape and physico-chemical properties can develop and cha
 
 We derive tunnels from the raw data as a set of 3D objects representing the tunnel shape.
 In general, there is no trivial or direct way to orient the obtained set of tunnels such that the user could intuitively explore similarities and dissimilarities of individual tunnels, i.e., to perform co-registration.
-There are several issues preventing direct comparison of such structures in 3D, e.g., the self-occlusion of tunnel features, occlusion between multiple tunnels, {\color{orange}etc}.
+There are several issues preventing direct comparison of such structures in 3D, e.g., the self-occlusion of tunnel features, occlusion between multiple tunnels, etc.
 Moreover, there is always a limit of how many 3D objects users can explore at the same time in one window.
 To overcome the self-occlusion issues we unfold a 3D tunnel representation to 2D as suggested by various related work.
 
@@ -295,11 +295,11 @@ Hence, samples at position $a=0$ and $a=36$ are the same while the value $a=18$ 
 However, the results depend on the precise location of the point at the contour from where we start sampling.
 %sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
 In our case the starting point is defined by so called cutting vector $\mathbf{v}$. 
-The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acid in the first ten slices.
+The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acid in the first ten slices, i.e., those that do not change their relative position significantly.
 }
 
 {\color{orange}
-Note that having a global cutting vector $v$ can, however, introduce unwanted artifacts due to the curvature of the centerline.
+However, having a global cutting vector $v$ might introduce unwanted artifacts due to the curvature of the centerline.
 To overcome this problem, we compute the cutting vector only for the first contour at position $c(t_0)$.
 While for every other subsequent contour we simply project the previous cutting vector onto the current cutting plane.
 
