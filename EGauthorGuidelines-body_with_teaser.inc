@@ -593,20 +593,21 @@ The biochemists confirmed that similar information is very hard to understand fr
 Therefore, they appreciated our representation and suggested its future extension by calculating and highlighting areas with the most significant changes.
 
 \section{Conclusion \& Future work}
-In this paper, we demonstrate the power of data analytics in order to support an actual application of exploring the shape and content of ensembles of tunnels in protein molecules.
+In this paper, we demonstrate the power of data analytics in order to support the actual application of exploring the shape and content of ensembles of tunnels in protein molecules.
 The resulting system can interactively show the overall development of the tunnel centerline, the tunnel similarities and dissimilarities, and the shape and content of a selected set of tunnels.
 
-Even with simple choices for some steps(PCA, k-means), we still achieve a solution that is helpful for the domain experts.
-We demonstrated the usage of the method in two case studies from the field of biochemistry, which were also commented by the domain experts.
+Even with simple methods used in some steps (such as PCA and k-means), we were able to achieve solution that proved to be helpful for the domain experts.
+We demonstrated the usage of the method on two case studies from the field of biochemistry, which were proposed and evaluated by the domain experts.
 This confirmed that our method can be used for the time-dependent data as well as for the datasets containing tunnel mutations.
 
-Certainly, it would be interesting to dig deeper and investigate more closely, whether more advanced, alternative techniques for the individual steps (non-linear embedding, bottom-up clustering,~...) could further improve the results.
+Certainly, it would be interesting to investigate more closely whether more advanced, alternative techniques for individual steps (non-linear embedding, bottom-up clustering,~...) could further improve the results.
 %After the discussions with the domain experts we also suggest several possibilities for future extensions. 
 %They are related to the unfolding process, generating tunnel similarity measure, and final visualization of the dataset.
-Regarding the unfolding we discussed a possibility to have a more intelligent cutting mechanism, which will enable more semantically-driven cut that would follow the borders of the amino acids in the tunnel.
+Regarding the unfolding the domain experts proposed the possibility to have a more sophisticated cutting mechanism which will enable more semantically-driven cut that would follow the borders of the amino acids in the tunnel.
 For the similarity overview, it is worthwhile to try the combination of image moment, reduction, and clustering, that is invariant to amino acids color permutation, rotation, and scale.
-There were also some new ideas of the final visualization composition.
-For example to incorporate the unfolded overview for the whole cluster, which means to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
+From the obtained feedback also new ideas about the final visualization composition emerged.
+For example, one suggestion is to incorporate the unfolded overview for the whole cluster.
+It means to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
 
 %\todo{this sounds strange}
 %Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
