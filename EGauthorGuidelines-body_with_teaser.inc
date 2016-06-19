@@ -564,6 +564,10 @@ This means to visualize the clusters side by side, where each cluster would not 
 %Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
 %\todo{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
 
+
+\section{Acknowledgement}
+This work was supported through grants from the Norway grants project NF-CZ07-MOP-2-086-2014, and the PhysioIllustration research project 218023 funded by the Norwegian Research Council.
+
 %-------------------------------------------------------------------------
 
 %\bibliographystyle{eg-alpha}
