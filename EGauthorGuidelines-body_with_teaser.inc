@@ -412,7 +412,7 @@ To make such an ensemble understandable, we project the $IM$ matrix of tunnel im
 Here, the important requirement is that the distance between the tunnels must be preserved as much as possible.
 %in the matrix must be transformed into the distances between points.
 
-First, the matrix dimension needs to be reduced.
+First, the matrix dimension needs to be reduced. \todo{Where is the second step?}
 There are several approaches for dimensionality reduction, such as Principal Component Analysis~(PCA), Kernel Principal Component Analysis~(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis~(ICA)~\cite{Olshausen1997ICA}, t-Distributed Stochastic Neighbor Embedding~(t-SNE)~\cite{mateen2008tsne} and others.
 The important property of the approach is the ability to reduce the ten digits tunnel descriptor to point in 2D coordinates and to visualize the statistical results for the whole matrix.
 Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation. Because most of the approaches produces similar result, and for its simplicity, we have adopted PCA for dimension reduction.
@@ -429,9 +429,9 @@ Our 2D overview is just a simple demonstration, however, more complex visualizat
 This is one of the possible future directions of the method.
 
 \subsubsection{Clustering}
-Having the visual representation of the similarity between tunnels is a very useful tool for the navigation through possible tunnel arrangements, which was shown, and discussed in the work of van den Elzen et al.\cite{Elzen2016SnapshotsToPoints} on the example of dynamic networks.
-With points spread in the 2D space it is easy to see where the points are more densely populated (clusters), and which points are more distant from other ones (outliers).
-For a successful connection with other views, one needs a proper color depiction of clusters and outliers.
+Having the visual representation of the similarity between tunnels can be seen essential for visual navigation through possible tunnel arrangements, which was also shown and discussed in the work of van den Elzen et al.\cite{Elzen2016SnapshotsToPoints} on the example of dynamic networks.
+With points spread in the 2D space it is easy to spot densely populated areas (clusters), and also points being further away from the others (outliers).
+For a successful linking with other views, one needs to establish a proper color assignment of clusters and outliers.
 Here, clustering allows us to make groups of points to determine patterns in the overview.
 %Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
 %Essentially, points in a cluster determine a group of similar tunnels.
@@ -474,12 +474,12 @@ Points are colored according to the detected clusters.
 
 \subsection{Exploration}
 
-Until now we described individual parts of our exploration solution.
+So far we have described individual components of our technique.
 All of them play a crucial role in the exploration process.
-Therefore, our final exploration solution consists out of these views (see Figure~\ref{fig:processing_pipeline}d).
-First is a view of the set of unfolded tunnels, which allows to make a comparison of spatial and structural aspects of the tunnel.
-Second is the scatterplot showing the similarity/dissimilarity overview which brings forth the notion of the differences between tunnels.
-And finally is the bar chart view where each tunnel is represented by one bar and the height of the bar corresponds to the tunnel length.
+Therefore, our final exploration solution consists out of the following views (see Figure~\ref{fig:processing_pipeline}d).
+First, we introduce a view showing set of unfolded tunnels, which allows to make a comparison of spatial and structural aspects of the tunnel.
+Second, we exploit scatterplot showing the similarity/dissimilarity overview which brings forth the notion of the differences between tunnels.
+Finally, we employ a bar chart view where each tunnel is represented by one bar and the height of the bar corresponds to the tunnel length.
 
 \begin{figure*}[htb]
 \includegraphics[width=\linewidth]{img/5dynamics.pdf}
