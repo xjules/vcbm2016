@@ -163,22 +163,20 @@ As a consequence some alternative methods combining the grid and Voronoi-based t
 These approaches detect the tunnel centerline using the Voronoi diagram and then rasterize the space around the centerline to obtain more precise representation of the tunnel surface.
 
 
-\todo{check this please}{\color{orange}Nowadays, the biochemists are focusing more on the analysis of simulations of molecular dynamics rather than on static molecules, as these techniques yield more biochemically relevant results.
+Nowadays, the biochemists are focusing more on the analysis of simulations of molecular dynamics rather than on static molecules, as these techniques yield more biochemically relevant results.
 Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is, however, still one of the biggest challenges.
 %In order to analyze empty space inside highly dynamic environment such as proteins it is necessary to correctly track it over time. 
 Nevertheless, there are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3}).
-In consequence also few approaches to their visual exploration appeared as well (e.g., \cite{Lindow2012DynamicChannels, Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface}).
-These methods focus on interactive 3D exploration of protein inner voids in real time, however, they also suffer from problems related to 3D representation itself. Moreover, using these techniques it is hard to capture the significant changes of tunnel shape or constitution over time.
+In consequence, few approaches to their visual exploration appeared as well (e.g., \cite{Lindow2012DynamicChannels, Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface}).
+These methods focus on interactive 3D exploration of protein inner voids in real time.
+However, they also suffer from problems related to 3D representation itself. 
+Moreover, by using these techniques it is hard to capture the significant changes of tunnel shape or constitution over time.
 
 For the thorough analysis of protein behavior, the physico-chemical properties of amino acids in tunnel vicinity are at least equally important as the geometrical aspects. 
 Therefore, recently several techniques was proposed by Parulek et al.~\cite{Parulek2013CavityAnalysis} and by Byska et al.~\cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner}. 
 These techniques are using a high level of abstraction in order to depict the evolution of protein voids including the nearby amino acids in a single image.
 However, when using a 2D view, the information about the influence of individual tunnel lining amino acids and their mutual positions is completely lost.
-This problem is addressed by our proposed approach.} 
-
-\todo[inline]{We don't have space, so I have removed the detailed description of the Animo a MoleCollar, is it a problem?}
-
-\todo[inline]{Well, thinking of it I should have removed the detailed description of voronoi techniques instead. What do you think?}
+This problem is addressed by our proposed approach.
 
 %There are tools capable of such tracking, for instance, CAVER~3.0~\cite{Chovancova2012Caver3}. 
 %{\color{red}Moreover, this does not apply only to detection of protein tunnels but other protein voids as well.}
@@ -357,22 +355,22 @@ Each image $I(x,y)$ is described by the set of moments
 M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
 \end{equation} 
 There exist various versions of image moments, which would bring invariance to different properties, such as rotation, scale, or translation.
-For example, centralized moments are invariant to translation.
-This is a valuable property since some amino acid areas might change their longitudinal position with respect to the length of the centerline.
-In our case, images containing unfolded tunnels are characterized by 10 different image-centralized moments to condense the information.
+For example, centralized moments are invariant to translation, which is a valuable property since some amino acid areas might change their longitudinal position with respect to the length of the centerline.
+Centralized image moments for an image $I(x,y)$ are defined as
 \begin{equation}
-\mu_{pq} = \sum_{m}^{p}\sum_{n}^{q}{p \choose m}{q \choose n}\left(-{M_{10} \over M_{00}}\right)^{(p-m)}\left(-{M_{01} \over M_{00}}\right)^{(q-n)}
+\mu_{ij} = \sum_{x}\sum_{y}\left(x - {M_{10} \over M_{00}}\right)^i\left(y - {M_{01} \over M_{00}}\right)^jI(x,y)
 \end{equation} 
-This way we are able to specify each tunnel as a vector of values.
+This way we are able to specify each tunnel as a vector of values with the central moments of order up to three to condense the information.
+In our case, for the tunnel image $I$, it would be a vector $I_m$ of ten different image-centralized moments.
 \begin{equation}
-I_m(tun) = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
+I_m = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
 \end{equation} 
 Image moments also maintains the property that similar images have similar values.
 In consequence, distinct images have more distant values, so we can transform the similarity between images to distance between the image moment vectors.
 Having such a database of tunnel vectors, we can use the standard tools of information visualization to get the idea about the distances between tunnels.
 
 \subsection{Similarity Overview}
-We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors.
+We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors $I_m$ for each tunnel.
 %\begin{equation}
 %IM = 
 %\begin{pmatrix}
@@ -388,43 +386,38 @@ To make the ensemble more understandable, we project the $IM$ matrix of tunnel i
 Here, the important requirement is that the distance between the tunnels in the matrix must be transformed into the distances between points.
 
 First, the matrix dimension needs to be reduced.
-In our project we have adopted a simple but very useful solution of principal component analysis (PCA).
+There are several approaches for dimensionality reduction, such as Principal Component Analysis(PCA), Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA}, t-Distributed Stochastic Neighbor Embedding (t-SNE)~\cite{mateen2008tsne} and others.
+The important property of the approach is the ability to reduce the ten digits tunnel descriptor to 2D point coordinates and to visualize the statistical results for the whole matrix.
+Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation. Because most of the approaches produces similar result, and for its simplicity, we have adopted PCA for dimension reduction.
 
 PCA is a statistical tool that transforms a set of observations, in our case a set of image moment vectors, to the set of linearly uncorrelated variables. 
-Each of the resulting components is orthogonal to each other and the number of components is lower, or equall, than the number of the original variables.
+Each of the resulting components is orthogonal to each other and the number of components is lower, or equal, than the number of the original variables.
 The components are ordered by the variance value.
 Meaning that the first component has the largest possible variance and each succeeding component has a lower variance.
 In our overview, we showcase the first two PCA components for the tunnel, which are encoded in the coordinates.
-As a result, we are able to remove the noise from the data while making the use of fewer quantities.
 The first component value encodes the $x$ coordinate, and the second encodes the $y$ coordinate (see Figure~\ref{fig:processing_pipeline}).
-
-Even though we have used PCA for dimension reduction, there are several alternative approaches, for example Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA}, and others.
-The important property of the approach is the ability to reduce the 10 digits tunnel descriptor to 2D point coordinates and to visualize the statistical results for the whole matrix.
-Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation.
 
 Natural image statistics were deeply analyzed by Fang et al.~\cite{Fang2013NaturalImageStatistics}, where the authors have designed new visualizations for image statistics.
 Our 2D overview is just a simple demonstration, however, more complex visualization method can be used instead, for example Combined design~\cite{Fang2013NaturalImageStatistics} to show the parameters of PCA and Gabor descriptors at the same time.
 This is one of the possible future directions of the method.
 
 \subsubsection{Clustering}
-Having the visual representation of the similarity between tunnels is a very useful tool for the navigation through possible tunnel arrangements.
+Having the visual representation of the similarity between tunnels is a very useful tool for the navigation through possible tunnel arrangements, which was shown, and discussed in the work of van den Elzen et al.\cite{Elzen2016SnapshotsToPoints} on the example of dynamic networks.
 With points spread in the 2D space it is easy to see where the points are more densely populated (clusters) and which points are more distant from other ones (outliers).
 However, for a successful connection with other views, one needs a proper color depiction of clusters and outliers.
 Here, clustering allows us to make groups of points to determine patterns in the overview.
 %Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
-Essentially, points in a cluster determine a group of similar tunnels.
-A general open question for a successful cluster set is a number of clusters to determined in advance.
-For a user without any prior knowledge about the data, this might be difficult.
-Moreover, there are different clustering algorithms that could be applied, which in essence makes it complex to find the most suitable one.
-In our work, we have experimented with centroid-based clustering and k-means approaches.
-The output of the centroid-based clustering is the set of clusters represented by a central vector, which may not necessarily be a member of the data set.
-In k-means clustering the number of clusters is fixed to $k$ and needs to be specified in advance, which is considered to be one of the main drawbacks of this algorithm.
+%Essentially, points in a cluster determine a group of similar tunnels.
+%A general open question for a successful cluster set is a number of clusters to determined in advance.
+%For a user without any prior knowledge about the data, this might be difficult.
 
-K-means is an optimization problem that reduces the distances of the data from the nearest cluster center, which is not a problem in our solution.
+There are different clustering algorithms that could be applied, for example hierarchical clustering, or k-means approaches. 
+In k-means clustering the number of clusters is fixed to $k$ and needs to be specified in advance, which is considered to be one of the main drawbacks of this algorithm.
+On the other hand, hierarchical clustering do not need the number of clusters in advance.
 In our case, we would like to show an unfolded representative from each cluster.
 As this representation requires available space in window, the number of unfolded tunnels is limited.
-We have empirically found out that showing five tunnels at the same time is the limit that also gives us a suitable amount of clusters for k-means clustering.
-K-means was selected because of its simplicity and for its conceptual closeness to the nearest neighbor classification.
+We have empirically found out that showing five tunnels at the same time is the limit that also gives us a suitable amount of clusters for k-means clustering, which transforms a k-means drawback to our advantage.
+Moreoverm k-means was selected because of its simplicity and for its conceptual closeness to the nearest neighbor classification.
 However, a well known problem relates to the borders of clusters, since the algorithm optimizes cluster centers, not cluster borders. This represents another direction of our future work, where we will conduct experiments with other families of cluster algorithms such as hierarchical clustering, density clustering, and other methods from machine learning.
 
 Additionally, it is also important to mention the right choice of distance metric for the clustering algorithm. 
@@ -512,8 +505,7 @@ The first study deals with exploration of simulations of molecular dynamics and 
 
 
 \subsection{Exploration of Molecular Dynamics}
-\todo{check whether it makes sense without the removed paragraph}
-{\color{orange} In case of molecular simulation we evaluate a single tunnel in each time step (or a selected subset if desired).}
+In this case the task is to explore and evaluate a single tunnel in each time step (or a selected subset) of molecular dynamics simulation.
 We first derive the unfolded 2D representation and these images are subsequently scrutinized to reveal similarities between them. 
 This produces clusters of tunnels according to their similarity which are visualized using the scatterplot.
 Additionally, the coloring of individual clusters helps us to find the correspondence between the scatterplot and the bar chart representation where we can see the positions of tunnels belonging to these clusters spread over time. 
@@ -548,11 +540,11 @@ Figure~\ref{fig:mutation} demonstrates the situation when we performed multiple 
 It is obvious that if the original amino acid (
 Figure~\ref{fig:mutation} -- CYS) is replaced by similar or even a smaller one, such as Glutamic Acid or Glycine (Figure~\ref{fig:mutation} -- GLU and GLY respectively) the tunnel becomes wider.
 On the other hand, using bigger amino acids, such as Phenylalanine or Histidine (Figure~\ref{fig:mutation} -- PHE and GLY respectively) decreases the bottleneck of the tunnel significantly.
-{\color{orange}Which exactly corresponds to the findings of the experiments which were conducted in the wet lab.}
+This corresponds exactly to the outcomes of the real in-vitro experiments which were conducted by the biochemists.
 
 When evaluating the suitability of our approach to this type of tasks the biochemists appreciated the unfolded view much more than in the case of molecular dynamics simulations.
 Here the information about the changes on the tunnel surface and its width caused by the mutations is crucial and it is clearly visible from our representation. 
-{\color{orange}Moreover, in this particular case when the user is interested in a specific amino acid our tool enables to highlight it in order to even enhance the comparison.}\todo{moved here}
+Moreover, in this particular case when the user is interested in a specific amino acid, our tool enables to highlight it in order to even enhance the comparison.
 The biochemists confirmed that similar information is very hard to understand from 3D tunnel representation, namely when aiming to compare more than two or three mutated tunnels at once.
 Therefore, they appreciated our representation and suggested its future extension by calculating and highlighting areas with the most significant changes.
 
