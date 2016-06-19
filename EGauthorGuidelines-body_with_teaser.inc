@@ -119,7 +119,7 @@ This problem is even stressed when using the 3D tunnel representation.
 \label{fig:tunnels}
 \end{figure}
 
-Moreover, the proper visualization of surface itself is not sufficient for exploration and complete understanding of differences between protein tunnels. 
+\todo{removed Moreover}The proper visualization of surface itself is not sufficient for exploration and complete understanding of differences between protein tunnels. 
 Another essential information relates the amino acids forming the tunnel boundary, namely their biochemical properties and the extent of influence of the tunnel.
 Possible solution is to map this information onto the tunnel surface.
 Nevertheless, due to the aforementioned problems present in 3D tunnel visualization mentioned above, it is hard to compare and explore these properties as well.
@@ -157,7 +157,7 @@ These drawbacks were later overcome by Voronoi diagram-based methods \cite{Medek
 These methods first compute a Voronoi diagram of the protein atoms and use the Dijkstra algorithm on top of it. 
 Such an approach enables to save a huge amount of resources.
 The resulting tunnel is then represented by a set of spheres positioned onto the Voronoi edges forming the tunnel centerline.
-But the tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
+But the {\color{orange}real} tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
 Therefore, this traditional spherical representation may lead to misinterpretation of the analyzed tunnel.
 As a consequence some alternative methods combining the grid and Voronoi-based techniques appeared~\cite{Jurcik2015Visibility}.
 These approaches detect the tunnel centerline using the Voronoi diagram and then rasterize the space around the centerline to obtain more precise representation of the tunnel surface.
