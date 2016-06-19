@@ -245,7 +245,7 @@ In both cases a tunnel shape and physico-chemical properties can develop and cha
 
 We derive tunnels from the raw data as a set of 3D objects representing the tunnel shape.
 In general, there is no trivial or direct way to orient the obtained set of tunnels such that the user could intuitively explore similarities and dissimilarities of individual tunnels, i.e., to perform co-registration.
-There are several issues preventing direct comparison of such structures in 3D, e.g., the self-occlusion of tunnel features, occlusion between multiple tunnels, {\color{orange}etc}.
+There are several issues preventing direct comparison of such structures in 3D, e.g., the self-occlusion of tunnel features, occlusion between multiple tunnels, etc.
 Moreover, there is always a limit of how many 3D objects users can explore at the same time in one window.
 To overcome the self-occlusion issues we unfold a 3D tunnel representation to 2D as suggested by various related work.
 
