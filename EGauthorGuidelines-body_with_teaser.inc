@@ -403,7 +403,7 @@ Centralized image moments for an image $I(x,y)$ are defined as:
 \mu_{ij} = \sum_{x}\sum_{y}\left(x - {M_{10} \over M_{00}}\right)^i\left(y - {M_{01} \over M_{00}}\right)^jI(x,y)
 \end{equation} 
 This way we are able to {\color{orange}characterize} each tunnel {\color{orange}by} a vector of values with the central moments of order up to three to condense the information.
-{\color{orange}In our case, we have empirically found that a vector $I_m$ of ten different image-centralized moments is sufficient enough to describe the differences between individual tunnels: 
+{\color{orange}By several empirical tests of different combinations of image moments, we opted for the following set, $I_m$ of 10 image moments that was found sufficient enough to describe the differences between individual tunnels: 
 }
 \begin{equation}
 I_m = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
