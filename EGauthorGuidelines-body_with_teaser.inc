@@ -427,7 +427,7 @@ To make such an ensemble understandable, we project the $IM$ matrix of tunnel im
 Here, the important requirement is that the distance between the tunnels must be preserved as much as possible.
 %in the matrix must be transformed into the distances between points.
 
-First, the matrix dimension needs to be reduced. \todo{Where is the second step?}
+{\color{orange}First,} the matrix dimension needs to be reduced.
 There are several approaches for dimensionality reduction, such as Principal Component Analysis~(PCA), Kernel Principal Component Analysis~(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis~(ICA)~\cite{Olshausen1997ICA}, t-Distributed Stochastic Neighbor Embedding~(t-SNE)~\cite{mateen2008tsne} and others.
 The important property of the approach is the ability to reduce the ten digits tunnel descriptor to point in 2D coordinates and to visualize the statistical results for the whole matrix.
 Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation. Because most of the approaches produces similar result, and for its simplicity, we have adopted PCA for dimension reduction.
