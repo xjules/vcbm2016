@@ -8,16 +8,17 @@
 
 % for anonymous conference submission please enter your SUBMISSION ID
 % instead of the author's name (and leave the affiliation blank) !!
-\author[Koles\'{a}r et al.]
-       {TODO$^{1}$ and TODO$^{2}$
+\author[]{Submission ID 1032}
+%\author[Koles\'{a}r et al.]
+%       {TODO$^{1}$ and TODO$^{2}$
 %        S. Spencer$^2$\thanks{Chairman Siggraph Publications Board}
-        \\
+%        \\
 % For Computer Graphics Forum: Please use the abbreviation of your first name.
-         $^1$University of Bergen, Norway\\
-         $^2$Masaryk University, Brno, Czech Republic
+%         $^1$University of Bergen, Norway\\
+%         $^2$Masaryk University, Brno, Czech Republic
 %        $^2$ Another Department to illustrate the use in papers from authors
 %             with different affiliations
-       }
+%       }
 
 % ------------------------------------------------------------------------
 
@@ -440,7 +441,7 @@ Meaning that the first component has the largest possible variance and each succ
 In our overview, we showcase the first two PCA components for the tunnel, which are encoded in the coordinates.
 The first component value encodes the $x$ coordinate, and the second encodes the $y$ coordinate (see Figure~\ref{fig:processing_pipeline}).
 
-Natural image statistics were deeply analyzed by Fang et al.~\cite{Fang2013NaturalImageStatistics}, where the authors have designed new visualizations for image statistics.
+\todo{nepresunout radeji do RW?}Natural image statistics were deeply analyzed by Fang et al.~\cite{Fang2013NaturalImageStatistics}, where the authors have designed new visualizations for image statistics.
 Our 2D overview is just a simple demonstration, however, more complex visualization method can be used instead, for example Combined design~\cite{Fang2013NaturalImageStatistics} to show the parameters of PCA and Gabor descriptors at the same time.
 This is one of the possible future directions of the method.
 
@@ -612,8 +613,8 @@ For example to incorporate the unfolded overview for the whole cluster, which me
 %\todo{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
 
 
-\section{Acknowledgement}
-This work was supported through grants from the Norway grants project NF-CZ07-MOP-2-086-2014, and the PhysioIllustration research project 218023 funded by the Norwegian Research Council.
+%\section{Acknowledgement}
+%This work was supported through grants from the Norway grants project NF-CZ07-MOP-2-086-2014, and the PhysioIllustration research project 218023 funded by the Norwegian Research Council.
 
 %-------------------------------------------------------------------------
 
