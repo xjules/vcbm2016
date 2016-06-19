@@ -276,13 +276,16 @@ However, this structure is too small to have any impact on the protein, and ther
 The sampling is performed using the ray coming from the centerline and increasingly rotated around the slice normal.
 At each sample we compute a distance between the sample and centerline, and a slice line length between two samples $D_t(a_i, a_{i+1})$, where $a_i$ and $a_{i+1}$ are two neighboring samples(see Figure~\ref{fig:unfolding}).
 
+\begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
 \centering
 \caption{
 We cut the tunnel along its centerline. Then for each point on the centerline we create one slice.
 By straightening the cuts and putting them on top of each other we unfold the tunnel.}
 \label{fig:unfolding}
-\end{figure}For each sample, in every slide we compute a new coordinates.
+\end{figure}
+
+For each sample, in every slide we compute a new coordinates.
 First coordinate is based on the parameter $t$. The value of the parameter ranges from 0, to the length of the centerline, and it is a distance along it. 
 Second coordinate system is computed from the second parameter $a$. 
 Due to fact, that parameter $a$ is sampled uniformly, and for each neighbors we store a distance $D(a_i, a_{i+1})$, we are able to compute a size of the surface slice as a sum $\sum_{l=0}^{36} D(a_l, a_{l+1})$.
