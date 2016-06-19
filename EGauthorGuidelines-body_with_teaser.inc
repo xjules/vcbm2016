@@ -295,7 +295,7 @@ Hence, samples at position $a=0$ and $a=36$ are the same while the value $a=18$ 
 However, the results depend on the precise location of the point at the contour from where we start sampling.
 %sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
 In our case the starting point is defined by so called cutting vector $\mathbf{v}$. 
-The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acid in the first ten slices.
+The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acid in the first ten slices, i.e., those that do not change their relative position significantly.
 }
 
 {\color{orange}
