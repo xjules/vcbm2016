@@ -163,22 +163,20 @@ As a consequence some alternative methods combining the grid and Voronoi-based t
 These approaches detect the tunnel centerline using the Voronoi diagram and then rasterize the space around the centerline to obtain more precise representation of the tunnel surface.
 
 
-\todo{check this please}{\color{orange}Nowadays, the biochemists are focusing more on the analysis of simulations of molecular dynamics rather than on static molecules, as these techniques yield more biochemically relevant results.
+Nowadays, the biochemists are focusing more on the analysis of simulations of molecular dynamics rather than on static molecules, as these techniques yield more biochemically relevant results.
 Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is, however, still one of the biggest challenges.
 %In order to analyze empty space inside highly dynamic environment such as proteins it is necessary to correctly track it over time. 
 Nevertheless, there are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3}).
-In consequence also few approaches to their visual exploration appeared as well (e.g., \cite{Lindow2012DynamicChannels, Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface}).
-These methods focus on interactive 3D exploration of protein inner voids in real time, however, they also suffer from problems related to 3D representation itself. Moreover, using these techniques it is hard to capture the significant changes of tunnel shape or constitution over time.
+In consequence, few approaches to their visual exploration appeared as well (e.g., \cite{Lindow2012DynamicChannels, Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface}).
+These methods focus on interactive 3D exploration of protein inner voids in real time.
+However, they also suffer from problems related to 3D representation itself. 
+Moreover, by using these techniques it is hard to capture the significant changes of tunnel shape or constitution over time.
 
 For the thorough analysis of protein behavior, the physico-chemical properties of amino acids in tunnel vicinity are at least equally important as the geometrical aspects. 
 Therefore, recently several techniques was proposed by Parulek et al.~\cite{Parulek2013CavityAnalysis} and by Byska et al.~\cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner}. 
 These techniques are using a high level of abstraction in order to depict the evolution of protein voids including the nearby amino acids in a single image.
 However, when using a 2D view, the information about the influence of individual tunnel lining amino acids and their mutual positions is completely lost.
-This problem is addressed by our proposed approach.} 
-
-\todo[inline]{We don't have space, so I have removed the detailed description of the Animo a MoleCollar, is it a problem?}
-
-\todo[inline]{Well, thinking of it I should have removed the detailed description of voronoi techniques instead. What do you think?}
+This problem is addressed by our proposed approach.
 
 %There are tools capable of such tracking, for instance, CAVER~3.0~\cite{Chovancova2012Caver3}. 
 %{\color{red}Moreover, this does not apply only to detection of protein tunnels but other protein voids as well.}
@@ -512,8 +510,7 @@ The first study deals with exploration of simulations of molecular dynamics and 
 
 
 \subsection{Exploration of Molecular Dynamics}
-\todo{check whether it makes sense without the removed paragraph}
-{\color{orange} In case of molecular simulation we evaluate a single tunnel in each time step (or a selected subset if desired).}
+In this case the task is to explore and evaluate a single tunnel in each time step (or a selected subset) of molecular dynamics simulation.
 We first derive the unfolded 2D representation and these images are subsequently scrutinized to reveal similarities between them. 
 This produces clusters of tunnels according to their similarity which are visualized using the scatterplot.
 Additionally, the coloring of individual clusters helps us to find the correspondence between the scatterplot and the bar chart representation where we can see the positions of tunnels belonging to these clusters spread over time. 
@@ -548,11 +545,11 @@ Figure~\ref{fig:mutation} demonstrates the situation when we performed multiple 
 It is obvious that if the original amino acid (
 Figure~\ref{fig:mutation} -- CYS) is replaced by similar or even a smaller one, such as Glutamic Acid or Glycine (Figure~\ref{fig:mutation} -- GLU and GLY respectively) the tunnel becomes wider.
 On the other hand, using bigger amino acids, such as Phenylalanine or Histidine (Figure~\ref{fig:mutation} -- PHE and GLY respectively) decreases the bottleneck of the tunnel significantly.
-{\color{orange}Which exactly corresponds to the findings of the experiments which were conducted in the wet lab.}
+This corresponds exactly to the outcomes of the real in-vitro experiments which were conducted by the biochemists.
 
 When evaluating the suitability of our approach to this type of tasks the biochemists appreciated the unfolded view much more than in the case of molecular dynamics simulations.
 Here the information about the changes on the tunnel surface and its width caused by the mutations is crucial and it is clearly visible from our representation. 
-{\color{orange}Moreover, in this particular case when the user is interested in a specific amino acid our tool enables to highlight it in order to even enhance the comparison.}\todo{moved here}
+Moreover, in this particular case when the user is interested in a specific amino acid, our tool enables to highlight it in order to even enhance the comparison.
 The biochemists confirmed that similar information is very hard to understand from 3D tunnel representation, namely when aiming to compare more than two or three mutated tunnels at once.
 Therefore, they appreciated our representation and suggested its future extension by calculating and highlighting areas with the most significant changes.
 
