@@ -119,8 +119,8 @@ This problem is even stressed when using the 3D tunnel representation.
 \label{fig:tunnels}
 \end{figure}
 
-Moreover, the proper visualization of surface itself is not sufficient for exploration and complete understanding of differences between protein tunnels. 
-Another essential information relates the amino acids forming the tunnel boundary, namely their biochemical properties and the extent of influence of the tunnel.
+The proper visualization of surface itself is not sufficient for exploration and complete understanding of differences between protein tunnels. 
+Another essential information relates the amino acids forming the tunnel boundary, namely their physico-chemical properties and the extent of influence of the tunnel.
 Possible solution is to map this information onto the tunnel surface.
 Nevertheless, due to the aforementioned problems present in 3D tunnel visualization mentioned above, it is hard to compare and explore these properties as well.
 
@@ -157,7 +157,7 @@ These drawbacks were later overcome by Voronoi diagram-based methods \cite{Medek
 These methods first compute a Voronoi diagram of the protein atoms and use the Dijkstra algorithm on top of it. 
 Such an approach enables to save a huge amount of resources.
 The resulting tunnel is then represented by a set of spheres positioned onto the Voronoi edges forming the tunnel centerline.
-But the tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
+But the {\color{orange}real} tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
 Therefore, this traditional spherical representation may lead to misinterpretation of the analyzed tunnel.
 As a consequence some alternative methods combining the grid and Voronoi-based techniques appeared~\cite{Jurcik2015Visibility}.
 These approaches detect the tunnel centerline using the Voronoi diagram and then rasterize the space around the centerline to obtain more precise representation of the tunnel surface.
@@ -175,7 +175,7 @@ Moreover, by using these techniques it is hard to capture the significant change
 For the thorough analysis of protein behavior, the physico-chemical properties of amino acids in tunnel vicinity are at least equally important as the geometrical aspects. 
 Therefore, recently several techniques was proposed by Parulek et al.~\cite{Parulek2013CavityAnalysis} and by Byska et al.~\cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner}. 
 These techniques are using a high level of abstraction in order to depict the evolution of protein voids including the nearby amino acids in a single image.
-However, when using a 2D view, the information about the influence of individual tunnel lining amino acids and their mutual positions is completely lost.
+However, when using {\color{orange}the proposed} 2D views, the {\color{orange}important} information about the {\color{orange}spatial} influence of individual tunnel lining amino acids and their mutual positions {\color{orange}is partially suppressed or even} completely lost.
 This problem is addressed by our proposed approach.
 
 %There are tools capable of such tracking, for instance, CAVER~3.0~\cite{Chovancova2012Caver3}. 
@@ -188,7 +188,7 @@ This problem is addressed by our proposed approach.
 %As already mentioned, for 
 %Both of them focus on the investigation of the evolution of protein tunnel or its selected part and its surroundings over time.
 %The first approach, called MoleCollar, uses multiple contours plotted over each other in order to communicate the changes in shape of a selected part of the tunnel (\eg its bottleneck which is the narrowest site). 
-%The contour representation is enhanced by depicting the surrounding amino acids and their different biochemical properties.
+%The contour representation is enhanced by depicting the surrounding amino acids and their different physico-chemical properties.
 %The second approach, called AnimoAminoMiner, is based on a similar concept but it provides more general overview of the shape of the whole tunnel and its surroundings.
 %Here the shape of the tunnel is communicated using set of curves representing the width of the tunnel with respect to its length.
 %This view is equipped with an abstracted 2D visualization representing the tunnel areas influenced by the surrounding amino acids.
@@ -197,12 +197,13 @@ This problem is addressed by our proposed approach.
 
 \subsection{Projections, Reformations and Comparative Visualization Methods}
 The core idea of our technique is based on unfolding the 3D tunnel surface to a 2D image in order to prevent the occlusion problems.
-Moreover, such a reformation allows us to dedicate one of the dimensions to the requirements of comparative visualization. 
+Additionally, such a reformation allows us to dedicate one of the dimensions to the requirements of comparative visualization. 
 The similar approach is commonly used in other domains as well.
 
 For example, Kretschmer et al.\cite{Kretschmer2014AnatomyDriveReformation} adapted a variant of as-rigid-as-possible reformation proposed by Liu et al.~\cite{Liu2008LocalGlobalMeshParametrization} for medical applications. 
 The resulting method defines a reformation of volumetric data driven by particular geometry -- in this case the anatomy of a specific patient.
-Another extension of the work of Liu et al. was presented recently by Brambilla et al.~\cite{Brambilla2016ComparativeVisTimeSufaces} who focus on so called time surfaces which are frequently used for the investigation of fluid flows.
+Another extension of the work of Liu et al. was presented recently by Brambilla et al.~\cite{Brambilla2016ComparativeVisTimeSufaces}
+who focus on so called time surfaces which are frequently used for the investigation of fluid flows.
 The proposed method is using a reformed 2D space in order to observe an evolution of these complex surfaces over time.
 Unfortunately, since all these methods are relatively general, they produce an inevitable distortion in the distance. 
 This is unsatisfactory when comparing protein tunnels since here the main focus is placed on the tunnel length, bottleneck, the overall surface shape and the surrounding amino acids. 
@@ -223,7 +224,7 @@ In order to overcome these problems, another variant of the CPR method was propo
 This method avoids the visibility issues of CPR and CR caused by the projection by computing the vessel lumen (empty space inside of a vessel) fully in 3D. 
 This is done by finding a cut through the vessel and surrounding tissue orthogonal to the vessel centerline and view direction.
 The view-dependency would, however, cause some issues in our case, since we are aiming for comparative visualization and hence we need to find the same cut for each tunnel in order to obtain a common space.
-Moreover, the proposed cutaway discards a part of the vessel surface while we want to communicate the shape and biochemical properties of the whole protein tunnel.
+Moreover, the proposed cutaway discards a part of the vessel surface while we want to communicate the shape and physico-chemical properties of the whole protein tunnel.
 
 There are several other examples in the literature regarding the comparative visualization of unfolded, or abstracted, tubular structures. 
 For instance, Angelelli et al.~\cite{Angelelli2011StraighteningTubularFlow} presented a method for investigation of the flow through tubular structures. 
@@ -231,9 +232,9 @@ Lampe at al.~\cite{Lampe2009CurveCentric} on the other hand provided a solution 
 Similarly to CPR, both methods are based on straightening of the volumetric data in the direction of the flow.
 Such alignment allows to employ comparative visualization (\eg juxtaposition view), because one axis becomes shared between multiple instances (in this case between various snapshots of the flow simulation over time).
 We are looking for a similar solution, but none of the mentioned methods can be used directly.
-On one hand, the method proposed by Angelelli et al. is computing the reformation directly in the 3D space and hence it suffers from the occlusion issues.
+On one hand, the method proposed by Angelelli et al. is computing the reformation directly in the 3D space and hence it suffers from the occlusion.
 On the other hand, while the method designed by Lampe at al. provides a great overall view of individual flow features, it does not preserve the shape nor angles of external objects.
-In both cases it means that the at least some essential information about protein tunnel surface and its surrounding amino acids would be lost.
+In both cases it means that at least some essential information about protein tunnel surface and its surrounding amino acids would be lost.
 
 
 \section{Unfolding-Based Exploration}
@@ -247,7 +248,7 @@ In general, there is no trivial or a direct way to orient/position 3D representa
 There are several issues preventing direct comparison of such structures, e.g., the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
 Moreover, there is always a limit of how many 3D objects users can explore at the same time in one window.
 To overcome the problem of tunnel self-occlusion we unfold a 3D object to 2D representation to speed up the exploration of the similarities or dissimilarities.
-However, molecular dynamics consists of thousands time steps and comparative visualization of shapes of all the tunnels, both 2D and 3D versions, is challenging.
+{\color{orange}As already mentioned, since} molecular dynamics consists of thousands time steps, the {\color{orange}direct comparison} of shapes of all the tunnels, both 2D and 3D versions, is challenging.
 
 To further simplify the process of comparing the tunnel structure, we employ a set of descriptors based on image moments.
 These are applied on acquired images of unfolded tunnels.
