@@ -270,10 +270,12 @@ Here the narrowest part of the tunnel, the bottleneck, is usually also the most 
 
 The general idea of our unfolding method is based on the centerline parametrization.
 For each tunnel we have the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$.
-Our method is based on slicing the tunnel by planes perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $a$.
+Our method is based on slicing the tunnel by clip planes perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $a$.
 
-Our assumption, based on the empirical knowledge, is that the centerline is always inside the tunnel and does not exhibit any high curvatures.
-This implies that two neighboring planes do not cross each other.
+The centerline is always inside the tunnel and does not exhibit any high curvatures.
+However we are well aware, that two neighboring planes might cross.
+Therefore the normal vector if the clip plane is an average vector of directions from approximately ten neighboring points on the centerline.
+Which is sufficient enough for case of molecular tunnels \cite{Byska2015AnimoAminoMiner}.
 
 The cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in the first several slices.
 These stable amino acids can be found close to the tunnel end point which is deeply buried in the protein structure.
@@ -290,7 +292,7 @@ Shape overlays that are the result of the cuts are uniformly sampled.
 It is possible that between two neighboring samples some information might be lost, for example a small connecting cavity.
 However, this structure is too small to have any impact on the protein, and therefore we decided not to take this feature into account.
 The sampling is performed using the ray coming from the centerline and increasingly rotated around the slice normal.
-At each sample we compute a distance between the sample and centerline, and a slice line length between two samples $D_t(a_i, a_{i+1})$, where $a_i$ and $a_{i+1}$ are two neighboring samples(see Figure~\ref{fig:unfolding}).
+At each sample we compute a distance between the sample and centerline, and a slice line length between two samples $D(a_i, a_{i+1})$, where $a_i$ and $a_{i+1}$ are two neighboring samples(see Figure~\ref{fig:unfolding}).
 
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
