@@ -323,7 +323,7 @@ Here we simply utilize the two described parameters $t$ and $a$.
 The parameter $t$ can be used directly since its value ranges from 0, to 1 and corresponds to the length of the centerline.
 On the other hand, if we would used parameter $a$ without any transformation we would lost the information about the tunnel width.
 Therefore, we also compute for each contour the distance $D(a_i, a_{i+1})$ between every two neighboring samples $a_i$ and $a_{i+1}$ (see Figure~\ref{fig:unfolding}).
-This distance is then used in order to properly transform the position of the sample in final 2D space.
+This distance is then used in order to transform the position of the sample in final 2D space.
 }
   
 \begin{figure}[htb]
@@ -390,13 +390,13 @@ At the end the tunnels are shown in multiple views(d). }
 \subsection{Image Moment}
 %After unfolding phase, described in previous section, we have 2D representation for each tunnel.
 {\color{orange}
-The image moments~\cite{Flusser09Moments} provide a practical way to characterize individual tunnels since they produce the similar values for similar images and more distinct for different once.} 
+The image moments~\cite{Flusser09Moments} provide a practical way to characterize individual tunnels since the acquired values capture well similarities and dissimilarities between tunnel images, i.e., they produce the similar values for similar images and more distinct for different once.} 
 %In consequence, more distinct images have more distant values, so we can transform the similarity between images to distance between the image moment vectors.
 Each image $I(x,y)$ can be described by the set of moments:
 \begin{equation}
 M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
 \end{equation} 
-There are various versions of image moments, {\color{orange}each invariant to different properties}, such as rotation, scale, or translation.
+There are various versions of image moments, {\color{orange}each invariant to different trasformation}, such as rotation, scale, or translation.
 For example, centralized moments are invariant to translation, which is a valuable property {\color{orange}in our case} since some amino acid areas might change their longitudinal position with respect to the length of the centerline.
 Centralized image moments for an image $I(x,y)$ are defined as:
 \begin{equation}
