@@ -276,7 +276,7 @@ The individual steps of our algorithm will be described in following sections in
 %In our case
 We need to clearly communicate three features ordered from the most to the least important.
 {\color{orange}First,} the position and distribution of amino acids that form the tunnel boundary.
-Second, the notion of the tunnel width meaning that the user should be able to detect narrower and wider areas of the tunnel.
+Second, the notion of the tunnel width meaning that narrower and wider areas of the tunnel should be communicated addequatly to the user.
 The narrowest part of the tunnel, called bottleneck, is usually the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 The third feature is the spatial information about the tunnel length.
 
