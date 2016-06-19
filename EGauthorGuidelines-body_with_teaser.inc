@@ -240,23 +240,33 @@ In both cases it means that at least some essential information about protein tu
 \section{Unfolding-Based Exploration}
 
 As already stated, the main goal of our work is to allow an interactive exploration of molecular tunnels ensembles coming from molecular dynamics simulations or protein mutations.
-In both cases a tunnel can develop and change its shape dramatically.
-From the raw simulation data, we derive tunnels as a set of 3D objects representing the tunnel shape over time.
-In case of mutations, we obtain a set in the identical form, the only difference is that it represents tunnel in one static time step but with different mutations of its surrounding amino acids.
+{\color{orange}In both cases a tunnel shape and physico-chemical properties can develop and change dramatically.
 
-In general, there is no trivial or a direct way to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities.
-There are several issues preventing direct comparison of such structures, e.g., the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
+We derive tunnels from the raw data as a set of 3D objects representing the tunnel shape.
+In general, there is no trivial or a direct way to orient the obtained set of tunnels such that user could intuitively explore similarities and dissimilarities of individual tunnels.}
+There are several issues preventing direct comparison of such structures {\color{orange}in 3D}, e.g., the self-occlusion of tunnel features, occlusion between multiple tunnels, {\color{orange}etc}.
 Moreover, there is always a limit of how many 3D objects users can explore at the same time in one window.
-To overcome the problem of tunnel self-occlusion we unfold a 3D object to 2D representation to speed up the exploration of the similarities or dissimilarities.
-{\color{orange}As already mentioned, since} molecular dynamics consists of thousands time steps, the {\color{orange}direct comparison} of shapes of all the tunnels, both 2D and 3D versions, is challenging.
+{\color{orange}To overcome the self-occlusion issues we unfold a 3D tunnel representation to 2D as suggested by various related work.}
 
-To further simplify the process of comparing the tunnel structure, we employ a set of descriptors based on image moments.
-These are applied on acquired images of unfolded tunnels.
-Image moment is a well known descriptor for image analysis and classification.
-To visualize and analyze results of the computed descriptors we further employ principal component analysis (PCA) for dimension reduction.
+{\color{orange}As already mentioned, the molecular dynamics consists of thousands of time steps, therefore, the direct comparison of shape of all the tunnels, using either 3D or 2D representation, is challenging task.
+To overcome this problem we need to utilize some automatic method for evaluation of the tunnel similarities.
+Hence, it is necessary to define a set of descriptors that would properly characterize properties of each tunnel.
+Several shape descriptors for whole proteins or binding sites were already suggested (\eg~\cite{Weisel2007PocketPicker}) but these take into account only the shape of protein surface while in our case we are interested also in the physico-chemical properties of surrounding amino acids.
+ 
+Since we are already dealing with 2D representation of tunnels as solution for occlusion issues, we decided to employ a set of descriptors based on image moments~\cite{Flusser09Moments}.
+The advantage of this approach is that the image moment is a well known descriptor for image analysis and classification.
+We can easily utilize the color channel for information about amino acids and hence directly fetch it to the descriptor.
+Plus it provides us an explicit description of the representation which we will ultimately provide to the user.
+
+In order to communicate the obtained results we need to employ a dimension reduction technique due to the large amount of both tunnels and possible descriptors.
+In our approach we suggest to use principal component analysis (PCA) for its simplicity but any other method could be used as well.
 With PCA we can show the tunnels similarities/dissimilarities as a distance between two points in 2D domain.
 
-Having multiple views, the interaction allows to explore the space of tunnels in 2D as a scatterplot and at the same time to compare spatial characteristics of the unfolded tunnels.
+Finally, having multiple views, the interaction allows to explore the space of all tunnels in 2D using a scatterplot and at the same time to compare spatial characteristics of the individual unfolded tunnels.
+
+The individual steps of our algorithm will be described in following sections in more details.
+
+}
 
 \subsection{Unfolding Process}
 Each tunnel is defined by its shape as a triangle mesh, its centerline as a graph of connected points, and the information about hydrophobicity, charge, and hydrogen bonds of the tunnel-lining amino acids is stored for each vertex of the mesh.
