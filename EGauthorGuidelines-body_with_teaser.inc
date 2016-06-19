@@ -270,23 +270,23 @@ The individual steps of our algorithm will be described in the following section
 
 
 \subsection{Unfolding Process}
-{\color{orange}The input data consists of a triangle mesh representing tunnel shape, a graph of connected points representing tunnel centerline and information about spatial and physico-chemical properties of the tunnel-lining amino acids.} \todo{removed information that info is stored in vertices.}
+The input data consists of a triangle mesh representing tunnel shape, a graph of connected points representing tunnel centerline and information about spatial and physico-chemical properties of tunnel-lining amino acids.
 %Each tunnel is defined by its shape as a triangle mesh, its centerline as a graph of connected points, and the information about hydrophobicity, charge, and hydrogen bonds of the tunnel-lining amino acids is stored for each vertex of the mesh.
 %Moreover, we have a set of characteristics that are of utmost importance to explore.
 %In our case
 We need to clearly communicate three features ordered from the most to the least important.
-{\color{orange}First,} the position and distribution of amino acids that form the tunnel boundary.
-Second, the notion of the tunnel width meaning that narrower and wider areas of the tunnel should be communicated adequately to the user.
+First is the position and distribution of amino acids that form the tunnel boundary.
+The second feature is the notion of the tunnel width meaning that narrower and wider areas of the tunnel should be communicated adequately to the user.
 The narrowest part of the tunnel, called bottleneck, is usually the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 The third feature is the spatial information about the tunnel length.
 
-{\color{orange} As already mention, in order to avoid occlusion issues we represent the tunnel as 2D image.
+As already mentioned, in order to avoid occlusion issues we represent the tunnel as a 2D image.
 The general idea of our unfolding method is based on the centerline parametrization~\cite{Kanitsar2002CPR}.
-If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$ then any point on the tunnel sufrace can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.
+If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$ then any point on the tunnel surface can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.
 %To  , we use parametrization of the tunnel surface by distance from active site $t$ and angle $a$.
 Therefore, in order to obtain the unfolded view, we firstly cut the tunnel along its centerline in uniform steps, which produces a set of contours.
-Each contour is computed as an intersection of a plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
-To avoid the unwanted cases, when the two neighboring cuts might cross, we employ simple smoothing proposed for similar purposes in MoleCollar~\cite{Byska2015MoleCollar}.
+Each contour is computed as the intersection of a plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
+To avoid unwanted cases when two neighboring cuts might cross, we employ simple smoothing proposed for similar purposes in MoleCollar~\cite{Byska2015MoleCollar}.
 In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.
 
 %The second parameter $a$, of our parametrization, samples the points on individual contours.
@@ -403,7 +403,7 @@ Centralized image moments for an image $I(x,y)$ are defined as:
 \mu_{ij} = \sum_{x}\sum_{y}\left(x - {M_{10} \over M_{00}}\right)^i\left(y - {M_{01} \over M_{00}}\right)^jI(x,y)
 \end{equation} 
 This way we are able to {\color{orange}characterize} each tunnel {\color{orange}by} a vector of values with the central moments of order up to three to condense the information.
-{\color{orange}In our case, we have empirically found that a vector $I_m$ of ten different image-centralized moments is sufficient enough to describe the differences between individual tunnels: 
+{\color{orange}By several empirical tests of different combinations of image moments, we opted for the following set, $I_m$ of 10 image moments that was found sufficient enough to describe the differences between individual tunnels: 
 }
 \begin{equation}
 I_m = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
