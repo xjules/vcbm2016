@@ -276,7 +276,7 @@ The individual steps of our algorithm will be described in following sections in
 %In our case
 We need to clearly communicate three features ordered from the most to the least important.
 {\color{orange}First,} the position and distribution of amino acids that form the tunnel boundary.
-Second, the notion of the tunnel width meaning that narrower and wider areas of the tunnel should be communicated addequatly to the user.
+Second, the notion of the tunnel width meaning that narrower and wider areas of the tunnel should be communicated adequately to the user.
 The narrowest part of the tunnel, called bottleneck, is usually the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 The third feature is the spatial information about the tunnel length.
 
@@ -284,15 +284,15 @@ The third feature is the spatial information about the tunnel length.
 The general idea of our unfolding method is based on the centerline parametrization~\cite{Kanitsar2002CPR}.
 If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$ then any point on the tunnel sufrace can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.
 %To  , we use parametrization of the tunnel surface by distance from active site $t$ and angle $a$.
-Therefore, in order to obtain the unfolded view, we first cut the tunnel along its centerline in uniform steps which produces a set of contours.
-Each contour is computed as an intersection of plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
+Therefore, in order to obtain the unfolded view, we firstly cut the tunnel along its centerline in uniform steps, which produces a set of contours.
+Each contour is computed as an intersection of a plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
 To avoid the unwanted cases, when the two neighboring cuts might cross, we employ simple smoothing proposed for similar purposes in MoleCollar~\cite{Byska2015MoleCollar}.
 In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.
 
 %The second parameter $a$, of our parametrization, samples the points on individual contours.
-With the second parameter $a$ we are uniformly sampling points on each contour every $10^{\circ}$ (in clock-wise fashion).
+With the second parameter $a$ we uniformly sample points on each contour every $10^{\circ}$ (in clock-wise fashion).
 Hence, samples at position $a=0$ and $a=36$ are the same while the value $a=18$ corresponds to the sample on the opposite site of the contour. 
-The results, however, depends on the precise location of the point at the contour from where we start sampling.
+However, the results depend on the precise location of the point at the contour from where we start sampling.
 %sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
 In our case the starting point is defined by so called cutting vector $\mathbf{v}$. 
 The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acid in the first ten slices.
