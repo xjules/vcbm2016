@@ -32,7 +32,7 @@
 
 %-------------------------------------------------------------------------
 % Packages
-\usepackage[textsize=small,colorinlistoftodos]{todonotes}
+\usepackage[textsize=small,colorinlistoftodos, color=green!40]{todonotes}
 % Defines usefull commands.
 \newcommand{\ie}{i.e.,~}
 \newcommand{\eg}{e.g.,~}
