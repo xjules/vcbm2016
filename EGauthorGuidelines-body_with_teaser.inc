@@ -417,7 +417,7 @@ On the other hand, hierarchical clustering do not need the number of clusters in
 In our case, we would like to show an unfolded representative from each cluster.
 As this representation requires available space in window, the number of unfolded tunnels is limited.
 We have empirically found out that showing five tunnels at the same time is the limit that also gives us a suitable amount of clusters for k-means clustering, which transforms a k-means drawback to our advantage.
-Moreoverm k-means was selected because of its simplicity and for its conceptual closeness to the nearest neighbor classification.
+Moreover k-means was selected because of its simplicity and for its conceptual closeness to the nearest neighbor classification.
 However, a well known problem relates to the borders of clusters, since the algorithm optimizes cluster centers, not cluster borders. This represents another direction of our future work, where we will conduct experiments with other families of cluster algorithms such as hierarchical clustering, density clustering, and other methods from machine learning.
 
 Additionally, it is also important to mention the right choice of distance metric for the clustering algorithm. 
