@@ -560,21 +560,20 @@ The biochemists confirmed that similar information is very hard to understand fr
 Therefore, they appreciated our representation and suggested its future extension by calculating and highlighting areas with the most significant changes.
 
 \section{Conclusion \& Future work}
-We have presented a novel method to explore the shape and content of ensembles of tunnels in protein molecules.
-Our approach consists of transforming 3D shape to more readable 2D unfolded representation, using image moment as a descriptor for each tunnel, and providing multiple views on the tunnel data to promote the exploration process.
+In this paper, we demonstrate the power of data analytics in order to support an actual application of exploring the shape and content of ensembles of tunnels in protein molecules.
 The resulting system can interactively show the overall development of the tunnel centerline, the tunnel similarities and dissimilarities, and the shape and content of a selected set of tunnels.
 
-We demonstrated the usage of the method in two case studies from the field of biochemistry which were also commented by the domain experts.
+Even with simple choices for some steps(PCA, k-means), we still achieve a solution that is helpful for the domain experts.
+We demonstrated the usage of the method in two case studies from the field of biochemistry, which were also commented by the domain experts.
 This confirmed that our method can be used for the time-dependent data as well as for the datasets containing tunnel mutations.
 
-After the discussions with the domain experts we also suggest several possibilities for future extensions. 
-They are related to the unfolding process, generating tunnel similarity measure, and final visualization of the dataset.
-Regarding the unfolding we discussed a possibility to have a more intelligent cutting mechanism enabling more semantically-driven cut that would follow the borders of the amino acids in the tunnel.
+Certainly, it would be interesting to dig deeper and investigate more closely, whether more advanced, alternative techniques for the individual steps (non-linear embedding, bottom-up clustering,~...) could further improve the results.
+%After the discussions with the domain experts we also suggest several possibilities for future extensions. 
+%They are related to the unfolding process, generating tunnel similarity measure, and final visualization of the dataset.
+Regarding the unfolding we discussed a possibility to have a more intelligent cutting mechanism, which will enable more semantically-driven cut that would follow the borders of the amino acids in the tunnel.
 For the similarity overview, it is worthwhile to try the combination of image moment, reduction, and clustering, that is invariant to amino acids color permutation, rotation, and scale.
-The invariant method would allow to compare even two different settings of two different data sets.
 There were also some new ideas of the final visualization composition.
-First was to incorporate the unfolded overview for the whole cluster.
-This means to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
+For example to incorporate the unfolded overview for the whole cluster, which means to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
 
 %\todo{this sounds strange}
 %Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
