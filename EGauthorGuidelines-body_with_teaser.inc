@@ -158,7 +158,7 @@ These drawbacks were later overcome by Voronoi diagram-based methods \cite{Medek
 These methods first compute a Voronoi diagram of the protein atoms and use the Dijkstra algorithm on top of it. 
 Such an approach enables to save a huge amount of resources.
 The resulting tunnel is then represented by a set of spheres positioned onto the Voronoi edges forming the tunnel centerline.
-But the {\color{orange}real} tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
+But the more precise tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
 Therefore, this traditional spherical representation may lead to misinterpretation of the analyzed tunnel.
 As a consequence some alternative methods combining the grid and Voronoi-based techniques appeared~\cite{Jurcik2015Visibility}.
 These approaches detect the tunnel centerline using the Voronoi diagram and then rasterize the space around the centerline to obtain more precise representation of the tunnel surface.
@@ -176,7 +176,7 @@ Moreover, by using these techniques it is hard to capture the significant change
 For the thorough analysis of protein behavior, the physico-chemical properties of amino acids in tunnel vicinity are at least equally important as the geometrical aspects. 
 Therefore, recently several techniques was proposed by Parulek et al.~\cite{Parulek2013CavityAnalysis} and by Byska et al.~\cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner}. 
 These techniques are using a high level of abstraction in order to depict the evolution of protein voids including the nearby amino acids in a single image.
-However, when using {\color{orange}the proposed} 2D views, the {\color{orange}important} information about the {\color{orange}spatial} influence of individual tunnel lining amino acids and their mutual positions {\color{orange}is partially suppressed or even} completely lost.
+However, when using their proposed 2D views, the information about the spatial influence of individual tunnel-lining amino acids and their mutual positions is hard to understand.
 This problem is addressed by our proposed approach.
 
 %There are tools capable of such tracking, for instance, CAVER~3.0~\cite{Chovancova2012Caver3}. 
