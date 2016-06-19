@@ -286,27 +286,26 @@ If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$
 %To  , we use parametrization of the tunnel surface by distance from active site $t$ and angle $a$.
 Therefore, in order to obtain the unfolded view, we firstly cut the tunnel along its centerline in uniform steps, which produces a set of contours.
 Each contour is computed as the intersection of a plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
-To avoid unwanted cases when two neighboring cuts might cross, we employ simple smoothing proposed for similar purposes in MoleCollar~\cite{Byska2015MoleCollar}.
+Due to the centerline curvature two or more neighboring cuts may intersect. 
+To avoid this unwanted situation we employ a simple smoothing method proposed for similar purposes in the MoleCollar~\cite{Byska2015MoleCollar} technique.
 In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.
 
 %The second parameter $a$, of our parametrization, samples the points on individual contours.
-With the second parameter $a$ we uniformly sample points on each contour every $10^{\circ}$ (in clock-wise fashion).
-Hence, samples at position $a=0$ and $a=36$ are the same while the value $a=18$ corresponds to the sample on the opposite site of the contour. 
-However, the results depend on the precise location of the point at the contour from where we start sampling.
+With the second parameter $a$ we uniformly sample points on each contour every $10^{\circ}$ (in the clockwise manner).
+Hence, the samples at positions $a=0$ and $a=36$ are the same while the value $a=18$ corresponds to the sample on the opposite side of the contour. 
+However, the results depend on the precise location of the point at the contour from where we start the sampling.
 %sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
 In our case the starting point is defined by so called cutting vector $\mathbf{v}$. 
-The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acid in the first ten slices, i.e., those that do not change their relative position significantly.
-}
+The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acids in the first ten slices, i.e., those that do not change their relative position significantly.
 
-{\color{orange}
-However, having a global cutting vector $v$ might introduce unwanted artifacts due to the curvature of the centerline.
+However, having a global cutting vector $\mathbf{v}$ might introduce unwanted artifacts due to the curvature of the centerline.
 To overcome this problem, we compute the cutting vector only for the first contour at position $c(t_0)$.
-While for every other subsequent contour we simply project the previous cutting vector onto the current cutting plane.
+Then for every other subsequent contour we simply project the previous cutting vector onto the current cutting plane.
 
-Another reason for computing the cutting vector only at the beginning of the tunnel is that the most stable amino acids can be found close to the {\color{orange}protein active site} while amino acids closer to the protein surface are usually much more flexible.
-This assumption also allows us to create one of the common dimension for the comparative visualization, as the amino acids used for cutting vector are going to be stable during all the times steps of the molecular simulation as well.
-There are several other ways the cutting vector might be defined, but for our current needs this setting is sufficient. 
-}
+Another reason for computing the cutting vector only at the beginning of the tunnel is that the most stable amino acids can be found close to the deeply buried protein active site while amino acids closer to the protein surface are usually much more flexible.
+This assumption also allows us to create one of the common dimensions for the comparative visualization, as the amino acids used for cutting vector are supposed to be stable in all time steps of the molecular dynamics simulation.
+There are several other way to define the cutting vector but for our current needs this setting is sufficient. 
+
 %Sampled point from parameter $a$ is the result of intersection of the cut and axis, which starts at $c(t)$, and which have a direction of vector $\mathbf{v}$ rotated around cut plane normal by angle $a$.
 %With parameter $a$ we are uniformly sampling points from the cut every $10^{\circ}$, 
 %Therefore, with $a=0$ and $a=36$ the sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
@@ -317,14 +316,13 @@ There are several other ways the cutting vector might be defined, but for our cu
 
 %Shape overlays that are the result of the cuts are uniformly sampled.
 
-{\color{orange}
-In order to reconstructs the final 2D view from the computed samples we need to transfer the obtained information (including the information about closest amino acid) to the different (2D) coordinate system.
-Here we simply utilize the two described parameters $t$ and $a$.
-The parameter $t$ can be used directly since its value ranges from 0, to 1 and corresponds to the length of the centerline.
-On the other hand, if we would used parameter $a$ without any transformation we would lost the information about the tunnel width.
-Therefore, we also compute for each contour the distance $D(a_i, a_{i+1})$ between every two neighboring samples $a_i$ and $a_{i+1}$ (see Figure~\ref{fig:unfolding}).
-This distance is then used in order to transform the position of the sample in final 2D space.
-}
+In order to reconstruct the final 2D view from the computed samples we need to transfer the obtained information (including the information about the closest amino acids) from 3D to the reduced 2D coordinate system.
+Here we simply utilize the two already described parameters $t$ and $a$.
+Parameter $t$ can be used directly since its value ranges from 0 to 1 and corresponds to the length of the centerline.
+On the other hand, if we use parameter $a$ without any transformation we will lost the information about the tunnel width.
+Therefore, for each contour we also compute the distance $D(a_i, a_{i+1})$ between every two neighboring samples $a_i$ and $a_{i+1}$ (see Figure~\ref{fig:unfolding}).
+This distance is then used in order to transform the position of the sample in the final 2D space.
+
   
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
@@ -350,10 +348,10 @@ of the contour as a sum $\sum_{l=0}^{36} D(a_l, a_{l+1})$.
 %(t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
 %\end{equation} 
 
-Thus, our unfolding method allows us to encode tunnel surface values in 2D.
-Moreover, the size of the tunnel over the centerline is preserved, as well as the size and position of the amino acids around the surface and their respective neighborhood.
+Thus, our unfolding method allows us to encode the tunnel surface values in 2D.
+Moreover, the size of the tunnel along the centerline is preserved as well as the size and position of the amino acids around the surface and their respective neighborhood.
 
-By connecting the samples {\color{orange}with the same value of the parameter $a$} together we get a shape description that communicates the changes of the tunnel shape.
+By connecting the samples with the same value of the parameter $a$ we get a shape description that communicates the changes of the tunnel shape.
 For example, at the place where the lines are dense the tunnel is narrower.
 On the other hand, more scattered lines signify that the tunnel is wider (see Figure~\ref{fig:flatteningUtility}).
 
@@ -361,7 +359,7 @@ On the other hand, more scattered lines signify that the tunnel is wider (see Fi
 \includegraphics[width=0.9\linewidth]{img/debugger.png}
 \centering
 \caption{
-An illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.
+Illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.
 }
 \label{fig:flatteningUtility}
 \end{figure}
