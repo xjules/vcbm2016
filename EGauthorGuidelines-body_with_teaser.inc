@@ -8,16 +8,17 @@
 
 % for anonymous conference submission please enter your SUBMISSION ID
 % instead of the author's name (and leave the affiliation blank) !!
-\author[Koles\'{a}r et al.]
-       {TODO$^{1}$ and TODO$^{2}$
+\author[]{Submission ID 1032}
+%\author[Koles\'{a}r et al.]
+%       {TODO$^{1}$ and TODO$^{2}$
 %        S. Spencer$^2$\thanks{Chairman Siggraph Publications Board}
-        \\
+%        \\
 % For Computer Graphics Forum: Please use the abbreviation of your first name.
-         $^1$University of Bergen, Norway\\
-         $^2$Masaryk University, Brno, Czech Republic
+%         $^1$University of Bergen, Norway\\
+%         $^2$Masaryk University, Brno, Czech Republic
 %        $^2$ Another Department to illustrate the use in papers from authors
 %             with different affiliations
-       }
+%       }
 
 % ------------------------------------------------------------------------
 
@@ -433,7 +434,7 @@ There are several approaches for dimensionality reduction, such as Principal Com
 The important property of the approach is the ability to reduce the ten digits tunnel descriptor to point in 2D coordinates and to visualize the statistical results for the whole matrix.
 Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation. Because most of the approaches produces similar result, and for its simplicity, we have adopted PCA for dimension reduction.
 
-\todo{mozno vyhodit pokud nebude misto}PCA is a statistical tool that transforms a set of observations, in our case a set of image moment vectors, to the set of linearly uncorrelated variables. 
+PCA is a statistical tool that transforms a set of observations, in our case a set of image moment vectors, to the set of linearly uncorrelated variables. 
 Each of the resulting components is orthogonal to each other and the number of components is lower, or equal, than the number of the original variables.
 The components are ordered by the variance value.
 Meaning that the first component has the largest possible variance and each succeeding component has a lower variance.
@@ -612,8 +613,8 @@ For example to incorporate the unfolded overview for the whole cluster, which me
 %\todo{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
 
 
-\section{Acknowledgement}
-This work was supported through grants from the Norway grants project NF-CZ07-MOP-2-086-2014, and the PhysioIllustration research project 218023 funded by the Norwegian Research Council.
+%\section{Acknowledgement}
+%This work was supported through grants from the Norway grants project NF-CZ07-MOP-2-086-2014, and the PhysioIllustration research project 218023 funded by the Norwegian Research Council.
 
 %-------------------------------------------------------------------------
 
