@@ -51,13 +51,13 @@
 \begin{abstract}
 The presence of tunnels in protein structures substantially influences their reactivity with other molecules.
 Therefore, studying their properties and changes over time has been in the scope of biochemists for decades.
-In this paper we introduce a novel approach to the comparative visualization and exploration of ensembles of tunnels
-We aim to overcome the occlusion problems of traditional tunnel representations and to quickly navigate the user through the input dataset and help to identify the possibly interesting tunnels.
+In this paper we introduce a novel approach for comparative visualization and exploration of ensembles of tunnels.
+Our goal is to overcome occlusion problems present in traditional tunnel representations while providing users a quick way to navigate  through the input dataset to identify potentially interesting tunnels.
 First, we unfold the input tunnels to a 2D representation enabling to observe the mutual position of amino acids forming the tunnel surface and the amount of surface they influence.
-These 2D images are subsequently compared using the image moment method commonly used in image processing.
-This way we are able to detect similarities and outliers in the dataset which are visualized as clusters in a scatterplot graph.
+These 2D images are subsequently described by image moments commonly used in image processing.
+This way we are able to detect similarities and outliers in the dataset, which are visualized as clusters in a scatterplot graph.
 The same coloring scheme is used in the linked bar chart enabling to detect the position of the cluster members over time.
-These views help to select a subset of possibly interesting tunnels which can be further explored in detail using the 2D unfolded view and traditional 3D representation.
+These views provide a way to select a subset of potentially interesting tunnels that can be further explored in detail using the 2D unfolded view and also traditional 3D representation.
 The usability of our approach is demonstrated on case studies conducted by the domain experts.
 
 \begin{classification} % according to http://www.acm.org/class/1998/
@@ -105,11 +105,11 @@ This can happen namely in situations when we want to explore:
 When performing these tasks using traditional 3D visualization, the first situation uses the animation of tunnel movement and the second situation superposes the tunnel under different mutations.
 Both cases suffer from several drawbacks. 
 When dealing with large molecular dynamics simulations consisting of hundreds of thousands of time steps, the animation of this movement is very hard to explore.
-The user is overwhelmed by the movements and the differences in the tunnel shape can be easily overlooked.
+The user is overwhelmed by movements and the differences in the tunnel shape can be easily overlooked.
 Moreover, using the 3D tunnel representation only a portion of the tunnel surface is visible from the viewpoint.
 When aiming to explore a tunnel influenced by several mutations of its surrounding amino acids, the user wants to observe and evaluate the impact of these mutations on the tunnel surface. Using superposition of the mutated tunnels we suffer from visual clutter caused by surface overlaps (see Figure~\ref{fig:tunnels} left).
 These overlaps can be removed by using juxtaposition of the tunnel representations (see Figure~\ref{fig:tunnels} right).
-But such a case is applicable only on a small set of objects because it can be hard to perceive the differences between them, namely for those in further mutual distance. 
+But such a case is applicable only on a small set of objects because it can be hard to perceive the differences between them, namely for those having a further mutual distance. 
 This problem is even stressed when using the 3D tunnel representation.
 
 \begin{figure}[htb]
@@ -120,11 +120,11 @@ This problem is even stressed when using the 3D tunnel representation.
 \end{figure}
 
 Moreover, the proper visualization of surface itself is not sufficient for exploration and complete understanding of differences between protein tunnels. 
-Another essential information is about the amino acids forming the tunnel boundary, namely their biochemical properties and the extent of influence of the tunnel.
+Another essential information relates the amino acids forming the tunnel boundary, namely their biochemical properties and the extent of influence of the tunnel.
 Possible solution is to map this information onto the tunnel surface.
-But because of the problems with the 3D tunnel visualization mentioned above, it is hard to compare and explore these properties as well.
+Nevertheless, due to the aforementioned problems present in 3D tunnel visualization mentioned above, it is hard to compare and explore these properties as well.
 
-In this paper we are aiming to solve these problems by introducing a novel technique for intuitive comparison and exploration of ensembles of protein tunnels.
+In this paper we aim at solving these problems by introducing a novel technique for intuitive comparison and exploration of ensembles of protein tunnels.
 It consists of several linked views enabling to:
 \begin{itemize}
 \item get the overview of all tunnels in the input ensemble and spot possibly interesting tunnels 
@@ -233,10 +233,10 @@ In both cases it means that the at least some essential information about protei
 
 \section{Unfolding-Based Exploration}
 
-As already stated, the main goal of our work is to allow an interactive exploration ensembles of molecular tunnels coming from molecular dynamics simulations or protein mutations.
-In both cases a tunnel can develops and change its shape dramatically.
+As already stated, the main goal of our work is to allow an interactive exploration of molecular tunnels ensembles coming from molecular dynamics simulations or protein mutations.
+In both cases a tunnel can develop and change its shape dramatically.
 From the raw simulation data, we derive tunnels as a set of 3D objects representing the tunnel shape over time.
-In case of mutations, we obtains the set in the identical form, the only difference is that it represents tunnel in one static time step but with different mutations of its surrounding amino acids.
+In case of mutations, we obtain a set in the identical form, the only difference is that it represents tunnel in one static time step but with different mutations of its surrounding amino acids.
 
 In general, there is no trivial or a direct way to orient/position 3D representation of the tunnels for exploration of its similarities and dissimilarities.
 There are several issues preventing direct comparison of such structures, e.g., the self-occlusion of tunnel features in 3D, and occlusion between multiple tunnels.
@@ -256,10 +256,10 @@ Having multiple views, the interaction allows to explore the space of tunnels in
 Each tunnel is defined by its shape as a triangle mesh, its centerline as a graph of connected points, and the information about hydrophobicity, charge, and hydrogen bonds of the tunnel-lining amino acids is stored for each vertex of the mesh.
 Moreover, we have a set of characteristics that are of utmost importance to explore.
 In our case we want to clearly communicate three features ordered from the most to the least important.
-The first feature is the positioning and distribution of amino acids, which form the tunnel boundary.
+The first feature is the positioning and distribution of amino acids that form the tunnel boundary.
 The second one is the spatial information about the tunnel length and its thickness development.
 The third feature is the notion of the tunnel width meaning that the user should be able to detect narrower and wider areas of the tunnel.
-Here the narrowest part of the tunnel, the bottleneck, is usually the also the most important one because it determines the size of a ligand molecule which can follow this tunnel.
+Here the narrowest part of the tunnel, the bottleneck, is usually also the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
@@ -270,63 +270,63 @@ By straightening the cuts and putting them on top of each other we unfold the tu
 \label{fig:unfolding}
 \end{figure}
 
-The general idea of our unfolding method is the parametrization.
+The general idea of our unfolding method is based on the centerline parametrization.
 For each tunnel we have the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$.
-Our method is based on slicing of the tunnel by the plane perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by the rays coming from the $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $s$.
+Our method is based on slicing the tunnel by planes perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $s$.
 
-Our assumption, based on the empirical knowledge, is that the centerline is always inside the tunnel and does not have a high curvature.
+Our assumption, based on the empirical knowledge, is that the centerline is always inside the tunnel and does not exhibit any high curvatures.
 This implies that two neighboring planes do not cross each other.
 
-The cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in first several slices.
+The cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in the first several slices.
 These stable amino acids can be found close to the tunnel end point which is deeply buried in the protein structure.
-This comes from the fact that the amino acids close to the protein surface are much more flexible than those densely packed inside.
+This is derived from the fact that the amino acids close to the protein surface are much more flexible than those densely packed inside.
 This allows us to create one of the directions for the shared comparative visualization, as the neighboring amino acids are stable during all the simulation of the dynamics.
-For our current needs this setting of the cutting vector is sufficient. 
-However, one might come up with more semantically correct cut, which would follow the borders between the neighboring amino acids.
-This approach would not suffer from artifacts such as cutting one amino acid into two parts which can happen in our solution.
+There are several other ways the cutting vector might be defined, but for our current needs this setting is sufficient. 
+For instance, one might come up with more semantically correct cut, which would follow the borders between the neighboring amino acids.
+This approach would not suffer from artifacts such as cutting one amino acid into two parts which can happen in our solution \todo[color=blue!40]{{\color{black}not sure whether we should mention also this}} .
 
 Having a tangent of the centerline and the global slicing vector can introduce a rotation artifact of the cut. 
 To overcome this problem, for each cutting plane along the centerline we project the cutting vector to the plane.
  
-Shape overlays, which are the result of the cuts, are uniformly sampled.
-It is possible that between two neighboring samples some information is lost, for example a small connecting cavity.
-However, this structure is too small to have any impact on the protein, and therefore it is desired not to take this feature into account.
+Shape overlays that are the result of the cuts are uniformly sampled.
+It is possible that between two neighboring samples some information might be lost, for example a small connecting cavity.
+However, this structure is too small to have any impact on the protein, and therefore we decided not to take this feature into account.
 The sampling is performed using the ray coming from the centerline and increasingly rotated around the slice normal.
-At each sample we now have a value and we have a slice line length between two samples $D_t(a_i, a_{i+1})$(see Figure~\ref{fig:unfolding}).
+At each sample we compute a value\todo[color=blue!40]{{\color{black}what value?}}  and a slice line length between two samples $D_t(a_i, a_{i+1})$(see Figure~\ref{fig:unfolding}).
 
-So the new coordinates are defined as
+So the new coordinates are defined as\todo[color=blue!40]{{\color{black}this equation is not clear - needs one sentence to describe what it does.}}
 \begin{equation}
-A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1}))
+A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
 \end{equation} 
 
-With our unfolding method we have in 2D the encoded values from the tunnel surface.
-Moreover, the size of the tunnel over the centerline is preserved, as well as the size and position of the amino acids from the surface and their respective neighborhood.
+Thus, our unfolding method allows us to encode tunnel surface values in 2D.
+Moreover, the size of the tunnel over the centerline is preserved, as well as the size and position of the amino acids around the surface and their respective neighborhood.
 
-By connecting the same angle samples together we get a shape description which communicates the changes of the tunnel shape.
+By connecting the same angle samples together we get a shape description that communicates the changes of the tunnel shape.
 For example, at the place where the lines are dense the tunnel is narrower.
 On the other hand, more scattered lines signify that the tunnel is wider (see Figure~\ref{fig:flatteningUtility}).
 
 \begin{figure}[htb]
-\includegraphics[width=\linewidth]{img/debugger.png}
+\includegraphics[width=0.9\linewidth]{img/debugger.png}
 \centering
 \caption{
-Illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.
+An illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.
 }
 \label{fig:flatteningUtility}
 \end{figure}
 
-Just for the demonstration purposes we have also prepared a utility (see Figure~\ref{fig:flatteningUtility}) to show the spatial connection between the representations.
+For illustration purposes we also prepared a utility (see Figure~\ref{fig:flatteningUtility}) to show the spatial connection between the representations.
 The utility is quite useful to get a grasp of the tunnel properties, to evaluate the correctness of the unfolding process, and to demonstrate the ability of the representation to show important features.
 
-But the core benefit of the unfolded tunnel representation lies in the ability to perform a comparative visualization.
-Juxtapositioned or superpositioned unfolded tunnels give an overview of the spatial and content-wise differences between different tunnels.
+Nevertheless, the core benefit of the unfolded tunnel representation lies in the ability to perform a comparative visualization.
+Juxtapositioned or superpositioned of the unfolded tunnels give an overview of the spatial and content-wise differences between different tunnels.
 
-For a smaller number of tunnels a simple composition of comparative visualization is sufficient.
-However, in the case of analyzing molecular dynamics simulations one can obtain hundreds of interesting time frames.
+Note that in case of a smaller number of tunnels a simple composition of comparative visualization is sufficient.
+However, when analyzing molecular dynamics simulations one can obtain hundreds of time frames that are considered crucial.
 As the tunnel develops over time, together with the whole molecule, it changes its shape and content.
-Along with it, the tunnel properties are changing over time as well.
-To show the similarity/dissimilarity of tunnels one needs to have a proper descriptor of a single instance.
-Since the unfolded representation holds all the relevant information and is two-dimensional, we decided to use the image moment as a descriptor.
+Moreover, the tunnel properties change over time as well.
+To show the similarity/dissimilarity of tunnels one needs to have a suitable descriptor of a single instance.
+Since the unfolded representation contains all the relevant information in 2D, i.e. forming an image, we opted for image moments as the main set of descriptors.
 
 \subsection{Image Moment}
 Image moments~\cite{Flusser09Moments} provide a practical and useful way to describe image objects. 
@@ -334,10 +334,10 @@ Each image $I(x,y)$ is described by the set of moments
 \begin{equation}
 M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
 \end{equation} 
-There exist various versions of image moment, which would bring invariance to different properties, such as rotation, scale, or translation.
+There exist various versions of image moments, which would bring invariance to different properties, such as rotation, scale, or translation.
 For example, centralized moments are invariant to translation.
-This is a valuable feature, as some amino acid areas might me moved by the change of the length of the centerline.
-In our case, images containing unfolded tunnels are further characterized by 10 different image-centralized moments to condense the information.
+This is a valuable property since some amino acid areas might change their longitudinal position with respect to the length of the centerline\todo[color=blue!40]{{\color{black}not sure that my update is completely correct. check please!}}.
+In our case, images containing unfolded tunnels are characterized by 10 different image-centralized moments to condense the information.
 \begin{equation}
 \mu_{pq} = \sum_{m}^{p}\sum_{n}^{q}{p \choose m}{q \choose n}\left(-{M_{10} \over M_{00}}\right)^{(p-m)}\left(-{M_{01} \over M_{00}}\right)^{(q-n)}
 \end{equation} 
@@ -345,38 +345,38 @@ This way we are able to specify each tunnel as a vector of values.
 \begin{equation}
 I_m(tun) = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
 \end{equation} 
-Image moment also holds a property that similar images have also similar values.
-In consequence, more different images have more distant values, so we can transform the similarity between images to distance between vectors.
-With the build up database of tunnel vectors, we can use the standard tools of information visualization to get the idea about the distances between tunnels.
+Image moments also maintains the property that similar images have similar values.
+In consequence, distinct images have more distant values, so we can transform the similarity between images to distance between the image moment vectors.
+Having such a database of tunnel vectors, we can use the standard tools of information visualization to get the idea about the distances between tunnels.
 
 \subsection{Similarity Overview}
-We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors
-\begin{equation}
-IM = 
-\begin{pmatrix}
-I_m(tun_1) \\
-I_m(tun_2) \\
-\vdots    \\
-I_m(tun_m) 
-\end{pmatrix}
-\end{equation} 
+We are able to set up a $m$-by-$n$ tunnel matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors.
+%\begin{equation}
+%IM = 
+%\begin{pmatrix}
+%I_m(tun_1) \\
+%I_m(tun_2) \\
+%\vdots    \\
+%I_m(tun_m) 
+%\end{pmatrix}
+%\end{equation} 
 
-When dealing with a tunnel in molecular dynamics, the matrix $IM$ will contain hundreds of rows and it will be challenging to explore the raw matrix to see which tunnels are close to each other and which not.
-To make the ensemble more understandable, we decided to transform the $IM$ matrix to point set representation in 2D, where each point represents one tunnel.
-Another important requirement is that the distance between the tunnels in matrix must be transformed into the distances between points.
+When dealing with a tunnel in molecular dynamics, the matrix $IM$ contains hundreds of rows and it is challenging to explore the raw matrix to see and understand which tunnels are close to each other and which are not.
+To make the ensemble more understandable, we project the $IM$ matrix of tunnel image moments to 2D, where each 2D point represents one tunnel.
+Here, the important requirement is that the distance between the tunnels in the matrix must be transformed into the distances between points.
 
 First, the matrix dimension needs to be reduced.
 In our project we have adopted a simple but very useful solution of principal component analysis (PCA).
 
 PCA is a statistical tool that transforms a set of observations, in our case a set of image moment vectors, to the set of linearly uncorrelated variables. 
-Each of the resulting components is orthogonal to each other and the number of components is lower than the number of the original variables.
-Moreover, the components are ordered by the variance value.
+Each of the resulting components is orthogonal to each other and the number of components is lower than the number of the original variables\todo[color=blue!40]{{\color{black}Actually the number is always the same, just that we choose those with the highest variance - needs to be rewritten!}} .
+The components are ordered by the variance value.
 Meaning that the first component has the largest possible variance and each succeeding component has a lower variance.
-In our overview, we are showing the first two PCA components for the tunnel, which are encoded in the coordinates.
+In our overview, we showcase the first two PCA components for the tunnel, which are encoded in the coordinates.
 As a result, we are able to remove the noise from the data while making the use of fewer quantities.
 The first component value encodes the $x$ coordinate, and the second encodes the $y$ coordinate (see Figure~\ref{fig:processing_pipeline}).
 
-Even though we have used PCA for dimension reduction, there are of course alternative approaches, for example Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA}, and others.
+Even though we have used PCA for dimension reduction, there are several alternative approaches, for example Kernel Principal Component Analysis(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis (ICA)~\cite{Olshausen1997ICA}, and others.
 The important property of the approach is the ability to reduce the 10 digits tunnel descriptor to 2D point coordinates and to visualize the statistical results for the whole matrix.
 Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation.
 
@@ -388,33 +388,32 @@ This is one of the possible future directions of the method.
 Having the visual representation of the similarity between tunnels is a very useful tool for the navigation through possible tunnel arrangements.
 With points spread in the 2D space it is easy to see where the points are more densely populated (clusters) and which points are more distant from other ones (outliers).
 However, for a successful connection with other views, one needs a proper color depiction of clusters and outliers.
-Clustering allows us to make groups of points to determine patterns in the overview.
-Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
-Moreover, clustering close points to one group in our case means grouping similar tunnels together.
-A general open question for clustering is that the number of groups usually needs to be known in advance.
+Here, clustering allows us to make groups of points to determine patterns in the overview.
+%Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
+Essentially, points in a cluster determine a group of similar tunnels.
+A general open question for a successful cluster set is a number of clusters to determined in advance.
 For a user without any prior knowledge about the data, this might be difficult.
-Moreover, the problem of clustering generally contains a group of different algorithms with the common task.
-In general we can say that there is no objectively "correct" clustering algorithm.
-We have experimented with centroid-based clustering and k-means approaches.
+Moreover, there are different clustering algorithms that could be applied, which in essence makes it complex to find the most suitable one.
+In our work, we have experimented with centroid-based clustering and k-means approaches.
 The output of the centroid-based clustering is the set of clusters represented by a central vector, which may not necessarily be a member of the data set.
 In k-means clustering the number of clusters is fixed to $k$ and needs to be specified in advance, which is considered to be one of the main drawbacks of this algorithm.
 
 K-means is an optimization problem that reduces the distances of the data from the nearest cluster center, which is not a problem in our solution.
-In our case, we want to show an unfold representative from each cluster.
+In our case, we would like to show an unfolded representative from each cluster.
 As this representation requires available space in window, the number of unfolded tunnels is limited.
-We have empirically found out that showing five tunnels at the same time is the limit which also gives us the limit for k-means clustering.
+We have empirically found out that showing five tunnels at the same time is the limit that also gives us a suitable amount of clusters for k-means clustering.
 K-means was selected because of its simplicity and for its conceptual closeness to the nearest neighbor classification.
-However, a well known problem is with the borders of clusters, because the algorithm optimizes cluster centers, not cluster borders, and we envision another direction of our future work in experimenting with other families of cluster algorithms such as hierarchical clustering, density clustering, and other methods from machine learning.
+However, a well known problem relates to the borders of clusters, since the algorithm optimizes cluster centers, not cluster borders. This represents another direction of our future work, where we will conduct experiments with other families of cluster algorithms such as hierarchical clustering, density clustering, and other methods from machine learning.
 
-It is important to explain also the definition of the distance for the clustering algorithm. 
-The Euclidean distance is very easy to imagine and thus to work with.
-However, it is hard to see if it is applicable on the points from the image moment descriptor as well.
+Additionally, it is also important to mention the right choice of distance metric for the clustering algorithm. 
+Here, the Euclidean distance represents the natural choice, which is also very easy to work with.
+However, it is not that straightforward to see its application to the image moment descriptor as well.
 More appropriate might be to use the Mahanalobis distance.
 The Mahalanobis distance is a measure of the distance between a point and a distribution.
 The Mahalanobis distance is unitless and scale-invariant and takes into account the correlations of the data set.
 
 \begin{figure}[htb]
-\includegraphics[width=\linewidth]{img/invariance.png}
+\includegraphics[width=0.8\linewidth]{img/invariance.png}
 \centering
 \caption{
 Tunnel similarity overview for four different ways of generating image moment: standard (upper-left), with amino acids coloring permutation (upper-right), rotated (lower-left), and with normalized size of the centerline (lower-right).
@@ -424,14 +423,14 @@ Points are colored according to the detected clusters.
 \end{figure}
 
 Image moment descriptor, dimension reduction, and clustering should all bring the same notion of tunnels similarity/dissimilarity.
-Image moment might be seen as a problem here, as it fills the data to reduction and clustering.
+Image moment might be seen as a problem here, as it fills the data to reduction and clustering\todo[color=blue!40]{{\color{black}Not clear what does the sentence say!}}.
 The original image moment is not invariant to translation, rotation, or scale, but there exist versions in which those properties are invariant.
 We have decided to use the centralized image moment, as it is invariant to translation because all the tunnels have the same rotation and uniform scaling.
-Translational invariance helps us with the problem of moved amino-acids, due to the change of the centerline length.
-As can be seen in Figure~\ref{fig:invariance}, we tested the generation of the overview with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, and tunnels colored by the different color scheme.
+Translational invariance helps us with the problem of translated amino-acids, due to the change of the centerline length.
+As can be seen in Figure~\ref{fig:invariance}, we tested the generation of the overview scatterplot with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, and tunnels colored by the different color scheme.
 We can see that even though the positional distribution of the points differs, the notion of cluster and two outliers is preserved in all the different ways of generating image moment values.
-Moreover, the important aspect here is that for the overview we have a shared space which allows us to see the neighborhood of the tunnels.
-Additionally, the space of the unfolded tunnels is shared as well.
+Moreover, the important aspect here is that for the overview scatterplot we have a shared space which allows us to see the neighborhood of the tunnels.
+Additionally, the space of the unfolded tunnels is shared as well\todo[color=blue!40]{{\color{black}What is meant by space??}}..
 This is due to requirement of employing comparative visualization as a part of the exploration process.
 
 \subsection{Exploration}
@@ -451,11 +450,10 @@ And finally is the bar chart view where each tunnel is represented by one bar an
 \end{figure*}
 
 Using the unfolding tunnel view the user is able to intuitively compare the width of the tunnels, the position of their bottleneck, the set of tunnel-lining amino acids and their extent of influence.
-{\color{red}In order to communicate various physico-chemical properties of individual amino acids we use color mapping. 
-However, using this approach we are able to visualize only single property in time.
-Hence we provide also more aggregate view situated next to the unfolded tunnel image.
-This view communicates an average value for each observer physico-chemical property computed over a narrow strip of the tunnel surface.
-Such value can be seen as if it would be measured inside of the tunnel closed to its centerline.}
+In order to communicate various physico-chemical properties of individual amino acids we use color mapping. 
+However, using this approach we are able to visualize only a single property at once.
+Hence we provide also more aggregated view situated next to the unfolded tunnel image.
+This view communicates the average value for each observed physico-chemical property computed for the tunnel-lining amino acids.
 
 The unfolded tunnels are positioned side by side, or in other words by using the juxtaposition composition.
 Positioning tunnels from different time frames allows the user to see the behavior of the bottleneck as well as the amino acids.
@@ -560,9 +558,9 @@ There were also some new ideas of the final visualization composition.
 First was to incorporate the unfolded overview for the whole cluster.
 This means to visualize the clusters side by side, where each cluster would not be seen by one representative, but rather by the variance visualization showing the stability of the cluster.
 
-\todo{this sounds strange}Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
-
-\todo[inline]{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
+%\todo{this sounds strange}
+%Extending this concept to the whole molecule, our collaborators suggested that the whole molecule unfolding would be beneficial to visualize and explore in a similar manner.
+%\todo{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
 
 %-------------------------------------------------------------------------
 
