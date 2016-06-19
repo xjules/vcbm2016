@@ -383,31 +383,27 @@ Meaning that the first component has the largest possible variance and each succ
 In our overview, we showcase the first two PCA components for the tunnel, which are encoded in the coordinates.
 The first component value encodes the $x$ coordinate, and the second encodes the $y$ coordinate (see Figure~\ref{fig:processing_pipeline}).
 
-
-
 Natural image statistics were deeply analyzed by Fang et al.~\cite{Fang2013NaturalImageStatistics}, where the authors have designed new visualizations for image statistics.
 Our 2D overview is just a simple demonstration, however, more complex visualization method can be used instead, for example Combined design~\cite{Fang2013NaturalImageStatistics} to show the parameters of PCA and Gabor descriptors at the same time.
 This is one of the possible future directions of the method.
 
 \subsubsection{Clustering}
-Having the visual representation of the similarity between tunnels is a very useful tool for the navigation through possible tunnel arrangements.
+Having the visual representation of the similarity between tunnels is a very useful tool for the navigation through possible tunnel arrangements, which was shown, and discussed in the work of van den Elzen et al.\cite{Elzen2016SnapshotsToPoints} on the example of dynamic networks.
 With points spread in the 2D space it is easy to see where the points are more densely populated (clusters) and which points are more distant from other ones (outliers).
 However, for a successful connection with other views, one needs a proper color depiction of clusters and outliers.
 Here, clustering allows us to make groups of points to determine patterns in the overview.
 %Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
-Essentially, points in a cluster determine a group of similar tunnels.
-A general open question for a successful cluster set is a number of clusters to determined in advance.
-For a user without any prior knowledge about the data, this might be difficult.
-Moreover, there are different clustering algorithms that could be applied, which in essence makes it complex to find the most suitable one.
-In our work, we have experimented with centroid-based clustering and k-means approaches.
-The output of the centroid-based clustering is the set of clusters represented by a central vector, which may not necessarily be a member of the data set.
-In k-means clustering the number of clusters is fixed to $k$ and needs to be specified in advance, which is considered to be one of the main drawbacks of this algorithm.
+%Essentially, points in a cluster determine a group of similar tunnels.
+%A general open question for a successful cluster set is a number of clusters to determined in advance.
+%For a user without any prior knowledge about the data, this might be difficult.
 
-K-means is an optimization problem that reduces the distances of the data from the nearest cluster center, which is not a problem in our solution.
+There are different clustering algorithms that could be applied, for example hierarchical clustering, or k-means approaches. 
+In k-means clustering the number of clusters is fixed to $k$ and needs to be specified in advance, which is considered to be one of the main drawbacks of this algorithm.
+On the other hand, hierarchical clustering do not need the number of clusters in advance.
 In our case, we would like to show an unfolded representative from each cluster.
 As this representation requires available space in window, the number of unfolded tunnels is limited.
-We have empirically found out that showing five tunnels at the same time is the limit that also gives us a suitable amount of clusters for k-means clustering.
-K-means was selected because of its simplicity and for its conceptual closeness to the nearest neighbor classification.
+We have empirically found out that showing five tunnels at the same time is the limit that also gives us a suitable amount of clusters for k-means clustering, which transforms a k-means drawback to our advantage.
+Moreoverm k-means was selected because of its simplicity and for its conceptual closeness to the nearest neighbor classification.
 However, a well known problem relates to the borders of clusters, since the algorithm optimizes cluster centers, not cluster borders. This represents another direction of our future work, where we will conduct experiments with other families of cluster algorithms such as hierarchical clustering, density clustering, and other methods from machine learning.
 
 Additionally, it is also important to mention the right choice of distance metric for the clustering algorithm. 
