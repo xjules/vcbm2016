@@ -200,15 +200,6 @@ This method handles very well a topological noise and preserves the colon wall s
 The proposed normalized rectangle view, however, does not depict the radius of the colon.
 This can be omitted in this particular use case of colon polyp detection, but it is essential when designing a comparative visualization of protein tunnels.
 
-\begin{figure*}[htb]
-\includegraphics[width=\linewidth]{img/processing_pipeline.jpg}
-\centering
-\caption{Processing pipeline.
-Each tunnel (a) is unfolded (b), described with image moment, and processed to 2D point of similarity overview (c).
-At the end the tunnels are shown in multiple views(d). }
-\label{fig:processing_pipeline}
-\end{figure*}
-
 Another example of surface reformation of the tubular structures comes from the field of vessel visualization.
 The Curved Planar Reformation (CPR)~\cite{Kanitsar2002CPR} is widely known technique commonly used for diagnosis of vascular diseases of peripheral arteries with single dominant direction.
 In order to investigate the vessels of an arbitrary orientation, Mistelbauer et al.~\cite{Mistelbauer2012CP} proposed so called Centerline Reformations (CR).
@@ -261,15 +252,6 @@ The second one is the spatial information about the tunnel length and its thickn
 The third feature is the notion of the tunnel width meaning that the user should be able to detect narrower and wider areas of the tunnel.
 Here the narrowest part of the tunnel, the bottleneck, is usually also the most important one because it determines the size of a ligand molecule which can follow this tunnel.
 
-\begin{figure}[htb]
-\includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
-\centering
-\caption{
-We cut the tunnel along its centerline. Then for each point on the centerline we create one slice.
-By straightening the cuts and putting them on top of each other we unfold the tunnel.}
-\label{fig:unfolding}
-\end{figure}
-
 The general idea of our unfolding method is based on the centerline parametrization.
 For each tunnel we have the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$.
 Our method is based on slicing the tunnel by clip planes perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $a$.
@@ -296,13 +278,21 @@ However, this structure is too small to have any impact on the protein, and ther
 The sampling is performed using the ray coming from the centerline and increasingly rotated around the slice normal.
 At each sample we compute a distance between the sample and centerline, and a slice line length between two samples $D(a_i, a_{i+1})$, where $a_i$ and $a_{i+1}$ are two neighboring samples(see Figure~\ref{fig:unfolding}).
 
+\begin{figure}[htb]
+\includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
+\centering
+\caption{
+We cut the tunnel along its centerline. Then for each point on the centerline we create one slice.
+By straightening the cuts and putting them on top of each other we unfold the tunnel.}
+\label{fig:unfolding}
+\end{figure}
+
 For each sample, in every slide we compute a new coordinates.
 First coordinate is based on the parameter $t$. The value of the parameter ranges from 0, to the length of the centerline, and it is a distance along it. 
 Second coordinate system is computed from the second parameter $a$. 
 Due to fact, that parameter $a$ is sampled uniformly, and for each neighbors we store a distance $D(a_i, a_{i+1})$, we are able to compute a size of the surface slice as a sum $\sum_{l=0}^{36} D(a_l, a_{l+1})$.
 Because we are doing an unfolding, samples from the cut should be on side, and samples from the opposite direction ($180^{\circ}$ with $a=18$).
-For unfolding a tunnel to coordinates, where the first one is for the length in centerline and second for the length in the cut the coordinates would be:
-\begin{equation}
+For unfolding a tunnel to coordinates, where the first one is for the length in centerline and second for the length in the cut the coordinates would be:\begin{equation}
 (t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
 \end{equation} 
 
@@ -334,6 +324,15 @@ As the tunnel develops over time, together with the whole molecule, it changes i
 Moreover, the tunnel properties change over time as well.
 To show the similarity/dissimilarity of tunnels one needs to have a suitable descriptor of a single instance.
 Since the unfolded representation contains all the relevant information in 2D, i.e. forming an image, we opted for image moments as the main set of descriptors.
+
+\begin{figure*}[htb]
+\includegraphics[width=\linewidth]{img/processing_pipeline.jpg}
+\centering
+\caption{Processing pipeline.
+Each tunnel (a) is unfolded (b), described with image moment, and processed to 2D point of similarity overview (c).
+At the end the tunnels are shown in multiple views(d). }
+\label{fig:processing_pipeline}
+\end{figure*}
 
 \subsection{Image Moment}
 Image moments~\cite{Flusser09Moments} provide a practical and useful way to describe image objects. 
@@ -419,6 +418,14 @@ More appropriate might be to use the Mahanalobis distance.
 The Mahalanobis distance is a measure of the distance between a point and a distribution.
 The Mahalanobis distance is unitless and scale-invariant and takes into account the correlations of the data set.
 
+Image moment descriptor, dimension reduction, and clustering should all bring the same notion of tunnels similarity/dissimilarity.
+The original image moment is not invariant to translation, rotation, or scale, but there exist versions in which those properties are invariant.
+We have decided to use the centralized image moment, as it is invariant to translation because all the tunnels have the same rotation and uniform scaling.
+Translational invariance helps us with the problem of translated amino-acids, due to the change of the centerline length.
+As can be seen in Figure~\ref{fig:invariance}, we tested the generation of the overview scatterplot with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, and tunnels colored by the different color scheme.
+We can see that even though the positional distribution of the points differs, the notion of cluster and two outliers is preserved in all the different ways of generating image moment values.
+Moreover, the important aspect here is that for the overview scatterplot we have a shared space which allows us to see the neighborhood of the tunnels, which is our requirement for employing comparative visualization as a part of the exploration process.
+
 \begin{figure}[htb]
 \includegraphics[width=0.8\linewidth]{img/invariance.png}
 \centering
@@ -428,14 +435,6 @@ Points are colored according to the detected clusters.
 }
 \label{fig:invariance}
 \end{figure}
-
-Image moment descriptor, dimension reduction, and clustering should all bring the same notion of tunnels similarity/dissimilarity.
-The original image moment is not invariant to translation, rotation, or scale, but there exist versions in which those properties are invariant.
-We have decided to use the centralized image moment, as it is invariant to translation because all the tunnels have the same rotation and uniform scaling.
-Translational invariance helps us with the problem of translated amino-acids, due to the change of the centerline length.
-As can be seen in Figure~\ref{fig:invariance}, we tested the generation of the overview scatterplot with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, and tunnels colored by the different color scheme.
-We can see that even though the positional distribution of the points differs, the notion of cluster and two outliers is preserved in all the different ways of generating image moment values.
-Moreover, the important aspect here is that for the overview scatterplot we have a shared space which allows us to see the neighborhood of the tunnels, which is our requirement for employing comparative visualization as a part of the exploration process.
 
 \subsection{Exploration}
 
@@ -496,7 +495,7 @@ The first study deals with exploration of simulations of molecular dynamics and 
 \end{figure*}
 
 
-\subsubsection{Exploration of Molecular Dynamics}
+\subsection{Exploration of Molecular Dynamics}
 Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is currently one of the biggest challenges.
 There are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3}) and in consequence also few approaches to their visual exploration appeared as well (e.g., \cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner,Lindow2012DynamicChannels,Lindow2013DynamicCavities}).
 However, these approaches suffer from problems related to 3D representation or when using a 2D view, the information about the influence of individual tunnel lining amino acids and their mutual positions is completely lost.
@@ -523,7 +522,7 @@ Some of them were slightly confused about the fact that some amino acids are div
 However, this can be solved by interactive manipulation with the cut position or in the future also by introducing more sophisticated method for defining the cut.
 But in summary they confirmed that this tool has a high potential for this type of tasks.
 
-\subsubsection{Exploration of Tunnel Mutations}
+\subsection{Exploration of Tunnel Mutations}
 One of the research topics conducted by the cooperation group of protein engineers is dealing with engineering protein stability and resistance to organic cosolvents~~\cite{Koudelakova2013StabilityAndResistance}.
 This is reached by mutating the amino acids around the main tunnel of the DhaA haloalkane dehalogenase protein molecule. 
 The paper first presents the confirmation of importance of the amino acids surrounding the tunnel by presenting the results of several mutations of amino acids on different places in the molecule.
