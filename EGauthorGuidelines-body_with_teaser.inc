@@ -292,7 +292,7 @@ In this approach the normal of the cutting plane is computed as an average vecto
 
 %The second parameter $a$, of our parametrization, samples the points on individual contours.
 With the second parameter $a$ we uniformly sample points on each contour every $10^{\circ}$ (in the counter clockwise manner).
-Hence, the samples at positions $a=0$ and $a=36$ are the same while the value $a=18$ corresponds to the sample on the opposite side of the contour (see Figure~\ref{fig:unfolding} middle). 
+Hence, the samples at positions $a=0$ and $a=36$ are the same while the value $a=18$ corresponds to the sample on the opposite side of the contour (see Figure~\ref{fig:unfolding}, middle). 
 However, the results depend on the precise location of the point at the contour from where we start the sampling.
 %sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
 In our case the starting point is defined by so called cutting vector $\mathbf{v}$. 
@@ -329,7 +329,7 @@ In order to reconstruct the final 2D view from the computed samples we need to t
 Here we simply utilize the two already described parameters $t$ and $a$.
 Parameter $t$ can be used directly since its value ranges from 0 to 1 and corresponds to the length of the centerline.
 On the other hand, if we use parameter $a$ without any transformation we will lost the information about the tunnel width.
-Therefore, for each contour we also compute the distance $D(a_i, a_{i+1})$ between every two neighboring samples $a_i$ and $a_{i+1}$ (see Figure~\ref{fig:unfolding}).
+Therefore, for each contour we also compute the distance $D(a_i, a_{i+1})$ between every two neighboring samples $a_i$ and $a_{i+1}$ (see Figure~\ref{fig:unfolding}, middle).
 This distance is then used in order to transform the position of the sample in the final 2D space.
 
  
