@@ -243,26 +243,26 @@ As already stated, the main goal of our work is to allow an interactive explorat
 {\color{orange}In both cases a tunnel shape and physico-chemical properties can develop and change dramatically.
 
 We derive tunnels from the raw data as a set of 3D objects representing the tunnel shape.
-In general, there is no trivial or a direct way to orient the obtained set of tunnels such that user could intuitively explore similarities and dissimilarities of individual tunnels.}
+In general, there is no trivial or a direct way to orient the obtained set of tunnels such that user could intuitively explore similarities and dissimilarities of individual tunnels, i.e., to perform co-registration.}
 There are several issues preventing direct comparison of such structures {\color{orange}in 3D}, e.g., the self-occlusion of tunnel features, occlusion between multiple tunnels, {\color{orange}etc}.
 Moreover, there is always a limit of how many 3D objects users can explore at the same time in one window.
 {\color{orange}To overcome the self-occlusion issues we unfold a 3D tunnel representation to 2D as suggested by various related work.}
 
 {\color{orange}As already mentioned, the molecular dynamics consists of thousands of time steps, therefore, the direct comparison of shape of all the tunnels, using either 3D or 2D representation, is challenging task.
-To overcome this problem we need to utilize some automatic method for evaluation of the tunnel similarities.
-Hence, it is necessary to define a set of descriptors that would properly characterize properties of each tunnel.
-Several shape descriptors for whole proteins or binding sites were already suggested (\eg~\cite{Weisel2007PocketPicker}) but these take into account only the shape of protein surface while in our case we are interested also in the physico-chemical properties of surrounding amino acids.
+To tackle this problem we opt to utilize an semi-automated method for evaluation of the tunnel similarities\todo{check please!}.
+Hence, it is necessary to define a set of descriptors that would properly characterize important properties of each tunnel.
+Several shape descriptors for whole proteins or binding sites were already suggested (\eg~\cite{Weisel2007PocketPicker}) but these take into account only the shape of protein surfaces while in our case we emphasize also the physico-chemical properties of surrounding amino acids.
  
-Since we are already dealing with 2D representation of tunnels as solution for occlusion issues, we decided to employ a set of descriptors based on image moments~\cite{Flusser09Moments}.
+Since we deal with 2D representation of tunnels as solution for occlusion issues, we decided to employ a set of descriptors based on image moments~\cite{Flusser09Moments}.
 The advantage of this approach is that the image moment is a well known descriptor for image analysis and classification.
 We can easily utilize the color channel for information about amino acids and hence directly fetch it to the descriptor.
-Plus it provides us an explicit description of the representation which we will ultimately provide to the user.
+Additionally, it provides us an explicit description of the representation that we will ultimately provide to the user.
 
 In order to communicate the obtained results we need to employ a dimension reduction technique due to the large amount of both tunnels and possible descriptors.
-In our approach we suggest to use principal component analysis (PCA) for its simplicity but any other method could be used as well.
-With PCA we can show the tunnels similarities/dissimilarities as a distance between two points in 2D domain.
+In our technique we exploit principal component analysis (PCA) due its simplicity and applicability in dimensions reduction problems in data analysis; nevertheless any other method could be applied as well naturally.
+With PCA performed we can show the tunnels in a scatterplot view, where similarities/dissimilarities can be easily noticed as a distance between two points \todo{check please!}.
 
-Finally, having multiple views, the interaction allows to explore the space of all tunnels in 2D using a scatterplot and at the same time to compare spatial characteristics of the individual unfolded tunnels.
+Finally, having multiple views, the interaction allows us to explore the space of all tunnels in 2D using a scatterplot and at the same time to compare spatial characteristics of the individual unfolded tunnels.
 
 The individual steps of our algorithm will be described in following sections in more details.
 
