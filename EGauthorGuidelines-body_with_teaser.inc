@@ -388,27 +388,26 @@ This is one of the possible future directions of the method.
 Having the visual representation of the similarity between tunnels is a very useful tool for the navigation through possible tunnel arrangements.
 With points spread in the 2D space it is easy to see where the points are more densely populated (clusters) and which points are more distant from other ones (outliers).
 However, for a successful connection with other views, one needs a proper color depiction of clusters and outliers.
-Clustering allows us to make groups of points to determine patterns in the overview.
-Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
-Moreover, clustering close points to one group in our case means grouping similar tunnels together.
-A general open question for clustering is that the number of groups usually needs to be known in advance.
+Here, clustering allows us to make groups of points to determine patterns in the overview.
+%Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
+Essentially, points in a cluster determine a group of similar tunnels.
+A general open question for a successful cluster set is a number of clusters to determined in advance.
 For a user without any prior knowledge about the data, this might be difficult.
-Moreover, the problem of clustering generally contains a group of different algorithms with the common task.
-In general we can say that there is no objectively "correct" clustering algorithm.
-We have experimented with centroid-based clustering and k-means approaches.
+Moreover, there are different clustering algorithms that could be applied, which in essence makes it complex to find the most suitable one.
+In our work, we have experimented with centroid-based clustering and k-means approaches.
 The output of the centroid-based clustering is the set of clusters represented by a central vector, which may not necessarily be a member of the data set.
 In k-means clustering the number of clusters is fixed to $k$ and needs to be specified in advance, which is considered to be one of the main drawbacks of this algorithm.
 
 K-means is an optimization problem that reduces the distances of the data from the nearest cluster center, which is not a problem in our solution.
-In our case, we want to show an unfold representative from each cluster.
+In our case, we would like to show an unfolded representative from each cluster.
 As this representation requires available space in window, the number of unfolded tunnels is limited.
-We have empirically found out that showing five tunnels at the same time is the limit which also gives us the limit for k-means clustering.
+We have empirically found out that showing five tunnels at the same time is the limit that also gives us a suitable amount of clusters for k-means clustering.
 K-means was selected because of its simplicity and for its conceptual closeness to the nearest neighbor classification.
-However, a well known problem is with the borders of clusters, because the algorithm optimizes cluster centers, not cluster borders, and we envision another direction of our future work in experimenting with other families of cluster algorithms such as hierarchical clustering, density clustering, and other methods from machine learning.
+However, a well known problem relates to the borders of clusters, since the algorithm optimizes cluster centers, not cluster borders. This represents another direction of our future work, where we will conduct experiments with other families of cluster algorithms such as hierarchical clustering, density clustering, and other methods from machine learning.
 
-It is important to explain also the definition of the distance for the clustering algorithm. 
-The Euclidean distance is very easy to imagine and thus to work with.
-However, it is hard to see if it is applicable on the points from the image moment descriptor as well.
+Additionally, it is also important to mention the right choice of distance metric for the clustering algorithm. 
+Here, the Euclidean distance represents the natural choice, which is also very easy to work with.
+However, it is not that straightforward to see its application to the image moment descriptor as well.
 More appropriate might be to use the Mahanalobis distance.
 The Mahalanobis distance is a measure of the distance between a point and a distribution.
 The Mahalanobis distance is unitless and scale-invariant and takes into account the correlations of the data set.
@@ -424,14 +423,14 @@ Points are colored according to the detected clusters.
 \end{figure}
 
 Image moment descriptor, dimension reduction, and clustering should all bring the same notion of tunnels similarity/dissimilarity.
-Image moment might be seen as a problem here, as it fills the data to reduction and clustering.
+Image moment might be seen as a problem here, as it fills the data to reduction and clustering\todo[color=blue!40]{{\color{black}Not clear what does the sentence say!}}.
 The original image moment is not invariant to translation, rotation, or scale, but there exist versions in which those properties are invariant.
 We have decided to use the centralized image moment, as it is invariant to translation because all the tunnels have the same rotation and uniform scaling.
-Translational invariance helps us with the problem of moved amino-acids, due to the change of the centerline length.
-As can be seen in Figure~\ref{fig:invariance}, we tested the generation of the overview with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, and tunnels colored by the different color scheme.
+Translational invariance helps us with the problem of translated amino-acids, due to the change of the centerline length.
+As can be seen in Figure~\ref{fig:invariance}, we tested the generation of the overview scatterplot with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, and tunnels colored by the different color scheme.
 We can see that even though the positional distribution of the points differs, the notion of cluster and two outliers is preserved in all the different ways of generating image moment values.
-Moreover, the important aspect here is that for the overview we have a shared space which allows us to see the neighborhood of the tunnels.
-Additionally, the space of the unfolded tunnels is shared as well.
+Moreover, the important aspect here is that for the overview scatterplot we have a shared space which allows us to see the neighborhood of the tunnels.
+Additionally, the space of the unfolded tunnels is shared as well\todo[color=blue!40]{{\color{black}What is meant by space??}}..
 This is due to requirement of employing comparative visualization as a part of the exploration process.
 
 \subsection{Exploration}
