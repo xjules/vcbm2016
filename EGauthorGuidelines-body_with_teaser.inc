@@ -254,7 +254,7 @@ Here the narrowest part of the tunnel, the bottleneck, is usually also the most 
 
 The general idea of our unfolding method is based on the centerline parametrization.
 For each tunnel we have the centerline curve $\mathbf{c}(t) : [t_0, t_1]$ of the tunnel, and the cut direction $\mathbf{v}$.
-Our method is based on slicing the tunnel by planes perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $s$.
+Our method is based on slicing the tunnel by planes perpendicular to centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $a$.
 
 Our assumption, based on the empirical knowledge, is that the centerline is always inside the tunnel and does not exhibit any high curvatures.
 This implies that two neighboring planes do not cross each other.
@@ -265,7 +265,7 @@ This is derived from the fact that the amino acids close to the protein surface 
 This allows us to create one of the directions for the shared comparative visualization, as the neighboring amino acids are stable during all the simulation of the dynamics.
 There are several other ways the cutting vector might be defined, but for our current needs this setting is sufficient. 
 For instance, one might come up with more semantically correct cut, which would follow the borders between the neighboring amino acids.
-This approach would not suffer from artifacts such as cutting one amino acid into two parts which can happen in our solution \todo[color=blue!40]{{\color{black}not sure whether we should mention also this}} .
+%This approach would not suffer from artifacts such as cutting one amino acid into two parts which can happen in our solution \todo[color=blue!40]{{\color{black}not sure whether we should mention also this}} .
 
 Having a tangent of the centerline and the global slicing vector can introduce a rotation artifact of the cut. 
 To overcome this problem, for each cutting plane along the centerline we project the cutting vector to the plane.
@@ -274,20 +274,21 @@ Shape overlays that are the result of the cuts are uniformly sampled.
 It is possible that between two neighboring samples some information might be lost, for example a small connecting cavity.
 However, this structure is too small to have any impact on the protein, and therefore we decided not to take this feature into account.
 The sampling is performed using the ray coming from the centerline and increasingly rotated around the slice normal.
-At each sample we compute a value\todo[color=blue!40]{{\color{black}what value?}}  and a slice line length between two samples $D_t(a_i, a_{i+1})$(see Figure~\ref{fig:unfolding}).
+At each sample we compute a distance between the sample and centerline, and a slice line length between two samples $D_t(a_i, a_{i+1})$, where $a_i$ and $a_{i+1}$ are two neighboring samples(see Figure~\ref{fig:unfolding}).
 
-\begin{figure}[htb]
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
 \centering
 \caption{
 We cut the tunnel along its centerline. Then for each point on the centerline we create one slice.
 By straightening the cuts and putting them on top of each other we unfold the tunnel.}
 \label{fig:unfolding}
-\end{figure}
-
-So the new coordinates are defined as\todo[color=blue!40]{{\color{black}this equation is not clear - needs one sentence to describe what it does.}}
-\begin{equation}
-A(t, a_j) = (t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
+\end{figure}For each sample, in every slide we compute a new coordinates.
+First coordinate is based on the parameter $t$. The value of the parameter ranges from 0, to the length of the centerline, and it is a distance along it. 
+Second coordinate system is computed from the second parameter $a$. 
+Due to fact, that parameter $a$ is sampled uniformly, and for each neighbors we store a distance $D(a_i, a_{i+1})$, we are able to compute a size of the surface slice as a sum $\sum_{l=0}^{36} D(a_l, a_{l+1})$.
+Because we are doing an unfolding, samples from the cut should be on side, and samples from the opposite direction ($180^{\circ}$ with $a=18$).
+For unfolding a tunnel to coordinates, where the first one is for the length in centerline and second for the length in the cut the coordinates would be:\begin{equation}
+(t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
 \end{equation} 
 
 Thus, our unfolding method allows us to encode tunnel surface values in 2D.
@@ -336,7 +337,7 @@ M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
 \end{equation} 
 There exist various versions of image moments, which would bring invariance to different properties, such as rotation, scale, or translation.
 For example, centralized moments are invariant to translation.
-This is a valuable property since some amino acid areas might change their longitudinal position with respect to the length of the centerline\todo[color=blue!40]{{\color{black}not sure that my update is completely correct. check please!}}.
+This is a valuable property since some amino acid areas might change their longitudinal position with respect to the length of the centerline.
 In our case, images containing unfolded tunnels are characterized by 10 different image-centralized moments to condense the information.
 \begin{equation}
 \mu_{pq} = \sum_{m}^{p}\sum_{n}^{q}{p \choose m}{q \choose n}\left(-{M_{10} \over M_{00}}\right)^{(p-m)}\left(-{M_{01} \over M_{00}}\right)^{(q-n)}
@@ -369,7 +370,7 @@ First, the matrix dimension needs to be reduced.
 In our project we have adopted a simple but very useful solution of principal component analysis (PCA).
 
 PCA is a statistical tool that transforms a set of observations, in our case a set of image moment vectors, to the set of linearly uncorrelated variables. 
-Each of the resulting components is orthogonal to each other and the number of components is lower than the number of the original variables\todo[color=blue!40]{{\color{black}Actually the number is always the same, just that we choose those with the highest variance - needs to be rewritten!}} .
+Each of the resulting components is orthogonal to each other and the number of components is lower, or equall, than the number of the original variables.
 The components are ordered by the variance value.
 Meaning that the first component has the largest possible variance and each succeeding component has a lower variance.
 In our overview, we showcase the first two PCA components for the tunnel, which are encoded in the coordinates.
@@ -413,15 +414,12 @@ The Mahalanobis distance is a measure of the distance between a point and a dist
 The Mahalanobis distance is unitless and scale-invariant and takes into account the correlations of the data set.
 
 Image moment descriptor, dimension reduction, and clustering should all bring the same notion of tunnels similarity/dissimilarity.
-Image moment might be seen as a problem here, as it fills the data to reduction and clustering\todo[color=blue!40]{{\color{black}Not clear what does the sentence say!}}.
 The original image moment is not invariant to translation, rotation, or scale, but there exist versions in which those properties are invariant.
 We have decided to use the centralized image moment, as it is invariant to translation because all the tunnels have the same rotation and uniform scaling.
 Translational invariance helps us with the problem of translated amino-acids, due to the change of the centerline length.
 As can be seen in Figure~\ref{fig:invariance}, we tested the generation of the overview scatterplot with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, and tunnels colored by the different color scheme.
 We can see that even though the positional distribution of the points differs, the notion of cluster and two outliers is preserved in all the different ways of generating image moment values.
-Moreover, the important aspect here is that for the overview scatterplot we have a shared space which allows us to see the neighborhood of the tunnels.
-Additionally, the space of the unfolded tunnels is shared as well\todo[color=blue!40]{{\color{black}What is meant by space??}}..
-This is due to requirement of employing comparative visualization as a part of the exploration process.
+Moreover, the important aspect here is that for the overview scatterplot we have a shared space which allows us to see the neighborhood of the tunnels, which is our requirement for employing comparative visualization as a part of the exploration process.
 
 \begin{figure}[htb]
 \includegraphics[width=0.8\linewidth]{img/invariance.png}
