@@ -291,12 +291,21 @@ To avoid this unwanted situation we employ a simple smoothing method proposed fo
 In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.
 
 %The second parameter $a$, of our parametrization, samples the points on individual contours.
-With the second parameter $a$ we uniformly sample points on each contour every $10^{\circ}$ (in the clockwise manner).
-Hence, the samples at positions $a=0$ and $a=36$ are the same while the value $a=18$ corresponds to the sample on the opposite side of the contour. 
+With the second parameter $a$ we uniformly sample points on each contour every $10^{\circ}$ (in the counter clockwise manner).
+Hence, the samples at positions $a=0$ and $a=36$ are the same while the value $a=18$ corresponds to the sample on the opposite side of the contour (see Figure~\ref{fig:unfolding} middle). 
 However, the results depend on the precise location of the point at the contour from where we start the sampling.
 %sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
 In our case the starting point is defined by so called cutting vector $\mathbf{v}$. 
 The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such that it points in direction between two most stable amino acids in the first ten slices, i.e., those that do not change their relative position significantly.
+
+\begin{figure}[htb]
+\includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
+\centering
+\caption{
+We cut the tunnel along its centerline. Then for each point on the centerline we create one slice.
+By straightening the cuts and putting them on top of each other we unfold the tunnel.}
+\label{fig:unfolding}
+\end{figure}  
 
 However, having a global cutting vector $\mathbf{v}$ might introduce unwanted artifacts due to the curvature of the centerline.
 To overcome this problem, we compute the cutting vector only for the first contour at position $c(t_0)$.
@@ -323,15 +332,7 @@ On the other hand, if we use parameter $a$ without any transformation we will lo
 Therefore, for each contour we also compute the distance $D(a_i, a_{i+1})$ between every two neighboring samples $a_i$ and $a_{i+1}$ (see Figure~\ref{fig:unfolding}).
 This distance is then used in order to transform the position of the sample in the final 2D space.
 
-  
-\begin{figure}[htb]
-\includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
-\centering
-\caption{
-We cut the tunnel along its centerline. Then for each point on the centerline we create one slice.
-By straightening the cuts and putting them on top of each other we unfold the tunnel.}
-\label{fig:unfolding}
-\end{figure}  
+ 
 
 %It is possible that between two neighboring samples some information might be lost, for example a small connecting cavity.
 %However, this structure is too small to have any impact on the protein, and therefore we decided not to take this feature into account.
@@ -342,7 +343,7 @@ By straightening the cuts and putting them on top of each other we unfold the tu
 %First coordinate is based on the parameter $t$. The value of the parameter ranges from 0, to the length of the centerline, and it is a distance along it. 
 %Second coordinate system is computed from the second parameter $a$. 
 Due to fact, that parameter $a$ is sampled uniformly we are able to reconstruct the circumference
-of the contour as a sum $\sum_{l=0}^{36} D(a_l, a_{l+1})$.
+of the contour as a sum $\sum_{l=0}^{35} D(a_l, a_{l+1})$.
 %Because we are doing an unfolding, samples from the cut should be on side, and samples from the opposite direction ($180^{\circ}$ with $a=18$).
 %For unfolding a tunnel to coordinates, where the first one is for the length in centerline and second for the length in the cut the coordinates would be:\begin{equation}
 %(t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
