@@ -427,24 +427,22 @@ To make such an ensemble understandable, we project the $IM$ matrix of tunnel im
 Here, the important requirement is that the distance between the tunnels must be preserved as much as possible.
 %in the matrix must be transformed into the distances between points.
 
-{\color{orange}First,} the matrix dimension needs to be reduced.
+First, the matrix dimension needs to be reduced.
 There are several approaches for dimensionality reduction, such as Principal Component Analysis~(PCA), Kernel Principal Component Analysis~(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis~(ICA)~\cite{Olshausen1997ICA}, t-Distributed Stochastic Neighbor Embedding~(t-SNE)~\cite{mateen2008tsne} and others.
 The important property of the approach is the ability to reduce the ten digits tunnel descriptor to point in 2D coordinates and to visualize the statistical results for the whole matrix.
-Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation. Because most of the approaches produces similar result, and for its simplicity, we have adopted PCA for dimension reduction.
-
+Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation. 
+Because most of the approaches produce similar results, and for its simplicity, we have adopted PCA for dimension reduction.
 PCA is a statistical tool that transforms a set of observations, in our case a set of image moment vectors, to the set of linearly uncorrelated variables. 
-Each of the resulting components is orthogonal to each other and the number of components is lower, or equal, than the number of the original variables.
-The components are ordered by the variance value.
-Meaning that the first component has the largest possible variance and each succeeding component has a lower variance.
+Each of the resulting components is orthogonal to each other and the number of components is lower than or equal to the number of the original variables.
+The components are ordered by the variance value meaning that the first component has the largest possible variance and each succeeding component has a lower variance.
 In our overview, we showcase the first two PCA components for the tunnel, which are encoded in the coordinates.
 The first component value encodes the $x$ coordinate, and the second encodes the $y$ coordinate (see Figure~\ref{fig:processing_pipeline}).
 
-\todo{nepresunout radeji do RW?}Natural image statistics were deeply analyzed by Fang et al.~\cite{Fang2013NaturalImageStatistics}, where the authors have designed new visualizations for image statistics.
 Our 2D overview is just a simple demonstration, however, more complex visualization method can be used instead, for example Combined design~\cite{Fang2013NaturalImageStatistics} to show the parameters of PCA and Gabor descriptors at the same time.
-This is one of the possible future directions of the method.
+This is one of the possible future extensions of our method.
 
 \subsubsection{Clustering}
-Having the visual representation of the similarity between tunnels can be seen essential for visual navigation through possible tunnel arrangements, which was also shown and discussed in the work of van den Elzen et al.\cite{Elzen2016SnapshotsToPoints} on the example of dynamic networks.
+Having the visual representation of the similarity between tunnels can be essential for visual navigation through possible tunnel arrangements, which was also shown and discussed in the work of van den Elzen et al.\cite{Elzen2016SnapshotsToPoints} on the example of dynamic networks.
 With points spread in the 2D space it is easy to spot densely populated areas (clusters), and also points being further away from the others (outliers).
 For a successful linking with other views, one needs to establish a proper color assignment of clusters and outliers.
 Here, clustering allows us to make groups of points to determine patterns in the overview.
@@ -453,7 +451,7 @@ Here, clustering allows us to make groups of points to determine patterns in the
 %A general open question for a successful cluster set is a number of clusters to determined in advance.
 %For a user without any prior knowledge about the data, this might be difficult.
 
-There are different clustering algorithms that could be applied, for example hierarchical clustering, or k-means approaches. 
+There are different clustering algorithms that could be applied, for example hierarchical clustering, or k-means approach. 
 In k-means clustering the number of clusters is fixed to $k$ and needs to be specified in advance, which is considered to be one of the main drawbacks of this algorithm.
 On the other hand, hierarchical clustering do not need the number of clusters in advance.
 In our case, we would like to show an unfolded representative from each cluster.
@@ -472,7 +470,7 @@ However, a well known problem relates to the borders of clusters, since the algo
 Image moment descriptor, dimension reduction, and clustering should all bring the same notion of tunnels similarity/dissimilarity.
 The original image moment is not invariant to translation, rotation, or scale, but there exist versions in which those properties are invariant.
 We have decided to use the centralized image moment, as it is invariant to translation because all the tunnels have the same rotation and uniform scaling.
-Translational invariance helps us with the problem of translated amino-acids, due to the change of the centerline length.
+Translational invariance helps us with the problem of translated amino acids, due to the change of the centerline length.
 As can be seen in Figure~\ref{fig:invariance}, we tested the generation of the overview scatterplot with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, and tunnels colored by the different color scheme.
 We can see that even though the positional distribution of the points differs, the notion of cluster and two outliers is preserved in all the different ways of generating image moment values.
 Moreover, the important aspect here is that for the overview scatterplot we have a shared space which allows us to see the neighborhood of the tunnels, which is our requirement for employing comparative visualization as a part of the exploration process.
@@ -492,8 +490,8 @@ Points are colored according to the detected clusters.
 So far we have described individual components of our technique.
 All of them play a crucial role in the exploration process.
 Therefore, our final exploration solution consists out of the following views (see Figure~\ref{fig:processing_pipeline}d).
-First, we introduce a view showing set of unfolded tunnels, which allows to make a comparison of spatial and structural aspects of the tunnel.
-Second, we exploit scatterplot showing the similarity/dissimilarity overview which brings forth the notion of the differences between tunnels.
+First, we introduce a view showing the set of unfolded tunnels, which allows us to make a comparison of spatial and structural aspects of the tunnel.
+Second, we exploit scatterplot showing the similarity/dissimilarity overview which gives the notion of the differences between tunnels.
 Finally, we employ a bar chart view where each tunnel is represented by one bar and the height of the bar corresponds to the tunnel length.
 
 \begin{figure*}[htb]
@@ -503,7 +501,7 @@ Finally, we employ a bar chart view where each tunnel is represented by one bar 
 \label{fig:dynamic}
 \end{figure*}
 
-Using the unfolding tunnel view the user is able to intuitively compare the width of the tunnels, the position of their bottleneck, the set of tunnel-lining amino acids and their extent of influence.
+Using the unfolding tunnel view the user is able to intuitively compare the width of the tunnels, the position of their bottleneck, and the set of tunnel-lining amino acids along with their extent of influence.
 In order to communicate various physico-chemical properties of individual amino acids we use color mapping. 
 However, using this approach we are able to visualize only a single property at once.
 Hence we provide also more aggregated view situated next to the unfolded tunnel image.
