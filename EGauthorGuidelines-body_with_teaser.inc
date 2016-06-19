@@ -284,22 +284,28 @@ The third feature is the spatial information about the tunnel length.
 
 
 The general idea of our unfolding method is based on the centerline parametrization~\cite{Kanitsar2002CPR}.
-For each tunnel we have the curve $\mathbf{c}(t) : [t_0, t_1]$ {\color{orange}defining its centerline}, and the cut direction $\mathbf{v}$.
-\todo[inline, color=red!40, author=Toto je treba prepsat - zejmena ty rays jsou docela nepochopitelne]{Our method is based on slicing the tunnel by clip planes perpendicular to the centerline tangent at position $\mathbf{c}(t)$ and sampling the slice by rays emerging from $\mathbf{c}(t)$ with the direction of the rotated cutting vector $\mathbf{v}$ around the centerline tangent by angle $a$.}
-
-The centerline is always inside of the tunnel and does not exhibit high curvature.
+For each tunnel we have the curve $\mathbf{c}(t) : [t_0, t_1]$ {\color{orange}defining its centerline}, which is always inside of the tunnel and does not exhibit high curvature.
+Firstly, we cut the tunnel along the centerline in uniform steps, and is is based on the first parameter of our parametrization $t$.
+Every cut is produced by clip plane perpendicular to the centerline tangent at position $\mathbf{c}(t)$.
 {\color{orange}However, in some rare occasions the two neighboring cuts might still cross.
 Therefore, we use simple smoothing technique which was proposed for MoleCollar~\cite{Byska2015MoleCollar} method. In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.}
 %Which is sufficient enough for case of molecular tunnels \cite{Byska2015AnimoAminoMiner}.
 
-------------------------
-
-The cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in the first several slices.
+Second parameter $a$, of our parametrization, samples the points of the cut, and strongly depends on the cutting vector $\mathbf{v}$.
+The cutting vector $\mathbf{v}$ is semantically defined as a border point between two stable amino acids in the first ten slices.
 These stable amino acids can be found close to the tunnel end point which is deeply buried in the protein structure.
 This is derived from the fact that the amino acids close to the protein surface are much more flexible than those densely packed inside.
 This allows us to create one of the directions for the shared comparative visualization, as the neighboring amino acids are stable during all the simulation of the dynamics.
 There are several other ways the cutting vector might be defined, but for our current needs this setting is sufficient. 
-For instance, one might come up with more semantically correct cut, which would follow the borders between the neighboring amino acids.
+
+Sampled point from parameter $a$ is the result of intersection of the cut and axis, which starts at $c(t)$, and which have a direction of vector $\mathbf{v}$ rotated around cut plane normal by angle $a$.
+With parameter $a$ we are uniformly sampling points from the cut every $10^{\circ}$, 
+Therefore, with $a=0$ and $a=36$ the sampling direction is the same as the cutting vector $\mathbf{v}$, and opposite direction $-\mathbf{v}$ is with $a=18$.
+
+------------------------
+
+
+%For instance, one might come up with more semantically correct cut, which would follow the borders between the neighboring amino acids.
 %This approach would not suffer from artifacts such as cutting one amino acid into two parts which can happen in our solution \todo[color=blue!40]{{\color{black}not sure whether we should mention also this}} .
 
 Having a tangent of the centerline and the global slicing vector can introduce a rotation artifact of the cut. 
