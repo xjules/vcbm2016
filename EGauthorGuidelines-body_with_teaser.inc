@@ -81,7 +81,7 @@ Therefore, by exploring the amount and properties of void space inside molecules
 The void space can be categorized according to different criteria, the most common approach takes into account the accessibility of the void space form the molecular surface.
 Then we can distinguish between inner closed cavities and paths.
 The closed cavities are inaccessible from the surface and are buried in the molecular structure.
-The accessible paths can be further divided to those which connect a specific site (so called active site) inside the molecule with its surface and those traversing the whole molecule.
+The accessible paths can be further divided to those which connect a specific site (so called active site) inside the molecule with its surface and those \textcolor{red}{which connect two points on the molecule surface}.
 The first type of paths is denoted as tunnels and the second as channels or pores.
 In our research we are interested mainly in tunnels in protein molecules because they enable to transport small ligands to the protein active site where a mutual chemical reaction can occur.  
 This process is crucial namely in drug design and protein engineering.
@@ -282,13 +282,14 @@ The third feature is the spatial information about the tunnel length.
 
 As already mentioned, in order to avoid occlusion issues we represent the tunnel as a 2D image.
 The general idea of our unfolding method is based on the centerline parametrization~\cite{Kanitsar2002CPR}.
-If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$ then any point on the tunnel surface can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.
+\textcolor{red}{If we define the centerline of each tunnel as curve $\mathbf{c}(t) : [t_0, t_1]$,
+where $t_0$ is at the reaction side and $t_1$ at the molecule surface, then any point on the tunnel surface can be described by two parameters: distance $t$ along the centerline and angle $a$ around it.}
 %To  , we use parametrization of the tunnel surface by distance from active site $t$ and angle $a$.
 Therefore, in order to obtain the unfolded view, we firstly cut the tunnel along its centerline in uniform steps, which produces a set of contours.
 Each contour is computed as the intersection of a plane perpendicular to the centerline at position $\mathbf{c}(t)$ with the tunnel mesh.
 Due to the centerline curvature two or more neighboring cuts may intersect. 
 To avoid this unwanted situation we employ a simple smoothing method proposed for similar purposes in the MoleCollar~\cite{Byska2015MoleCollar} technique.
-In this approach the normal of the cutting plane is computed as an average vector of directions from approximately ten neighboring points on the centerline.
+\textcolor{red}{In this approach the normal of the cutting plane is computed as an average vector of directions from ten neighboring points on the centerline.}
 
 %The second parameter $a$, of our parametrization, samples the points on individual contours.
 With the second parameter $a$ we uniformly sample points on each contour every $10^{\circ}$ (in the counter clockwise manner).
@@ -332,7 +333,6 @@ On the other hand, if we use parameter $a$ without any transformation we will lo
 Therefore, for each contour we also compute the distance $D(a_i, a_{i+1})$ between every two neighboring samples $a_i$ and $a_{i+1}$ (see Figure~\ref{fig:unfolding}, middle).
 This distance is then used in order to transform the position of the sample in the final 2D space.
 
- 
 
 %It is possible that between two neighboring samples some information might be lost, for example a small connecting cavity.
 %However, this structure is too small to have any impact on the protein, and therefore we decided not to take this feature into account.
@@ -342,8 +342,7 @@ This distance is then used in order to transform the position of the sample in t
 %For each sample, in every slide we compute a new coordinates.
 %First coordinate is based on the parameter $t$. The value of the parameter ranges from 0, to the length of the centerline, and it is a distance along it. 
 %Second coordinate system is computed from the second parameter $a$. 
-Due to fact, that parameter $a$ is sampled uniformly we are able to reconstruct the circumference
-of the contour as a sum $\sum_{l=0}^{35} D(a_l, a_{l+1})$.
+\textcolor{red}{We are able to reconstruct the circumference of the contour as a sum $\sum_{l=0}^{35} D(a_l, a_{l+1})$.}
 %Because we are doing an unfolding, samples from the cut should be on side, and samples from the opposite direction ($180^{\circ}$ with $a=18$).
 %For unfolding a tunnel to coordinates, where the first one is for the length in centerline and second for the length in the cut the coordinates would be:\begin{equation}
 %(t, \sum_{l=0}^{j} D(a_l, a_{l+1}) - \sum_{l=0}^{18} D(a_l, a_{l+1})).
@@ -360,7 +359,7 @@ On the other hand, more scattered lines signify that the tunnel is wider (see Fi
 \includegraphics[width=0.9\linewidth]{img/debugger.png}
 \centering
 \caption{
-Illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.
+Illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.\textcolor{red}{ At the bottom part is a coloring legend for amino acids. On the left and right sides are the colors of neighboring amino acids.}
 }
 \label{fig:flatteningUtility}
 \end{figure}
@@ -389,7 +388,7 @@ At the end the tunnels are shown in multiple views(d). }
 %After unfolding phase, described in previous section, we have 2D representation for each tunnel.
 Image moments~\cite{Flusser09Moments} provide a practical way to characterize individual tunnels since the acquired values capture the similarities and dissimilarities between tunnel images, i.e., they produce the similar values for similar images and more distinct for different ones.
 %In consequence, more distinct images have more distant values, so we can transform the similarity between images to distance between the image moment vectors.
-Each image $I(x,y)$ can be described by the set of moments:
+\textcolor{red}{Gray scale image with pixel intensities $I(x,y)$ can be described by the set of moments:}
 \begin{equation}
 M_{ij} = \sum_{x}\sum_{y}x^iy^j I(x,y)
 \end{equation} 
@@ -397,28 +396,25 @@ There are various versions of image moments, each of them is invariant to differ
 For example, centralized moments are invariant to translation, which is a valuable property in our case since some amino acid areas might change their longitudinal position with respect to the length of the centerline.
 Centralized image moments for an image $I(x,y)$ are defined as:
 \begin{equation}
-\mu_{ij} = \sum_{x}\sum_{y}\left(x - {M_{10} \over M_{00}}\right)^i\left(y - {M_{01} \over M_{00}}\right)^jI(x,y)
-\end{equation} 
+%\mu_{ij} = \sum_{x}\sum_{y}\left(x - {M_{10} \over M_{00}}\right)^i\left(y - {M_{01} \over M_{00}}\right)^jI(x,y)
+\mu_{ij} = \sum_{x}\sum_{y}\left(x - x_c\right)^i\left(y - y_c\right)^jI(x,y)
+\end{equation}
+\textcolor{red}{where $x_c$ and $y_c$ are components of centroid: 
+\begin{align*}
+x_c = {M_{10} \over M_{00}} &&& y_c = {M_{01} \over M_{00}}
+\end{align*}}
+\textcolor{red}{Adapting with the gray scale requirement for the image moments, we have encoded amino acids as colors from gray scale range, going from white to black.}
 This way we are able to characterize each tunnel by the vector of values with the central moments of order up to three to condense the information.
 After several empirical tests with different combinations of image moments we opted for the following set $I_m$ of 10 image moments that was found to be sufficient enough to describe the differences between individual tunnels: 
-
+\textcolor{red}{
 \begin{equation}
-I_m = (\mu_{00}, \mu_{01}, \mu_{10}, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
-\end{equation} 
+I_m = (\mu_{00}, 0, 0, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
+\end{equation}}
 
 Having such a vector for each tunnel, we can use the standard tools of information visualization to get the overview about the similarity of those tunnels.
 
 \subsection{Similarity Overview}
 We are able to set up a $m$-by-$n$ tunnels matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors $I_m$ for each tunnel.
-%\begin{equation}
-%IM = 
-%\begin{pmatrix}
-%I_m(tun_1) \\
-%I_m(tun_2) \\
-%\vdots    \\
-%I_m(tun_m) 
-%\end{pmatrix}
-%\end{equation} 
 
 When dealing with a tunnel in molecular dynamics, the matrix $IM$ contains hundreds of rows.
 % and it is challenging to explore the raw matrix to see and understand which tunnels are close to each other and which are not.
@@ -428,7 +424,7 @@ Here, the important requirement is that the distance between the tunnels must be
 
 First, the matrix dimension needs to be reduced.
 There are several approaches for dimensionality reduction, such as Principal Component Analysis~(PCA), Kernel Principal Component Analysis~(KPCA)~\cite{Kim2005KPCA}, Independent Component Analysis~(ICA)~\cite{Olshausen1997ICA}, t-Distributed Stochastic Neighbor Embedding~(t-SNE)~\cite{mateen2008tsne} and others.
-The important property of the approach is the ability to reduce the ten digits tunnel descriptor to point in 2D coordinates and to visualize the statistical results for the whole matrix.
+The important property of the approach is the ability to reduce the ten \textcolor{red}{floating point values} tunnel descriptor to point in 2D coordinates and to visualize the statistical results for the whole matrix.
 Visualizing statistical results can help to identify clusters and outliers as well as to analyze deviation, distribution, and correlation. 
 Because most of the approaches produce similar results, and for its simplicity, we have adopted PCA for dimension reduction.
 PCA is a statistical tool that transforms a set of observations, in our case a set of image moment vectors, to the set of linearly uncorrelated variables. 
@@ -437,14 +433,14 @@ The components are ordered by the variance value meaning that the first componen
 In our overview, we showcase the first two PCA components for the tunnel, which are encoded in the coordinates.
 The first component value encodes the $x$ coordinate, and the second encodes the $y$ coordinate (see Figure~\ref{fig:processing_pipeline}c).
 
-Our 2D overview is just a simple demonstration, however, more complex visualization method can be used instead, for example Combined design~\cite{Fang2013NaturalImageStatistics} to show the parameters of PCA and Gabor descriptors at the same time.
+Our 2D overview is just a simple demonstration, however, more complex visualization method can be used instead, for example Combined design~\cite{Fang2013NaturalImageStatistics} \textcolor{red}{to show multiple descriptors at the same time}.
 This is one of the possible future extensions of our method.
 
 \subsubsection{Clustering}
 Having the visual representation of the similarity between tunnels can be essential for visual navigation through possible tunnel arrangements, which was also shown and discussed in the work of van den Elzen et al.\cite{Elzen2016SnapshotsToPoints} on the example of dynamic networks.
 With points spread in the 2D space it is easy to spot densely populated areas (clusters), and also points being further away from the others (outliers).
 For a successful linking with other views, one needs to establish a proper color assignment of clusters and outliers.
-Here, clustering allows us to make groups of points to determine patterns in the overview.
+\textcolor{red}{Here, additional, explicit, clustering allows us to color groups of points to determine patterns in the overview.}
 %Clustering has its advantages when the data set is defined and a grouping needs to be determined from it.
 %Essentially, points in a cluster determine a group of similar tunnels.
 %A general open question for a successful cluster set is a number of clusters to determined in advance.
@@ -471,7 +467,7 @@ The original image moment is not invariant to translation, rotation, or scale, b
 We have decided to use the centralized image moment, as it is invariant to translation because all the tunnels have the same rotation and uniform scaling.
 Translational invariance helps us with the problem of translated amino acids, due to the change of the centerline length.
 As can be seen in Figure~\ref{fig:invariance}, we tested the generation of the overview scatterplot with four different ways of generating the value, which are: standard, tunnels rotated, tunnels scaled, and tunnels colored by the different color scheme.
-We can see that even though the positional distribution of the points differs, the notion of cluster and two outliers is preserved in all the different ways of generating image moment values.
+\textcolor{red}{We can see that even though the positional distribution of the points differs, the notion of cluster and three outliers is preserved in all the different ways of generating image moment values.}
 Moreover, the important aspect here is that for the overview scatterplot we have a shared space which allows us to see the neighborhood of the tunnels, which is our requirement for employing comparative visualization as a part of the exploration process.
 
 \begin{figure}[htb]
@@ -507,9 +503,9 @@ Hence we provide also more aggregated view situated next to the unfolded tunnel 
 This view communicates the average value for each observed physico-chemical property computed for the tunnel-lining amino acids.
 
 The unfolded tunnels are positioned side by side, or in other words by using the juxtaposition composition.
-Positioning tunnels from different time frames allows the user to see the behavior of the bottleneck as well as the amino acids.
-It is visible that the unfolded tunnels need a space to be seen properly.
-Therefore, in order to see the tunnels in this view in full detail it is appropriate only for a limited number of tunnels.
+\textcolor{red}{Positioning tunnels from different time frames allows the user to see the behavior of the bottleneck as well as the amino acids areas of influence.
+However, the amino acids areas in the tunnel might be too small.
+For a proper examination of the tunnel composition of amino acids, it is necessary to limit the downscale of the unfolded tunnel representation ant the number of visualized tunnels as well.}
 We have empirically found out that five tunnels is the limit for the resolution width 1900.
 If more tunnels should be visualized, they need to be additionally downscaled, which means that with more tunnels more spatial details are discarded and the visual representation has to be scaled.
 
@@ -521,7 +517,8 @@ Having here too many tunnels is still feasible as we are here more interested in
 
 The last missing link is to have an overview of the tunnels with respect to time.
 This requirement led us naturally to the bar chart representation, where the height of bars correspond to the tunnel length.
-This way we have a view which allows us to have a unique and well distinguishable representation for each tunnel.
+This way we have a view which allows us to have a unique and well distinguishable representation for each tunnel. 
+\textcolor{red}{Moreover, each tunnel is consistently colored by the group colors in scatterplot and barchart and as a background in the unfolded tunnel view.}
 
 The real power of the exploration lies in the possibility of brushing between the similarity overview (scatterplot) and tunnel length view (bar chart). 
 Selecting one point in the scatterplot highlights the corresponding tunnel in the bar chart and shows the unfolded content of the tunnel.
@@ -551,7 +548,7 @@ Additionally, the coloring of individual clusters helps us to find the correspon
 The bar chart immediately shows the time portions in which the tunnel was stable or unstable (depending of the interest of the researcher).
 Figure~\ref{fig:dynamic} shows the resulting representation for a sequence of 350 time steps of DhaA haloalkane dehalogenase protein.
 From the bar chart view we can clearly see that the tunnels shape is highly stable in the first part of the simulation while it becomes more and more unstable towards the end. 
-On the other hand, from the unfolded representation, containing by default the most representative samples of individual clusters, it is obvious that during the stable period (clusters \#2 and \#4) there was almost no influence of Tyrosine (Y:259 highlighted by red). 
+\textcolor{red}{On the other hand, from the unfolded representation, containing by default the closest samples from the of individual clusters centroids, it is obvious that during the stable period (clusters \#2 and \#4) there was almost no influence of Tyrosine (Y:259 highlighted by red). }
 This changes later when also the influence of the neighboring amino acids, such as Phenylalanine F154 and Asparagine N27 is starting to change significantly.
 Moreover, using our tool, the biochemists were immediately able to spot several outliers belonging to the cluster \#3 (see vertical arrows in bottom of Figure~\ref{fig:dynamic}). 
 This cluster represents tunnels which are significantly shorter then others.
@@ -588,7 +585,7 @@ The biochemists confirmed that similar information is very hard to understand fr
 Therefore, they appreciated our representation and suggested its future extension by calculating and highlighting areas with the most significant changes.
 
 \section{Conclusion \& Future work}
-In this paper, we demonstrate the power of data analytics in order to support the actual application of exploring the shape and content of ensembles of tunnels in protein molecules.
+In this paper, we present and demonstrate a power of a method of tunnel unfolding, similarity overview, and connected selection in order to support the actual application of exploring the shape and content of ensembles of tunnels in protein molecules.
 The resulting system can interactively show the overall development of the tunnel centerline, the tunnel similarities and dissimilarities, and the shape and content of a selected set of tunnels.
 
 Even with simple methods used in some steps (such as PCA and k-means), we were able to achieve solution that proved to be helpful for the domain experts.
