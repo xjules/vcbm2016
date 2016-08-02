@@ -76,7 +76,9 @@ The usability of our approach is demonstrated on case studies conducted by the d
 Studying molecular structures and their reactivity plays a crucial role in many research disciplines, including drug design, agriculture, cosmetics, industry, and others.
 The product of such a reaction can form a basis of \textcolor{red}{new chemical substances}, including medication.
 The reactivity of a molecule is highly influenced by the presence of a void space inside its structure. 
-More densely packed molecules, i.e., those not having too much empty space between atoms, are hardly accessible by small ligands aiming to react deeply inside the molecule. 
+%More densely packed molecules, i.e., those not having too much empty space between atoms, are hardly accessible by small ligands aiming to react deeply inside the molecule. 
+\textcolor{red}{More densely packed molecules, i.e., those not having too much empty space between atoms, are having less accessible reaction site, which is deeply inside the molecule, even for small ligands.}
+
 Therefore, by exploring the amount and properties of void space inside molecules we are able to assess the possibility of a ligand with specific properties to enter these molecules.
 The void space can be categorized according to different criteria, the most common approach takes into account the accessibility of the \textcolor{red}{void space from the molecular surface}.
 Then we can distinguish between inner closed cavities and paths.
@@ -413,7 +415,9 @@ After several empirical tests with different combinations of image moments we op
 I_m = (\mu_{00}, 0, 0, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
 \end{equation}}
 
-Having such a vector for each tunnel, we can use the standard tools of information visualization to get the overview about the similarity of those tunnels.
+Having such a vector for each tunnel, we can use the dedicated approaches in information visualization, or we can use interactive visual analysis, to get the overview about the similarity of those tunnels.
+
+Additionally, we agree that emphasizing outliers would be extremely helpful. One option would be to form a distance matrix containing distance of 2D PCA points, i.e., each matrix entry i,j represents a distance to between tunnel i and j. Here the bar chart height would then stand for the row-wise sum of these distances indicating how isolated (how much of an outlier) the tunnel is with respect to others.
 
 \subsection{Similarity Overview}
 We are able to set up a $m$-by-$n$ tunnels matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors $I_m$ for each tunnel.
@@ -511,7 +515,7 @@ The unfolded tunnels are positioned side by side, or in other words by using the
 \textcolor{red}{Positioning tunnels from different time frames allows the user to see the behavior of the bottleneck as well as the amino acids areas of influence.
 However, the amino acids areas in the tunnel might be too small.
 For a proper examination of the tunnel composition of amino acids, it is necessary to limit the downscale of the unfolded tunnel representation ant the number of visualized tunnels as well.}
-We have empirically found out that five tunnels is the limit for the resolution width 1900.
+We have empirically found out that five \textcolor{red}{unfolded} tunnels is the limit for the resolution width 1900.
 If more tunnels should be visualized, they need to be additionally downscaled, which means that with more tunnels more spatial details are discarded and the visual representation has to be scaled.
 
 
@@ -571,7 +575,7 @@ But in summary they confirmed that this tool has a high potential for this type 
 \subsection{Exploration of Tunnel Mutations}
 One of the research topics conducted by the cooperation group of protein engineers is dealing with engineering protein stability and resistance to organic cosolvents~~\cite{Koudelakova2013StabilityAndResistance}.
 This is \textcolor{red}{accomplished} by mutating the amino acids around the main tunnel of the DhaA haloalkane dehalogenase protein molecule. 
-The paper first presents the confirmation of importance of the amino acids surrounding the tunnel by presenting the results of several mutations of amino acids on different places in the molecule.
+The \textcolor{red}{method} first presents the confirmation of importance of the amino acids surrounding the tunnel by presenting the results of several mutations of amino acids on different places in the molecule.
 It was revealed that by mutating only the amino acids in the close vicinity of the main tunnel the researchers were able to change the stability and resistance of the protein substantially.
 Then it presents the study in which the biochemists aimed to find the best possible mutation around the main tunnel which would increase the stability of the dehalogenase and its resistance to organic cosolvents.
 The researchers revealed that the DhaA80 mutation in which the amino acid on position 176, which in the wild type form contains Cysteine, was replaced by Phenylalanine.
