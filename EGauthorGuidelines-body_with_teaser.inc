@@ -8,17 +8,18 @@
 
 % for anonymous conference submission please enter your SUBMISSION ID
 % instead of the author's name (and leave the affiliation blank) !!
-\author[]{Submission ID 1032}
-%\author[Koles\'{a}r et al.]
-%       {TODO$^{1}$ and TODO$^{2}$
-%        S. Spencer$^2$\thanks{Chairman Siggraph Publications Board}
-%        \\
-% For Computer Graphics Forum: Please use the abbreviation of your first name.
-%         $^1$University of Bergen, Norway\\
-%         $^2$Masaryk University, Brno, Czech Republic
-%        $^2$ Another Department to illustrate the use in papers from authors
-%             with different affiliations
-%       }
+%\author[Koles\'{a}r et al.]{Submission ID 1032}
+\author[Koles\'{a}r et al.]
+       {
+       Ivan Koles\'{a}r$^{1}$,
+       Jan By\v{s}ka$^{1,2}$,
+       Julius Parulek$^{1}$,
+       Helwig Hauser$^{1}$,
+        and Barbora Kozl\'{i}kov\'{a}$^{2}$
+        \\
+         $^1$University of Bergen, Norway\\
+         $^2$Masaryk University, Brno, Czech Republic
+       }
 
 % ------------------------------------------------------------------------
 
@@ -92,7 +93,7 @@ In our research we are focusing namely on protein structures, however, the propo
 
 Molecules are not static structures, their atoms are in permanent movement.
 This has also the impact on the void space, when detected tunnels can become wider or narrower or can even disappear. 
-Recently it was revealed that the function of proteins is determined not only by their constitution but also their molecular dynamics~\cite{dynasome}. 
+Recently it was revealed that the function of proteins is determined not only by their constitution but also their molecular dynamics~\cite{Hensen2012ExploringProteinDynamics}. 
 Therefore, from the biochemical point of view studying protein tunnels in one static time step is not too relevant because a given tunnel can be opened only for a fraction of time.
 Biochemists are rather interested in the stability and changes of tunnel shape over time.
 This exploration process has to be supported by special visualization techniques.
@@ -150,6 +151,10 @@ First we provide the reader with an overview of the related work regarding the p
 Then we mention techniques which have been proposed for 3D data projections and reformation in medical visualization, flow dynamics, and other fields.
 
 \subsection{Protein Void Detection and Analysis}
+\textcolor{red}{Main focus of our method is on visual exploration of molecular tunnels.
+Krone et al.\cite{Krone2016VisualAnalysisBiomolecularCavities} have done an extensive research of related work for visual analysis of biomolecular cavities.
+Additionally, we would like to provide an overview of the most relevant work for the case of identification, and analysis of molecular tunnels.}
+
 The earliest approaches for protein tunnel detection were based on grids~\cite{Petrek2006Caver, Ho2008Hollow, Voss20103V}. 
 For instance, Petrek et al.~\cite{Petrek2006Caver} proposed to enclose the protein into a uniform grid.
 The value of each grid cell corresponds to the distance of this cell to the nearest atom.
@@ -169,14 +174,14 @@ These approaches detect the tunnel centerline using the Voronoi diagram and then
 Nowadays, the biochemists are focusing more on the analysis of simulations of molecular dynamics rather than on static molecules, as these techniques yield more biochemically relevant results.
 Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is, however, still one of the biggest challenges.
 %In order to analyze empty space inside highly dynamic environment such as proteins it is necessary to correctly track it over time. 
-Nevertheless, there are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3}).
-In consequence, few approaches to their visual exploration appeared as well (e.g., \cite{Lindow2012DynamicChannels, Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface}).
+Nevertheless, there are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3, Brezovsky2013SoftwareTools}).
+In consequence, few approaches to their visual exploration appeared as well (e.g.,\textcolor{red}{\cite{Lindow2012DynamicChannels, Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface, Krone2016VisualAnalysisBiomolecularCavities, Kozlikova2015VisualizationBiomolecularStructure}}).
 These methods focus on interactive 3D exploration of protein inner voids in real time.
 However, they also suffer from problems related to 3D representation itself. 
 Moreover, by using these techniques it is hard to capture the significant changes of tunnel shape or constitution over time.
 
 For the thorough analysis of protein behavior, the physico-chemical properties of amino acids in tunnel vicinity are at least equally important as the geometrical aspects. 
-Therefore, recently \textcolor{red}{several techniques were proposed} by Parulek et al.~\cite{Parulek2013CavityAnalysis} and by Byska et al.~\cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner}. 
+Therefore, recently \textcolor{red}{several techniques were proposed} by Parulek et al.~\cite{Parulek2013CavityAnalysis}, by Byska et al.~\cite{Byska2015MoleCollar,Byska2015AnimoAminoMiner},\textcolor{red}{ and by Masood et al.~\cite{Masood2015CHEXVIS}}. 
 These techniques are using a high level of abstraction in order to depict the evolution of protein voids including the nearby amino acids in a single image.
 However, when using their proposed 2D views, the information about the spatial influence of individual tunnel-lining amino acids and their mutual positions is hard to understand.
 This problem is addressed by our proposed approach.
@@ -200,7 +205,7 @@ This problem is addressed by our proposed approach.
 
 \subsection{Projections, Reformations and Comparative Visualization Methods}
 The core idea of our technique is based on unfolding the 3D tunnel surface to a 2D image in order to prevent the occlusion problems.
-Additionally, such a reformation allows us to dedicate one of the dimensions to the requirements of comparative visualization. 
+Additionally, such a reformation allows us to dedicate one of the dimensions to the requirements of comparative visualization~\cite{Gleicher2011VisualComparisonInformationVisualization}. 
 \textcolor{red}{A similar} approach is commonly used in other domains as well.
 
 For example, Kretschmer et al.\cite{Kretschmer2014AnatomyDriveReformation} adapted a variant of as-rigid-as-possible reformation proposed by Liu et al.~\cite{Liu2008LocalGlobalMeshParametrization} for medical applications. 
@@ -415,9 +420,8 @@ After several empirical tests with different combinations of image moments we op
 I_m = (\mu_{00}, 0, 0, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
 \end{equation}}
 
-Having such a vector for each tunnel, we can use the dedicated approaches in information visualization, or we can use interactive visual analysis, to get the overview about the similarity of those tunnels.
-
-Additionally, we agree that emphasizing outliers would be extremely helpful. One option would be to form a distance matrix containing distance of 2D PCA points, i.e., each matrix entry i,j represents a distance to between tunnel i and j. Here the bar chart height would then stand for the row-wise sum of these distances indicating how isolated (how much of an outlier) the tunnel is with respect to others.
+\textcolor{red}{Having such a vector for each tunnel, we can use the dedicated approaches in information visualization, or we can use interactive visual analysis \cite{Oeltze2007IVAPerfusionData}, to get the overview about the similarity of those tunnels.
+Additionally, we agree that emphasizing outliers would be extremely helpful. One option would be to form a distance matrix containing distance of 2D PCA points, i.e., each matrix entry i,j represents a distance to between tunnel i and j. Here the bar chart height would then stand for the row-wise sum of these distances indicating how isolated (how much of an outlier) the tunnel is with respect to others.}
 
 \subsection{Similarity Overview}
 We are able to set up a $m$-by-$n$ tunnels matrix $IM$, whose rows, $m$, consist of the centralized image moment vectors $I_m$ for each tunnel.
@@ -452,7 +456,7 @@ For a successful linking with other views, one needs to establish a proper color
 %A general open question for a successful cluster set is a number of clusters to determined in advance.
 %For a user without any prior knowledge about the data, this might be difficult.
 
-There are different clustering algorithms that could be applied, for example hierarchical clustering, or k-means approach. 
+There are different clustering algorithms that could be applied, for example hierarchical clustering, or k-means approach \textcolor{red}{ \cite{Macqueen1967KMeans}}. 
 In k-means clustering the number of clusters is fixed to $k$ and needs to be specified in advance, which is considered to be one of the main drawbacks of this algorithm.
 On the other hand, hierarchical clustering do not need the number of clusters in advance.
 In our case, we would like to show an unfolded representative from each cluster.
@@ -621,8 +625,8 @@ It means to visualize the clusters side by side, where each cluster would not be
 %\todo{not sure whether it is not there already, but we should mention the limitation of the algorithm - \eg it does not handle cases when there is a hole inside the tunnel mesh}
 
 
-%\section{Acknowledgement}
-%This work was supported through grants from the Norway grants project NF-CZ07-MOP-2-086-2014, and the PhysioIllustration research project 218023 funded by the Norwegian Research Council.
+\section{Acknowledgement}
+This work was supported through grants from the Norway grants project NF-CZ07-MOP-2-086-2014, and the PhysioIllustration research project 218023 funded by the Norwegian Research Council.
 
 %-------------------------------------------------------------------------
 
