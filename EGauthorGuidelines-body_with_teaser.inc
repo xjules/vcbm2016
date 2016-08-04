@@ -605,11 +605,11 @@ Even with simple methods used in some steps (such as PCA and k-means), we were a
 We demonstrated the usage of the method on two case studies from the field of biochemistry, which were proposed and evaluated by the domain experts.
 \textcolor{red}{This confirmed that our method can be used for time-dependent data as well as for datasets containing tunnel mutations.}
 
-Most of the running time is on the generation of unfolded representations.
+\textcolor{red}{Most of the running time is on the generation of unfolded representations.
 In our CPU-based implementation it takes $\approx$ 2-3 seconds for each tunnel.
 It is required as a pre-computation in order to generate image moments for all tunnels, and to generate points for the similarity overview.
 For hundreds tunnels it takes minutes to compute all and to prepare all the views.
-Naturally, one of the future directions can be parallelization of the unfolding process.
+Naturally, one of the future directions can be parallelization of the unfolding process.}
 
 Certainly, it would be interesting to investigate more closely whether more advanced, alternative techniques for individual steps (non-linear embedding, bottom-up clustering,~...) could further improve the results.
 %After the discussions with the domain experts we also suggest several possibilities for future extensions. 
