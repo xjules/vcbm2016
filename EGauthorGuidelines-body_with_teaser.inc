@@ -42,7 +42,7 @@
 \begin{document}
 
 \teaser{
- \includegraphics[width=0.8\linewidth]{img/teaser.png}
+ \includegraphics[width=0.8\linewidth]{img/teaser_thinner.png}
  \centering
   \caption{Our proposed approach enabling to explore an ensemble of protein tunnels. It consists of three main parts -- scatterplot and bar chart representation of different tunnel properties on the bottom and the unfolded view of selected tunnels on the top. }
 \label{fig:teaser}
@@ -100,11 +100,11 @@ This exploration process has to be supported by special visualization techniques
 
 The majority of existing tunnel representations aim to visualize the 3D surface depicting the tunnel shape. 
 However, such representations fail in cases when it is required to compare more tunnels at once.
-This can happen namely in situations when we want to explore:
-\begin{itemize}
-\item changes of a tunnel in molecular dynamics
-\item several mutations of amino acids around a given tunnel
-\end{itemize}
+\textcolor{red}{This can happen namely in situations when we want to explore changes of a tunnel in molecular dynamics, or several mutations of amino acids around a given tunnel.}
+%\begin{itemize}
+%\item changes of a tunnel in molecular dynamics
+%\item several mutations of amino acids around a given tunnel
+%\end{itemize}
 
 When performing these tasks using traditional 3D visualization, the first situation uses the animation of tunnel movement and the second situation superposes the tunnel under different mutations.
 Both cases suffer from several drawbacks. 
@@ -129,7 +129,7 @@ Possible solution is to map this information onto the tunnel surface.
 Nevertheless, due to the aforementioned problems present in 3D tunnel visualization mentioned above, it is hard to compare and explore these properties as well.
 
 In this paper we aim at solving these problems by introducing a novel technique for intuitive comparison and exploration of ensembles of protein tunnels.
-It consists of several linked views enabling to:
+It consists of linked views enabling to:
 \begin{itemize}
 \item get the overview of all tunnels in the input ensemble and spot possibly interesting tunnels 
 \item localize these tunnels in time
@@ -151,10 +151,10 @@ First we provide the reader with an overview of the related work regarding the p
 Then we mention techniques which have been proposed for 3D data projections and reformation in medical visualization, flow dynamics, and other fields.
 
 \subsection{Protein Void Detection and Analysis}
-\textcolor{red}{Main focus of our method is on visual exploration of molecular tunnels.
-Krone et al.\cite{Krone2016VisualAnalysisBiomolecularCavities} have done an extensive research of related work for visual analysis of biomolecular cavities.
-Additionally, we would like to provide an overview of the most relevant work for the case of identification, and analysis of molecular tunnels.}
-
+%\textcolor{red}{Main focus of our method is on visual exploration of molecular tunnels.
+%Krone et al.\cite{Krone2016VisualAnalysisBiomolecularCavities} have done an extensive research of related work for visual analysis of biomolecular cavities.
+%Additionally, we would like to provide an overview of the most relevant work for the case of identification, and analysis of molecular tunnels.}
+%
 The earliest approaches for protein tunnel detection were based on grids~\cite{Petrek2006Caver, Ho2008Hollow, Voss20103V}. 
 For instance, Petrek et al.~\cite{Petrek2006Caver} proposed to enclose the protein into a uniform grid.
 The value of each grid cell corresponds to the distance of this cell to the nearest atom.
