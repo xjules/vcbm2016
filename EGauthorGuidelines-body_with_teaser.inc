@@ -39,6 +39,16 @@
 \newcommand{\eg}{e.g.,~}
 
 
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{5pt plus 2pt minus 2pt}
+\setlength{\intextsep}{5pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{5pt plus 2pt minus 2pt}
+
 \begin{document}
 
 \teaser{
@@ -93,7 +103,8 @@ In our research we are focusing namely on protein structures, however, the propo
 
 Molecules are not static structures, their atoms are in permanent movement.
 This has also the impact on the void space, when detected tunnels can become wider or narrower or can even disappear. 
-Recently it was revealed that the function of proteins is determined not only by their constitution but also their molecular dynamics~\cite{Hensen2012ExploringProteinDynamics}. 
+%Recently it was revealed that the function of proteins is determined not only by their constitution but also their molecular dynamics~\cite{Hensen2012ExploringProteinDynamics}. 
+\textcolor{red}{Recently it was revealed that the function of proteins is determined not only by their constitution but also their molecular dynamics.} 
 Therefore, from the biochemical point of view studying protein tunnels in one static time step is not too relevant because a given tunnel can be opened only for a fraction of time.
 Biochemists are rather interested in the stability and changes of tunnel shape over time.
 This exploration process has to be supported by special visualization techniques.
@@ -155,11 +166,11 @@ Then we mention techniques which have been proposed for 3D data projections and 
 %Krone et al.\cite{Krone2016VisualAnalysisBiomolecularCavities} have done an extensive research of related work for visual analysis of biomolecular cavities.
 %Additionally, we would like to provide an overview of the most relevant work for the case of identification, and analysis of molecular tunnels.}
 %
-The earliest approaches for protein tunnel detection were based on grids~\cite{Petrek2006Caver, Ho2008Hollow, Voss20103V}. 
-For instance, Petrek et al.~\cite{Petrek2006Caver} proposed to enclose the protein into a uniform grid.
-The value of each grid cell corresponds to the distance of this cell to the nearest atom.
-Then the Dijkstra algorithm is used in order to find the set of tunnels consisting of cells with the largest distance to the surrounding atoms.
-
+%The earliest approaches for protein tunnel detection were based on grids~\cite{Petrek2006Caver, Ho2008Hollow, Voss20103V}. 
+\textcolor{red}{The earliest approaches for protein tunnel detection were based on grids~\cite{Voss20103V}.} 
+%For instance, Petrek et al.~\cite{Petrek2006Caver} proposed to enclose the protein into a uniform grid.
+%The value of each grid cell corresponds to the distance of this cell to the nearest atom.
+%Then the Dijkstra algorithm is used in order to find the set of tunnels consisting of cells with the largest distance to the surrounding atoms.
 Even though these techniques allow to describe the void space of nearly any shape, the precision and performance of the grid-based methods highly depends on the grid resolution. 
 These drawbacks were later overcome by Voronoi diagram-based methods \cite{Medek2007Voronoi, Petrek2007MOLE, Yaffe2008MolAxis, Lindow2011Voronoi, Chovancova2012Caver3}.
 These methods first compute a Voronoi diagram of the protein atoms and use the Dijkstra algorithm on top of it. 
@@ -175,7 +186,8 @@ Nowadays, the biochemists are focusing more on the analysis of simulations of mo
 Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is, however, still one of the biggest challenges.
 %In order to analyze empty space inside highly dynamic environment such as proteins it is necessary to correctly track it over time. 
 Nevertheless, there are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3, Brezovsky2013SoftwareTools}).
-In consequence, few approaches to their visual exploration appeared as well (e.g.,\textcolor{red}{\cite{Lindow2012DynamicChannels, Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface, Krone2016VisualAnalysisBiomolecularCavities, Kozlikova2015VisualizationBiomolecularStructure}}).
+%In consequence, few approaches to their visual exploration appeared as well (e.g.,\textcolor{red}{\cite{Lindow2012DynamicChannels, Lindow2013DynamicCavities, Jurcik2016TransparentMolecularSurface, Krone2016VisualAnalysisBiomolecularCavities, Kozlikova2015VisualizationBiomolecularStructure}}).
+In consequence, few approaches to their visual exploration appeared as well (e.g.,\textcolor{red}{\cite{Lindow2013DynamicCavities, Krone2016VisualAnalysisBiomolecularCavities}}).
 These methods focus on interactive 3D exploration of protein inner voids in real time.
 However, they also suffer from problems related to 3D representation itself. 
 Moreover, by using these techniques it is hard to capture the significant changes of tunnel shape or constitution over time.
@@ -310,8 +322,10 @@ The cutting	vector $\mathbf{v}$ is a vector perpendicular to the centerline such
 \includegraphics[width=\linewidth]{img/unfolding_in_out.jpg}
 \centering
 \caption{
-We cut the tunnel along its centerline. Then for each point on the centerline we create one slice.
-By straightening the cuts and putting them on top of each other we unfold the tunnel.}
+\textcolor{red}{We cut the tunnel along its centerline. Then for each point on the centerline we create one slice.
+By straightening the cuts and putting them on top of each other we unfold the tunnel.
+The unfolded representation resembles a map where each region corresponds to one amino acid.
+The density of the horizontal curves helps to understand the tunnel width.}}
 \label{fig:unfolding}
 \end{figure}  
 
@@ -339,13 +353,9 @@ Parameter $t$ can be used directly since its value ranges from 0 to 1 and corres
 On the other hand, if we use parameter $a$ without any transformation \textcolor{red}{we will lose} the information about the tunnel width.
 Therefore, for each contour we also compute the distance $D(a_i, a_{i+1})$ between every two neighboring samples $a_i$ and $a_{i+1}$ (see Figure~\ref{fig:unfolding}, middle).
 This distance is then used in order to transform the position of the sample in the final 2D space.
-
-
 %It is possible that between two neighboring samples some information might be lost, for example a small connecting cavity.
 %However, this structure is too small to have any impact on the protein, and therefore we decided not to take this feature into account.
-
 %The sampling is performed using the ray coming from the centerline and increasingly rotated around the slice normal.
-
 %For each sample, in every slide we compute a new coordinates.
 %First coordinate is based on the parameter $t$. The value of the parameter ranges from 0, to the length of the centerline, and it is a distance along it. 
 %Second coordinate system is computed from the second parameter $a$. 
@@ -360,18 +370,18 @@ Moreover, the size of the tunnel along the centerline is preserved as well as th
 
 By connecting the samples with the same value of the parameter $a$ we get a shape description that communicates the changes of the tunnel shape.
 For example, at the place where the lines are dense the tunnel is narrower.
-On the other hand, more scattered lines signify that the tunnel is wider (see Figure~\ref{fig:flatteningUtility}).
+On the other hand, more scattered lines signify that the tunnel is wider (see Figure~\ref{fig:unfolding}).
 
-\begin{figure}[htb]
-\includegraphics[width=0.9\linewidth]{img/debugger.png}
-\centering
-\caption{
-Illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.\textcolor{red}{ At the bottom part is a coloring legend for amino acids. On the left and right sides are the colors of neighboring amino acids.}
-}
-\label{fig:flatteningUtility}
-\end{figure}
+%\begin{figure}[htb]
+%\includegraphics[width=0.9\linewidth]{img/debugger.png}
+%\centering
+%\caption{
+%Illustration of the connection between tunnel 3D shape, its unfolded representation, and tunnel slicing. The unfolded representation resembles a map where each region corresponds to one amino acid. The density of the horizontal curves helps to understand the tunnel width.\textcolor{red}{ At the bottom part is a coloring legend for amino acids. On the left and right sides are the colors of neighboring amino acids.}
+%}
+%\label{fig:flatteningUtility}
+%\end{figure}
 
-The unfolded view can be also linked with the tool for detailed exploration of one selected tunnel (see Figure~\ref{fig:flatteningUtility}). This highly interactive environment contains the unfolded view equipped with horizontal and vertical cutting lines. By manipulating these lines the user can observe the slice view providing the detailed information about the shape of the tunnel in the highlighted area. These lines are also visible in the 3D view of the tunnel which can be rotated.
+%The unfolded view can be also linked with the tool for detailed exploration of one selected tunnel (see Figure~\ref{fig:flatteningUtility}). This highly interactive environment contains the unfolded view equipped with horizontal and vertical cutting lines. By manipulating these lines the user can observe the slice view providing the detailed information about the shape of the tunnel in the highlighted area. These lines are also visible in the 3D view of the tunnel which can be rotated.
 
 Nevertheless, the core benefit of the unfolded tunnel representation lies in the ability to perform a comparative visualization.
 \textcolor{red}{Juxtaposition or superposition} of the unfolded tunnels give an overview of the spatial and content-wise differences between different tunnels.
