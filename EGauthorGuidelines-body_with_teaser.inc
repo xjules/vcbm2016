@@ -89,26 +89,26 @@ The usability of our approach is demonstrated on case studies conducted by the d
 Studying molecular structures and their reactivity plays a crucial role in many research disciplines, including drug design, agriculture, cosmetics, industry, and others.
 The product of such a reaction can form a basis of \textcolor{blue}{new chemical substances}, including medication.
 The reactivity of a molecule is highly influenced by the presence of a void space inside its structure. 
-\textcolor{red}{More densely packed molecules do not contain too much empty space between its atoms. 
+\textcolor{red}{More densely packed molecules do not contain too much empty space between their atoms. 
 The reaction site, which is often located deeply inside the molecule, is therefore less accessible, even for small ligands.}
 Therefore, by exploring the amount and properties of void space inside molecules we are able to assess the possibility of a ligand with specific properties to enter these molecules.
 The void space can be categorized according to different criteria.
 The most common approach takes into account the accessibility of the \textcolor{red}{void space from the molecular surface}.
 Then we can distinguish between inner closed cavities and paths.
 The closed cavities are inaccessible from the surface and are buried in the molecular structure.
-The accessible paths can be further divided to those which connect a specific site (so called active site) inside the molecule with its surface and those \textcolor{red}{which pass through the molecule and connect two points on the molecular surface}.
+The accessible paths can be further divided to those which connect a specific site (so called active site) inside the molecule with its surface and those \textcolor{red}{that pass through the molecule and connect two points on the molecular surface}.
 The first type of paths is denoted as tunnels and the second as channels or pores.
 In our research we are interested mainly in tunnels in protein molecules because they enable to transport small ligands to the protein active site where a mutual chemical reaction can occur.  
 This process is crucial namely in drug design and protein engineering.
 From the latter field also comes our conducted user studies which we present at the end of the paper.
-In our research we are focusing namely on protein structures, however, the proposed method is applicable to any kind of molecule containing tunnels.
+In our research we focus namely on protein structures, although the proposed method is applicable to any kind of molecule containing tunnels.
 
-Molecules are not static structures, their atoms are in permanent movement.
-This has also the impact on the void space, when detected tunnels can become wider or narrower or can even disappear. 
+Molecules are not static structures; their atoms are in permanent movement.
+This has also an impact on the void space, when detected tunnels can become wider or narrower or can even disappear. 
 %Recently it was revealed that the function of proteins is determined not only by their constitution but also their molecular dynamics~\cite{Hensen2012ExploringProteinDynamics}. 
 \textcolor{red}{Recently it was revealed that the function of proteins is determined not only by their constitution but also their molecular dynamics.}
 Therefore, from the biochemical point of view studying protein tunnels in one static time step is not too relevant because a given tunnel can be opened only for a fraction of time.
-Biochemists are rather interested in the stability and changes of tunnel shape over time.
+Biochemists are rather interested in the stability and changes of the tunnel shape over time.
 This exploration process has to be supported by special visualization techniques.
 
 The majority of existing tunnel representations aim to visualize the 3D surface depicting the tunnel shape. 
@@ -126,7 +126,7 @@ The user is overwhelmed by movements and the differences in the tunnel shape can
 Moreover, using the 3D tunnel representation only a portion of the tunnel surface is visible from the viewpoint.
 When aiming to explore a tunnel influenced by several mutations of its surrounding amino acids, the user wants to observe and evaluate the impact of these mutations on the tunnel surface. Using superposition of the mutated tunnels we suffer from visual clutter caused by surface overlaps (see Figure~\ref{fig:tunnels} left).
 These overlaps can be removed by using juxtaposition of the tunnel representations (see Figure~\ref{fig:tunnels} right).
-But such a case is applicable only on a small set of objects because it can be hard to perceive the differences between them, namely for those having a further mutual distance. 
+But such a case is applicable only to a small set of objects because it can be hard to perceive the differences between them, namely for those having a further mutual distance. 
 \textcolor{blue}{This problem is even more exacerbated when using the 3D tunnel representation.}
 
 \begin{figure}[htb]
@@ -137,7 +137,7 @@ But such a case is applicable only on a small set of objects because it can be h
 \end{figure}
 
 The proper visualization of surface itself is not sufficient for exploration and complete understanding of differences between protein tunnels. 
-Another essential information relates the amino acids forming the tunnel boundary, namely their physico-chemical properties and the extent of influence of the tunnel.
+Another essential information relates to the amino acids forming the tunnel boundary, namely their physico-chemical properties and the extent of influence of the tunnel.
 Possible solution is to map this information onto the tunnel surface.
 Nevertheless, due to the aforementioned problems present in 3D tunnel visualization, it is hard to compare and explore these properties as well.
 
