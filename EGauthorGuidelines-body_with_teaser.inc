@@ -176,7 +176,7 @@ Then we mention techniques which have been proposed for 3D data projections and 
 Even though these techniques allow to describe the void space of nearly any shape, the precision and performance of the grid-based methods highly depend on the grid resolution. 
 These drawbacks were later overcome by Voronoi diagram-based methods \cite{Medek2007Voronoi, Yaffe2008MolAxis, Lindow2011Voronoi, Chovancova2012Caver3}.
 These methods first compute a Voronoi diagram of the protein atoms and use the Dijkstra algorithm on top of it. 
-Such an approach enables to save a huge amount of resources.
+Such an approach enables to save a considerable amount of resources.
 The resulting tunnel is then represented by a set of spheres positioned onto the Voronoi edges forming the tunnel centerline.
 But the more precise tunnel boundary is determined by the surrounding atoms so it is far from being spherical.
 Therefore, this traditional spherical representation may lead to misinterpretation of the analyzed tunnel.
@@ -184,7 +184,7 @@ As a consequence, some alternative methods combining the grid and Voronoi-based 
 These approaches detect the tunnel centerline using the Voronoi diagram and then rasterize the space around the centerline to obtain more precise representation of the tunnel surface.
 
 
-Nowadays, the biochemists are focusing more on the analysis of simulations of molecular dynamics rather than on static molecules, as these techniques yield more biochemically relevant results.
+Nowadays, the biochemists focus more on the analysis of simulations of molecular dynamics rather than on static molecules, as these techniques yield more biochemically relevant results.
 Analysis and subsequent exploration of tunnel behavior in long molecular dynamics simulations is, however, still one of the biggest challenges.
 %In order to analyze empty space inside highly dynamic environment such as proteins it is necessary to correctly track it over time. 
 Nevertheless, there are already several tools which are able to process such simulations (e.g., \cite{Chovancova2012Caver3, Brezovsky2013SoftwareTools}).
@@ -278,11 +278,11 @@ Several shape descriptors for whole proteins or binding sites were already sugge
  
 Since we deal with 2D representation of tunnels as a solution for occlusion issues, we decided to employ a set of descriptors based on image moments~\cite{Flusser09Moments}.
 The advantage of this approach is that the image moment is a well known descriptor for image analysis and classification.
-We can easily utilize the color channel for information about amino acids and hence directly \textcolor{blue}{add} it to the descriptor.
+We can easily utilize the color channel for information about amino acids and hence directly \textcolor{blue}{add} it to \textcolor{green}{the formed image}.
 Additionally, it gives us an explicit description of the representation that we will ultimately provide to the user.
 
-In order to communicate the obtained results we need to employ a dimension reduction technique due to the large amount of both tunnels and possible descriptors.
-In our technique we exploit principal component analysis (PCA) due its simplicity and applicability to dimension reduction problems in data analysis; nevertheless, any other method could be applied as well.
+In order to communicate the obtained results we need to employ a dimension reduction technique due to the large amount of \textcolor{green}{both tunnels and possible descriptors}.
+In our technique we exploit principal component analysis (PCA) due its simplicity and applicability to dimension reduction problems in data analysis; nevertheless, any other \textcolor{green}{dimension reduction} method could be applied as well.
 The results of PCA are then presented in a scatterplot view where the similarities/dissimilarities between tunnels are communicated by the distance between points.
 
 Finally, having multiple views, the interaction allows us to explore the space of all tunnels in 2D using scatterplot and at the same time to compare spatial characteristics of the individual unfolded tunnels.
@@ -434,7 +434,7 @@ After several empirical tests with different combinations of image moments we op
 I_m = (\mu_{00}, 0, 0, \mu_{11}, \mu_{02}, \mu_{20}, \mu_{12}, \mu_{21}, \mu_{03}, \mu_{30})
 \end{equation}}
 
-\textcolor{red}{Having such a vector for each tunnel, we can use the dedicated approaches from information visualization, or we can use interactive visual analysis \cite{Oeltze2007IVAPerfusionData} to get the overview about the similarity of those tunnels.
+\textcolor{red}{Having such a vector for each tunnel, we can use the dedicated approaches from information visualization, or interactive visual analysis \cite{Oeltze2007IVAPerfusionData} to get the overview about the similarity of those tunnels.
 In our case, emphasizing the outliers is very helpful.
 We suggest to use distance matrix containing the distance of 2D PCA points, i.e., each matrix entry $i,j$ represents the distance between tunnel $i$ and $j$.
 Here the bar chart height would stand for the row-wise sum of these distances indicating how isolated the tunnel is with respect to other tunnels.}
@@ -515,7 +515,7 @@ So far we have described individual components of our technique.
 All of them play a crucial role in the exploration process.
 Therefore, our final exploration solution consists out of the following views (see Figure~\ref{fig:processing_pipeline}d).
 First, we introduce a view showing the set of unfolded tunnels, which allows us to make a comparison of spatial and structural aspects of the tunnel.
-Second, we exploit scatterplot showing the similarity/dissimilarity overview which gives the notion of the differences between tunnels.
+Second, we exploit scatterplot showing the similarity/dissimilarity overview that gives the notion of the differences between tunnels.
 Finally, we employ a bar chart view where each tunnel is represented by one bar and the height of the bar corresponds to the tunnel length.
 
 \begin{figure*}[htb]
@@ -551,7 +551,7 @@ This way we have a view which allows us to have a unique and well distinguishabl
 
 The real power of the exploration lies in the possibility of brushing between the similarity overview (scatterplot) and tunnel length view (bar chart). 
 Selecting one point in the scatterplot highlights the corresponding tunnel in the bar chart and shows the unfolded content of the tunnel.
-Of course, this selection works also in the opposite direction when selecting a bar highlights the corresponding point in the scatterplot in order to easily recognize if the tunnel has a stable shape or if it is an outlier.
+Naturally, this selection works also in the opposite direction when selecting a bar highlights the corresponding point in the scatterplot in order to easily recognize whether the tunnel has a stable shape or if it is an outlier.
 
 \textcolor{blue}{Overall}, the user has the power to explore the spatial and content-wise aspects of the tunnels by selecting the desired tunnels in the bar chart and the scatterplot.
 Thanks to the bar chart it is possible to visualize the tunnel development over time and scatterplot helps to explore the similarity of the tunnel and to spot the outliers.
